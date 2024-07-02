@@ -23,8 +23,6 @@ makepkg -si
 # Instalando e ativando a SWAP
 yay -S --noconfirm zramd
 sudo systemctl enable --now zramd.service
-echo "ALGORITHM=zstd" >> /etc/default/zramd
-echo "MAX_SIZE=8192" >> /etc/default/zramd
 
 # Ativando o SDDM
 systemctl enable --now sddm
