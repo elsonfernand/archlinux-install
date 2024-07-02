@@ -12,7 +12,7 @@ systemctl enable reflector.timer
 sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup ; reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
 
 # Instalação do KDE Plasma 6 sem Discover e do gerenciador de login
-sudo pacman -S --noconfirm bash-completion fastfetch plasma-desktop git pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber nvidia nvidia-utils nvidia-settings dolphin dolphin-plugins ffmpegthumbs tlp ark konsole okular gwenview kscreen chromium kate kde-gtk-config kcalc sddm sddm-kcm --ignore discover
+sudo pacman -S --noconfirm bash-completion fastfetch plasma-desktop git pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber nvidia nvidia-utils nvidia-settings dolphin dolphin-plugins ffmpegthumbs ark konsole okular gwenview kscreen chromium kate kde-gtk-config kcalc sddm sddm-kcm --ignore discover
 
 # Instalando e ativando o serviço de melhoria da bateria para notebooks.
 pacman -S --noconfirm tlp
