@@ -8,7 +8,7 @@
 
 Esse repositório está em constante desenvolvimento.
 
-## 💻 Pré-requisitos
+## Pré-requisitos
 
 Antes de começar, verifique se você atendeu aos seguintes requisitos:
 
@@ -16,7 +16,7 @@ Antes de começar, verifique se você atendeu aos seguintes requisitos:
 - Você tem na sua máquina `<uma batata / conhecimento para fazer um pendrive bootável / Linux>`.
 - Você leu <a href="https://wiki.archlinux.org/title/Installation_guide" target="blank">a wiki do projeto</a>.
 
-## 🚀 Executando o script
+## Executando o script
 
 Sugiro que antes de tudo execute um editor de texto para saber a sua necessidade dentro do script. Siga estas etapas para saber onde a pasta foi parar:
 
