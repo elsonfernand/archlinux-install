@@ -44,6 +44,6 @@ Execute-o e reze para o PC não explodir:
 
 Continue de olho porque pode ser que peça a senha.
 
-## 📝 Licença
+## Licença
 
 Esse projeto não está sob licença. Modifique, refaça, me mande uma DM pra me xingar.
