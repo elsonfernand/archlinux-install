@@ -7,7 +7,7 @@ sudo hwclock --systohc
 # Instalando
 sudo pacman -S --noconfirm reflector
 # Ativando
-systemctl enable reflector.timer
+sudo systemctl enable reflector.timer
 # Configurando
 sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup ; reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
 
@@ -15,8 +15,8 @@ sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup ; reflector --v
 sudo pacman -S --noconfirm bash-completion fastfetch plasma-desktop git pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber nvidia nvidia-utils nvidia-settings dolphin dolphin-plugins ffmpegthumbs ark konsole okular gwenview kscreen chromium kate kde-gtk-config kcalc sddm sddm-kcm --ignore discover
 
 # Instalando e ativando o serviço de melhoria da bateria para notebooks.
-pacman -S --noconfirm tlp
-systemctl enable --now tlp
+sudo pacman -S --noconfirm tlp
+sudo systemctl enable --now tlp
 
 # Download e instalação do yay
 sudo pacman -S git go
@@ -29,4 +29,4 @@ yay -S --noconfirm zramd
 sudo systemctl enable --now zramd.service
 
 # Ativando o SDDM
-systemctl enable --now sddm
+sudo systemctl enable --now sddm
