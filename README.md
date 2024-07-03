@@ -78,7 +78,7 @@ mount /dev/sda1 /mnt/boot/efi
 ```
 
 > [!TIP]
-> Se estiver fazendo esse processo com a **/home** separada crie um diretório com ***mkdir -p /mnt/home*** e monte com ***mount /dev/sda3 /mnt/home***, nessa ordem.
+> Se estiver fazendo esse processo com a **/home** separada crie um diretório com ***mkdir -p /mnt/home*** e monte com ***mount /dev/sda3 /mnt/home***, nessa ordem, deixando a */home* por último.
 
 Instale os pacotes base com o pacstrap:
 ```
