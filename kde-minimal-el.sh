@@ -3,7 +3,8 @@
 sudo timedatectl set-ntp true
 sudo hwclock --systohc
 
-## Reflector
+
+# Reflector
 # Instalando
 sudo pacman -S --noconfirm reflector
 # Ativando
