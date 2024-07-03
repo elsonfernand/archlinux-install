@@ -28,5 +28,16 @@ makepkg -si
 yay -S --noconfirm zramd
 sudo systemctl enable --now zramd.service
 
+# Pacotes e ativação da impressora Epson L3150
+# sudo pacman -S --noconfirm cups ghostscript gsfonts libcups gutenprint foomatic-db-gutenprint-ppds
+# sudo systemctl enable --now cups.service ; sudo systemctl enable --now cups.socket ; sudo systemctl enable --now cups.path
+# sudo pacman -S --noconfirm system-config-printer
+# sudo usermod -aG lp $USER
+# sudo pacman -S sane-airscan sane ipp-usb
+# sudo usermod -aG saned,scanner $USER
+# sudo systemctl enable --now ipp-usb.service
+# sudo pacman -S simple-scan
+# yay -S epson-inkjet-printer-escpr epsonscan2 imagescan-plugin-networkscan
+
 # Ativando o SDDM
 sudo systemctl enable --now sddm
