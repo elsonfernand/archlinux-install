@@ -25,6 +25,10 @@ echo root:password | chpasswd
 # pacman -S --noconfirm xf86-video-amdgpu
 # Descomente a opção abaixo se você usa placa de vídeo da Nvidia.
 # pacman -S --noconfirm nvidia nvidia-utils nvidia-settings
+# Descomente a opção abaixo para instalar o utilitário de convidado do Virtual Box
+# pacman -S virtualbox-guest-utils
+# Habilite esse serviço para carregar os módulos do Virtual Box automaticamente.
+# systemctl enable vboxservice.service
 
 # Instalando e gerando o GRUB
 grub-install /dev/sda
