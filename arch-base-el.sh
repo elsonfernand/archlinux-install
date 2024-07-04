@@ -43,7 +43,7 @@ systemctl enable NetworkManager
 #systemctl enable firewalld
 
 # Atualizando a lista de espelhos para melhor download dos pacotes de atualização e novas instalações. Só descomente se você já fez a instalação nos passos anteriores.
-#sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup ; reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
+# pacman -S --noconfirm reflector ; sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup ; reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
 
 # Adicionando e criando um usuário no grupo "wheel". Troque o "el" pelo nome do seu usuário.
 useradd -mG wheel -s /bin/bash el
