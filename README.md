@@ -99,11 +99,11 @@ arch-chroot /mnt
 ```
 Agora é a hora de pegar o script com:
 ```
-git clone https://github.com/elsonfernand/archlinux-public.git
+git clone https://github.com/elsonfernand/archlinux-install.git
 ```
 Entre no diretório do script:
 ```
-cd /archlinux-public/
+cd /archlinux-install/
 ```
 Altere, se você achar necessáro, o conteúdo do script:
 ```
@@ -118,7 +118,7 @@ Execute com:
 ./<nome-do-script>.sh
 ```
 > [!IMPORTANT]
-> Fique de olho no que esse script está fazendo pois possa ser que ele faça explodir seu domicílio inteiro.
+> Fique de olho no que esse script está fazendo pois possa ser que ele faça explodir seu domicílio inteiro e você tenha que financiar uma outra casa.
 
 ## Licença
 
