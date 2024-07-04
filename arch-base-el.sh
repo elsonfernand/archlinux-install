@@ -46,7 +46,7 @@ useradd -mG wheel -s /bin/bash el
 # Crie senha para esse usuário. Altere 'password' para a sua senha.
 echo el:password | chpasswd
 
-# Adicionando privilégios de superusuário
+# Adicionando privilégios de superusuário, lembre-se de trocar o "el" pelo nome de usuário que você colocou lá atrás.
 echo "el ALL=(ALL) ALL" >> /etc/sudoers.d/el
 
-printf "\e[1;32mPronto! Agora digite, exit, depois umount -a e desligue o sistema com poweroff. Retire a mídia de instalação e inicie o sistema.\e[0m"
+printf "\033[00;37mPronto! Agora digite \033[01;37mexit\033[00;37m para sair desse modo, depois \033[01;37mumount -a\033[00;37m para desmontar as partições e desligue o sistema com \033[01;37mpoweroff\033[00;37m. Retire a mídia de instalação e inicie o sistema."
