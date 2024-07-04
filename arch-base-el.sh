@@ -41,7 +41,7 @@ systemctl enable NetworkManager
 # Atualizando a lista de espelhos para melhor download dos pacotes de atualização e novas instalações. Só descomente se você já fez a instalação nos passos anteriores.
 #sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup ; reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
 
-# Adicionando e criando um usuário no grupo "wheel".
+# Adicionando e criando um usuário no grupo "wheel". Troque o "el" pelo nome do seu usuário.
 useradd -mG wheel -s /bin/bash el
 # Crie senha para esse usuário. Altere 'password' para a sua senha.
 echo el:password | chpasswd
@@ -49,4 +49,4 @@ echo el:password | chpasswd
 # Adicionando privilégios de superusuário
 echo "el ALL=(ALL) ALL" >> /etc/sudoers.d/el
 
-printf "\e[1;32mPronto! Agora digite, exit, depois umount -a e desligue o sistema com poweroff. Religue em seguida.\e[0m"
+printf "\e[1;32mPronto! Agora digite, exit, depois umount -a e desligue o sistema com poweroff. Retire a mídia de instalação e inicie o sistema.\e[0m"
