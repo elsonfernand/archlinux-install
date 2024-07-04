@@ -8,8 +8,8 @@ t# Scripts simples em shell
 
 Antes de começar, verifique se você atendeu aos seguintes requisitos:
 - Você instalou a versão mais recente de `<paciência / vista grossa para código n00b / autocontrole>`
-- Você tem na sua máquina `<PC ou notebook dando boot / Secure Boot desativado / pendrive bootável com a iso do Arch Linux>`.
-- ISO mais atual do Arch Linux. Você pode fazer o download <a href="https://archlinux.org/download/" target="blank">aqui</a>.
+- Você tem na sua máquina `<PC ou notebook dando boot / Secure Boot desativado>`.
+- Pendrive bootável com ISO mais atual do Arch Linux. Você pode fazer o download <a href="https://archlinux.org/download/" target="blank">aqui</a>.
 - Você leu <a href="https://wiki.archlinux.org/title/Installation_guide" target="blank">a wiki do projeto</a>.
 
 Esse repositório está em constante desenvolvimento e aqui você encontrará scripts para a instalação base do Arch Linux e ambientes de desktop (por enquanto apenas o KDE Plasma 6, pois é o único que uso no momento). Edite baseado na sua necessidade, dê permissão de escrita com ***chmod +x <nome-do-script>.sh*** e então execute com ***./<nome-do-script>.sh***. Lembre-se que a primeira parte da instalação do Arch Linux é manual, ou seja, você terá que particionar, formatar e montar o disco você mesmo. Instale os pacotes base e certifique-se de incluir o git para que você possa clonar o repositório no *chroot*.
