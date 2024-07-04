@@ -82,6 +82,8 @@ genfstab  /mnt >> /mnt/etc/fstab
 ```
 arch-chroot /mnt
 ```
+> [!NOTE]
+> A partir de agora você já se encontra dentro da instalação. Uma coisa que eu faço nessa parte, antes de tudo, é alterar alguns parâmetros do arquivo do **pacman**. Utilizo o comando ***nano /etc/pacman.conf***, descomento a opção *Color* dentro de *# Misc Options*, descomento o *ParallelDownloads* e coloco ***10*** ao invés de 5, adiciono nessa sessão, na última linha, ***ILoveCandy*** que é o efeito do Pacman comendo as frutinhas na barra de progresso quando o gerenciador de pacotes Pacman é executado e descomento as duas linhas do *multilib*, salvo com *CTRL + S* e fecho o ***nano*** com *CTRL + X*.
 14. Agora é a hora de pegar o script com:
 ```
 git clone https://github.com/elsonfernand/archlinux-install.git
