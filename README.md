@@ -16,42 +16,30 @@ Esse repositório está em constante desenvolvimento e aqui você encontrará sc
 
 #### Um pequeno resumo da instalação do Arch Linux para que você possa utilizar os scripts desse repositório:
 
-Carregue seu mapa de teclado (nesse caso, o layout padrão do Brasil):
-
+1. Carregue seu mapa de teclado (nesse caso, o layout padrão do Brasil):
 ```
 loadkeys br-abnt2
 ```
-
-Teste sua conexão com a internet:
-
+2. Teste sua conexão com a internet:
 ```
 ping -c7 archlinux.org
 ```
-
-Conheça os seus discos:
-
+3. Conheça os seus discos:
 ```
 lsblk
 ```
-
-Particione o disco como bem entender.
-
-Aqui estarei usando:
-
+4. Particione o disco como bem entender.
+   - Aqui estarei usando:
 ```
 cfdisk
 ```
 > [!NOTE]
 > Utilizo UEFI, então, particiono 100MB, (dependendo do disco) 60GB e o resto. No total, 3 partições. 
-
-
-Formate a partição boot/efi:
-
+5. Formate a partição boot/efi:
 ```
 mkfs.fat -F32 /dev/sda1
 ```
-Aqui irei usar o sistema *BTRFS* na raiz (e na Home se ela tiver sido particionada):
-
+6. Aqui irei usar o sistema *BTRFS* na raiz (e na Home se ela tiver sido particionada):
 ```
 mkfs.btrfs /dev/sda2
 ```
@@ -60,60 +48,53 @@ mkfs.btrfs /dev/sda3
 ```
 > [!TIP]
 > Se essa parte der errado tente primeiro desmontar o que estiver montado com ***umount -a*** e tente novamente. Se ainda deu errado acrescente ***-f*** antes do */dev*, ficando: ***mkfs.btrfs /dev/sda2***.
-
-Agora devemos montar a nossa partição raiz em */mnt*:
-
+7. Agora devemos montar a nossa partição raiz em */mnt*:
 ```
 mount /dev/sda2 /mnt
 ```
-
-Agora vamos montar a partição de boot em um local que ainda não existe. Sendo assim deve-se usar:
+8. Agora vamos montar a partição de boot em um local que ainda não existe. Sendo assim deve-se usar:
 ```
 mkdir -p /mnt/boot/efi
 ```
-
-Monte a partição de boot/efi nesse diretório que acabou de ser criado:
+9. Monte a partição de boot/efi nesse diretório que acabou de ser criado:
 ```
 mount /dev/sda1 /mnt/boot/efi
 ```
-
 > [!TIP]
 > Se estiver fazendo esse processo com a **/home** separada crie um diretório com ***mkdir -p /mnt/home*** e monte com ***mount /dev/sda3 /mnt/home***, nessa ordem, deixando a */home* por último.
-
-Instale os pacotes base com o pacstrap:
+10. Instale os pacotes base com o pacstrap:
 ```
 pacstrap -K /mnt base linux linux-firmware base-devel intel-ucode grub btrfs-progs efibootmgr git nano networkmanager
 ```
 > [!NOTE]
 > *base-devel* será instalado aqui de início para que os pacotes do AUR, com algum ajudante (paru ou yay), seja instalado lá na frente; *intel-ucode*, para processadores intel mas se estiver usando AMD utilize *amd-ucode*; *grub* e *efibootmgr* serão instalados também para dar suporte na inicialização do sistema; o *grub-btrfs* é necessário para uso do BTRFS; o *nano* será instalado para termos um editor de texto simples de terminal e finalmente o *networkmanager* será instalado para termos acesso a internet.
-
-Vamos agora gerar o *FSTAB* que é o arquivo localizado em ***/etc/fstab*** responsável por armazenar a configuração de quais dispositivos devem ser montados e qual o ponto de montagem de cada um na carga do sistema operacional, mesmo dispositivos locais e remotos. Para gerar digite:
+11. Vamos agora gerar o *FSTAB* que é o arquivo localizado em ***/etc/fstab*** responsável por armazenar a configuração de quais dispositivos devem ser montados e qual o ponto de montagem de cada um na carga do sistema operacional, mesmo dispositivos locais e remotos. 
+    - Para gerar digite:
 ```
 genfstab  /mnt >> /mnt/etc/fstab
 ```
-Se a essa altura nada deu errado até agora vamos entrar no sistema instalado para configurar o sistema base por dentro.
-
-Para isso digite:
+12. Se a essa altura nada deu errado até agora vamos entrar no sistema instalado para configurar o sistema base por dentro.
+    - Para isso digite:
 ```
 arch-chroot /mnt
 ```
-Agora é a hora de pegar o script com:
+13. Agora é a hora de pegar o script com:
 ```
 git clone https://github.com/elsonfernand/archlinux-install.git
 ```
-Entre no diretório do script:
+14. Entre no diretório do script:
 ```
 cd /archlinux-install/
 ```
-Altere, se você achar necessáro, o conteúdo do script:
+15. Altere, se você achar necessáro, o conteúdo do script:
 ```
 nano <nome-do-script>.sh
 ```
-Dê permissão de escrita:
+16. Dê permissão de escrita:
 ```
 chmod +x <nome-do-script>.sh
 ```
-Execute com:
+17. Execute com:
 ```
 ./<nome-do-script>.sh
 ```
