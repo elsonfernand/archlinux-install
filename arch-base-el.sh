@@ -49,6 +49,8 @@ echo el:password | chpasswd
 # Adicionando privilegios de superusuario, lembre-se de trocar o "el" pelo nome de usuario que voce colocou la atras.
 echo "el ALL=(ALL) ALL" >> /etc/sudoers.d/el
 
-# Para copiar os arquivos baixados do github voce deve usar o comando "cp -r /archlinux-install ." e continuar a instalacao da interface grafica.
+# LEMRETES
+# Lembre-se de alterar o arquivo /etc/pacman.conf, aumente o numero de doenloads para 10, descomente a opcao de multilib, descomente a opcao de Color, salve e fecheo editor. Agora atualize com "pacman -Sy" e continue.
+# Para copiar os arquivos baixados do GitHub voce deve usar o comando "cp -r /archlinux-install ." e continuar a instalacao da interface grafica.
 
 printf "\033[00;37mPronto! Agora digite \033[01;37mexit\033[00;37m para sair desse modo, depois \033[01;37mumount -a\033[00;37m para desmontar as partições e desligue o sistema com \033[01;37mpoweroff\033[00;37m. Retire a mídia de instalação e inicie o sistema."
