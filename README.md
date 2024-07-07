@@ -105,6 +105,7 @@ chmod +x <nome-do-script>.sh
 ./<nome-do-script>.sh
 ```
 > [!IMPORTANT]
+> Depois que sair do *arch-chroot* (com o *exit*), desmontar as partições com *umount -a*, desligar o sistema com o *poweroff* e religar o sistema para saber se está tudo certo, eu recomendo que copie essa pasta que acabou de ser usada com ***cp -r /archlinux-install .*** para que continue a instalação de uma Ambiente de Trabalho e ou Window Manager de sua preferência.
 > Fique de olho no que esse script está fazendo pois possa ser que ele faça explodir seu domicílio inteiro e você tenha que financiar uma outra casa.
 
 ## Licença
