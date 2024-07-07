@@ -1,4 +1,4 @@
-t# Scripts simples em shell
+# Scripts simples em shell
 
 <img align="center" src="https://archlinux.org/static/logos/archlinux-logo-dark-scalable.518881f04ca9.svg" alt="Arch Linux logo svg" height="100">
 
