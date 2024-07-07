@@ -49,4 +49,6 @@ echo el:password | chpasswd
 # Adicionando privilegios de superusuario, lembre-se de trocar o "el" pelo nome de usuario que voce colocou la atras.
 echo "el ALL=(ALL) ALL" >> /etc/sudoers.d/el
 
+# Para copiar os arquivos baixados do github voce deve usar o comando "cp -r /archlinux-install ." e continuar a instalacao da interface grafica.
+
 printf "\033[00;37mPronto! Agora digite \033[01;37mexit\033[00;37m para sair desse modo, depois \033[01;37mumount -a\033[00;37m para desmontar as partições e desligue o sistema com \033[01;37mpoweroff\033[00;37m. Retire a mídia de instalação e inicie o sistema."
