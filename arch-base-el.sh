@@ -21,7 +21,7 @@ echo root:password | chpasswd
 # Alguns pacotes sugeridos.
 # pacman -S --noconfirm grub efibootmgr networkmanager network-manager-applet fastfetch dialog wpa_supplicant mtools base-devel linux-headers avahi xdg-user-dirs xdg-utils gvfs gvfs-smb nfs-utils inetutils dnsutils bluez bluez-utils cups pipewire pipewire-alsa pipewire-pulse pipewire-jack bash-completion rsync reflector acpi acpi_call tlp edk2-ovmf bridge-utils dnsmasq vde2 ipset firewalld sof-firmware nss-mdns acpid ntfs-3g
 
-# Descomente a opcao abaixo se você usa placa de vídeo da ADM.
+# Descomente a opcao abaixo se você usa placa de vídeo da AMD.
 # pacman -S --noconfirm xf86-video-amdgpu
 # Opção descomentada porque uso nvidia, se não for o seu caso, comente.
 pacman -S --noconfirm nvidia nvidia-utils nvidia-settings
