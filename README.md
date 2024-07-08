@@ -51,7 +51,7 @@ mkfs.btrfs /dev/sda2
 mkfs.btrfs /dev/sda3
 ```
 > [!TIP]
-> Se essa parte der errado tente primeiro desmontar o que estiver montado com ***umount -a*** e tente novamente. Se ainda deu errado acrescente ***-f*** antes do */dev*, ficando: ***mkfs.btrfs /dev/sda2***.
+> Se essa parte der errado tente primeiro desmontar o que estiver montado com ***umount -a*** e tente novamente. Se ainda deu errado acrescente ***-f*** antes do */dev*, ficando: ***mkfs.btrfs -f /dev/sda2***.
 08. Agora devemos montar a nossa partição raiz em */mnt*:
 ```
 mount /dev/sda2 /mnt
