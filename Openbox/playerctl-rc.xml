@@ -1,0 +1,32 @@
+  <!-- Códigos para usar o playerctl, editando com o nano ./config/openbox/rc.xml -->
+<keybind key=”XF86AudioRaiseVolume”>
+	<action name=”Execute”>
+		<command>amixer set Master 10%+</command>
+	</action>
+</keybind>
+
+<keybind key=”XF86AudioLowerVolume”>
+	<action name=”Execute”>
+		<command>amixer set Master 10%-</command>
+	</action>
+</keybind>
+<keybind key=”XF86AudioMute”>
+	<action name=”Execute”>
+		<command>amixer set Master toggle</command>
+	</action>
+</keybind>
+<keybind key=”XF86AudioNext”>
+	<action name=”Execute”>
+		<command>playerctl next</command>
+	</action>
+</keybind>
+<keybind key=”XF86AudioPlay”>
+	<action name=”Execute”>
+		<command>playerctl play-pause</command>
+	</action>
+</keybind>
+<keybind key=”XF86AudioPrev”>
+	<action name=”Execute”>
+		<command>playerctl previous</command>
+	</action>
+</keybind>
