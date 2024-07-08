@@ -6,10 +6,10 @@
 sudo pacman -Syy
 
 # Pacotes iniciais para instalacao do Openbox, mas nem todos sao essenciais:
-sudo pacman -S --noconfirm openbox oblogout cairo-dock obconf nitrogen gedit xterm lxterminal lightdm lightdm-slick-greeter mate-polkit screen volumeicon arandr nano chromium vlc lxappearance libreoffice-still fastfetch engrampa
+sudo pacman -S --noconfirm openbox cairo-dock obconf nitrogen gedit xterm lxterminal lightdm lightdm-slick-greeter mate-polkit screen volumeicon arandr nano chromium vlc lxappearance libreoffice-still fastfetch engrampa
 
 # Instalação do servidor de audio Pipewire:
-sudo pacman -S --noconfirm pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber
+yes | sudo pacman -S pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber
 
 # Instalacao de um gerenciador de arquivos. Aqui estarei usando o Thunar (e adicionando alguns pacotes para melhor configuracao):
 sudo pacman -S --noconfirm thunar libgsf ffmpegthumbnailer evince gvfs gvfs-mtp gvfs-gphoto2 gvfs-afc tumbler poppler-glib freetype2 libgsf unzip ntfs-3g
