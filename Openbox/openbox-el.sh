@@ -6,13 +6,13 @@
 sudo pacman -Syy
 
 # Pacotes iniciais para instalacao do Openbox, mas nem todos sao essenciais:
-sudo pacman -S --noconfirm openbox cairo-dock obconf nitrogen thunar gedit xterm lxterminal lightdm lightdm-slick-greeter mate-polkit screen rofi volumeicon arandr nano chromium vlc lxappearance libreoffice-still fastfetch engrampa
-
-# Instalacao de um gerenciador de arquivos. Aqui estarei usando o Thunar (e adicionando alguns pacotes para melhor configuracao):
-sudo pacman -S --noconfirm thunar libgsf ffmpegthumbnailer evince gvfs gvfs-mtp gvfs-gphoto2 gvfs-afc tumbler poppler-glib freetype2 libgsf unzip ntfs-3g mate-polkit
+sudo pacman -S --noconfirm openbox oblogout cairo-dock obconf nitrogen gedit xterm lxterminal lightdm lightdm-slick-greeter mate-polkit screen volumeicon arandr nano chromium vlc lxappearance libreoffice-still fastfetch engrampa
 
 # Instalação do servidor de audio Pipewire:
 sudo pacman -S --noconfirm pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber
+
+# Instalacao de um gerenciador de arquivos. Aqui estarei usando o Thunar (e adicionando alguns pacotes para melhor configuracao):
+sudo pacman -S --noconfirm thunar libgsf ffmpegthumbnailer evince gvfs gvfs-mtp gvfs-gphoto2 gvfs-afc tumbler poppler-glib freetype2 libgsf unzip ntfs-3g
 
 # Instalacao dos drivers da Nvidia:
 sudo pacman -S --noconfirm nvidia nvidia-utils nvidia-settings
@@ -38,7 +38,7 @@ cp -a /etc/xdg/openbox ~/.config/
 sudo pacman -S xdg-user-dirs ; xdg-user-dirs-update
 
 # Habilitando o LightDM
-systemctl enable lightdm.service
+sudo systemctl enable lightdm.service
 
 # Criando um arquivo de inicializacao
 cd ..
