@@ -50,7 +50,7 @@ echo el:password | chpasswd
 echo "el ALL=(ALL) ALL" >> /etc/sudoers.d/el
 
 # LEMRETES
-# Lembre-se de alterar o arquivo /etc/pacman.conf, aumente o numero de doenloads para 10, descomente a opcao de multilib, descomente a opcao de Color, salve e fecheo editor. Agora atualize com "pacman -Sy" e continue.
+# Lembre-se de alterar o arquivo /etc/pacman.conf, aumente o numero de downloads para 10, descomente a opcao de multilib, descomente a opcao de Color, salve e fecheo editor. Agora atualize com "pacman -Sy" e continue.
 # Para copiar os arquivos baixados do GitHub voce deve usar o comando "cp -r /archlinux-install ." depois desse processo de instalação da base e continuar a instalacao da interface grafica.
 # Caso queira adicionar algumas opções no /etc/fstab eu recomendo essas aqui: noatime,space_cache=v2,compress=zstd,ssd,discard=async
 
