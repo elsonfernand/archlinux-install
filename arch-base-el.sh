@@ -21,6 +21,8 @@ echo root:password | chpasswd
 # Alguns pacotes sugeridos.
 # pacman -S --noconfirm grub efibootmgr networkmanager network-manager-applet fastfetch dialog wpa_supplicant mtools base-devel linux-headers avahi xdg-user-dirs xdg-utils gvfs gvfs-smb nfs-utils inetutils dnsutils bluez bluez-utils cups pipewire pipewire-alsa pipewire-pulse pipewire-jack bash-completion rsync reflector acpi acpi_call tlp edk2-ovmf bridge-utils dnsmasq vde2 ipset firewalld sof-firmware nss-mdns acpid ntfs-3g
 
+# Descomente a opcao abaixo se você esta usando o VirtualBox.
+pacman -S --noconfirm virtualbox-guest-utils
 # Descomente a opcao abaixo se você usa placa de vídeo da AMD.
 # pacman -S --noconfirm xf86-video-amdgpu
 # Opção descomentada porque uso nvidia, se não for o seu caso, comente.
@@ -30,13 +32,14 @@ pacman -S --noconfirm nvidia nvidia-utils nvidia-settings
 grub-install /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 
-# Ativando Internet, bluetooth, impressora, script de espelhos mais proximo e firewall. Descomente apenas o necessario, caso contrario nao ira funcionar.
+# Ativando Internet, bluetooth, impressora, script de espelhos mais proximo, firewall e permicoes de convidado se usando VirtualBox. Descomente apenas o necessario, caso contrario nao ira funcionar.
 systemctl enable NetworkManager
 #systemctl enable bluetooth
 #systemctl enable cups.service
 #systemctl enable avahi-daemon
 #systemctl enable reflector.timer
 #systemctl enable firewalld
+#systemctl enable vboxservice.service
 
 # Atualizando a lista de espelhos para melhor download dos pacotes de atualizacao e novas instalacoes. So descomente se voce ja fez a instalação nos passos anteriores.
 # pacman -S --noconfirm reflector ; sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup ; reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
