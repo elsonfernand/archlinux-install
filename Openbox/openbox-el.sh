@@ -4,10 +4,12 @@
 sudo pacman -Syu --noconfirm
 
 # Instalacao do Openbox, LightDM, PCManFM e alguns pacotes adicionais:
-sudo pacman -S --noconfirm openbox obconf lxappearance-obconf tint2 archlinux-wallpaper xorg-server xorg-xinit lightdm lightdm-gtk-greeter pcmanfm gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc lxterminal pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber pavucontrol menumaker arandr nano chromium vlc fastfetch engrampa
+sudo pacman -S --noconfirm openbox obconf lxappearance-obconf tint2 archlinux-wallpaper xorg-server xorg-xinit lightdm lightdm-gtk-greeter pcmanfm-qt gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc lxterminal menumaker arandr nano chromium vlc fastfetch engrampa
+
+# Instalando o PipeWire
+yes | sudo pacman -S pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber pavucontrol 
 
 ## Instalando o Yay: ##
-# Se certificando que tem o "git" e o "go" instalados
 yes | sudo pacman -S git go base-devel
 # Baixando o código fonte:
 git clone https://aur.archlinux.org/yay.git
@@ -19,7 +21,7 @@ yes | makepkg -si
 cd
 
 # Instalando o GUI para configuração do menu do Openbox
-yes | yay obmenu
+# yes | yay obmenu
 
 # Habilitando e iniciando o PipeWire e WirePlumber
 sudo systemctl enable --now pipewire.service
