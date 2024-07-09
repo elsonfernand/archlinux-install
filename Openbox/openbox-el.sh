@@ -37,6 +37,18 @@ cp -a /etc/xdg/openbox ~/.config/
 # Por padrão o Openbox não tem os diretorios usuais na /home, precisamos instalar e rodar um pacote para os diretorios aparecerem:
 sudo pacman -S xdg-user-dirs ; xdg-user-dirs-update
 
+## Instalando o Yay: ##
+# Se certificando que tem o "git" e o "go" instalados
+yes | sudo pacman -S git go
+# Baixando o código fonte:
+git clone https://aur.archlinux.org/yay.git
+# Acessando a pasta:
+cd yay
+# Compilando:
+yes | makepkg -si
+# Indo para a home
+cd
+
 # Habilitando o LightDM
 sudo systemctl enable lightdm.service
 
