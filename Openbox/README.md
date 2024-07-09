@@ -1,6 +1,6 @@
 #### O que esse script faz, seu moço?
 
-1. Primeiro ele vai atualizar o sistema e logo depois instalar o Openbox junto com algumas ferramentas que eu julguei úteis e que são recomendadas na Wiki do Arch Linux (***obconf***, ***obmenu***, ***lxappearance***, ***tint2***, ***xorg-server***, ***xorg-xinit***). Instala também alguns papéis de parede com o tema "Arch Linux" (com o pacote ***archlinux-wallpaper***). Instala também o *LightDM* com o greeter GTK.
+1. Primeiro ele vai atualizar o sistema e logo depois instalar o Openbox junto com algumas ferramentas que eu julguei úteis e que são recomendadas na <a href="https://wiki.archlinux.org/title/Openbox" target="blank">Wiki do Arch Linux</a> (***obconf***, ***obmenu***, ***lxappearance***, ***tint2***, ***xorg-server***, ***xorg-xinit***). Instala também alguns papéis de parede com o tema "Arch Linux" (com o pacote ***archlinux-wallpaper***). Instala também o *LightDM* com o greeter GTK.
 2. Como gerenciador de arquivos eu optei pelo *PCManFM* e pacotes do GVFS (***gvfs***, ***gvfs-mtp***, ***gvfs-smb***, ***gvfs-gphoto2***, ***gvfs-afc***) com suporte a miniaturas.
 3. Vai instalar o ***lxterminal***, um emulador de terminal de minha escolha (você também pode usar o *termite*, *alacritty*, *tilix*, *kitty*, *terminator*, *konsole* ou um de sua preferência).
 4. Vai instalar o PipeWire e alguns pacotes necessários (***pipewire***, ***pipewire-alsa***, ***pipewire-pulse***, ***pipewire-jack***, ***wireplumber***, ***pavucontrol***).
