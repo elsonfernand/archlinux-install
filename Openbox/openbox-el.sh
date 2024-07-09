@@ -28,12 +28,12 @@ sudo systemctl enable --now wireplumber.service
 # Habilitando o LightDM (gerenciador de login)
 sudo systemctl enable lightdm.service
 
-# Escolha do driver de vídeo
-echo "Escolha o driver de vídeo para instalar:"
+# Escolha do driver de video
+echo "Escolha o driver de video para instalar:"
 echo "1) AMD"
 echo "2) Nvidia"
 echo "3) VirtualBox"
-read -p "Digite o número da sua escolha: " driver_choice
+read -p "Digite o numero da sua escolha: " driver_choice
 
 case $driver_choice in
   1)
@@ -47,7 +47,7 @@ case $driver_choice in
     sudo systemctl enable --now vboxservice
     ;;
   *)
-    echo "Escolha inválida. Nenhum driver de vídeo será instalado."
+    echo "Escolha invalida. Nenhum driver de video sera instalado."
     ;;
 esac
 
@@ -55,7 +55,7 @@ esac
 # Criacao de diretorios de configuracao do Openbox
 mkdir -p ~/.config/openbox
 
-# Criacao do arquivo de configuraçcao basico do Openbox
+# Criacao do arquivo de configuracao basico do Openbox
 cat <<EOL > ~/.config/openbox/autostart
 # Barra de tarefas Tint2
 tint2 &
@@ -70,7 +70,7 @@ nitrogen --restore &
 lxappearance-obconf &
 EOL
 
-# Criacao de um arquivo de sessão do Openbox para o LightDM
+# Criacao de um arquivo de sessao do Openbox para o LightDM
 sudo mkdir -p /usr/share/xsessions
 sudo tee /usr/share/xsessions/openbox.desktop > /dev/null <<EOL
 [Desktop Entry]
