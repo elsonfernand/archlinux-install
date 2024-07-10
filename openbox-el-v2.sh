@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# Create the necessary folders for Openbox configuration
+# Criação de pastas necessarias para o Openbox
 mkdir -p ~/.config/openbox
 mkdir -p ~/.config/pcmanfm
 mkdir -p ~/.config/pipewire
 
 # Instalacao do Openbox com algumas dependencias
-sudo pacman -S --noconfirm openbox obconf
+sudo pacman -S --noconfirm openbox obconf xterm lxterminal archlinux-wallpaper xorg-server xorg-xinit
 
 # Instalacao do LightDM com algumas dependencias
 sudo pacman -S --noconfirm lightdm lightdm-slick-greeter
@@ -15,7 +15,7 @@ sudo pacman -S --noconfirm lightdm lightdm-slick-greeter
 sudo pacman -S --noconfirm pcmanfm
 
 # Instalacao do PipeWire com algumas dependencias
-sudo pacman -S --noconfirm pipewire pipewire-pulse pipewire-alsa
+sudo pacman -S --noconfirm pipewire pipewire-pulse pipewire-alsa pipewire-jack pavucontrol qpwgraph 
 
 # Instalação drivers placa de video AMD
 #sudo pacman -S --noconfirm xf86-video-amdgpu
@@ -25,25 +25,17 @@ sudo pacman -S --noconfirm pipewire pipewire-pulse pipewire-alsa
 #sudo pacman -S --noconfirm virtualbox-guest-utils
 #sudo systemctl enable --now vboxservice
 
-# Instalacao de alguns pacotes necessarios para customizacao com GUI
-sudo pacman -S --noconfirm \
-  obtheme \
-  lxappearance-obconf \
-  gtk-chtheme \
-  gtk-engine-murrine \
-  gtk-engines \
-  faenza-icon-theme \
-  oxygen-icons \
-  numix-icon-theme-circle \
-  arc-gtk-theme \
-  moka-icon-theme \
-  paper-icon-theme \
-  qt5-styleplugins \
-  qt5ctt \
-  menumaker
+# Instalacao de alguns pacotes necessarios para customizacao
+sudo pacman -S --noconfirm gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc obtheme lxappearance-obconf gtk-chtheme gtk-engine-murrine gtk-engines faenza-icon-theme oxygen-icons numix-icon-theme-circle arc-gtk-theme moka-icon-theme paper-icon-theme qt5-styleplugins qt5ctt menumaker arandr nano chromium vlc fastfetch engrampa
 
 # Instalacao de todas as ferramentas de customizacao disponiveis no repositorio oficial e multilib
 sudo pacman -S --noconfirm $(pacman -Slq | grep -E 'openbox|lightdm|pcmanfm|pipewire')
+
+# Agora a gente precisa copiar o .xinirc no diretorio do X11 para o diretorio /home:
+cp /etc/X11/xinit/xinitrc .xinitrc
+
+#Passo inicial para comecar a configuracao:
+cp -a /etc/xdg/openbox ~/.config/
 
 # Criacao de arquivos necessarios para configuracao do Openbox
 touch ~/.config/openbox/autostart
