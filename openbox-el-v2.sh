@@ -26,10 +26,7 @@ sudo pacman -S --noconfirm pipewire pipewire-pulse pipewire-alsa pipewire-jack p
 #sudo systemctl enable --now vboxservice
 
 # Instalacao de alguns pacotes necessarios para customizacao
-sudo pacman -S --noconfirm gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc obtheme lxappearance-obconf gtk-chtheme gtk-engine-murrine gtk-engines faenza-icon-theme oxygen-icons numix-icon-theme-circle arc-gtk-theme moka-icon-theme paper-icon-theme qt5-styleplugins qt5ctt menumaker arandr nano chromium vlc fastfetch engrampa
-
-# Instalacao de todas as ferramentas de customizacao disponiveis no repositorio oficial e multilib
-sudo pacman -S --noconfirm $(pacman -Slq | grep -E 'openbox|lightdm|pcmanfm|pipewire')
+sudo pacman -S --noconfirm gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc lxappearance-obconf gtk-chtheme gtk-engine-murrine gtk-engines oxygen-icons arc-gtk-theme moka-icon-theme menumaker arandr nano chromium vlc fastfetch engrampa
 
 # Agora a gente precisa copiar o .xinirc no diretorio do X11 para o diretorio /home:
 cp /etc/X11/xinit/xinitrc .xinitrc
