@@ -6,7 +6,7 @@ mkdir -p ~/.config/pcmanfm
 mkdir -p ~/.config/pipewire
 
 # Instalacao do Openbox com algumas dependencias
-sudo pacman --noconfirm  -S openbox obconf obmenu-generator
+sudo pacman --noconfirm  -S openbox obconf
 
 # Instalacao do LightDM com algumas dependencias
 sudo pacman -S --noconfirm lightdm lightdm-slick-greeter
