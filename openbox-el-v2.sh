@@ -61,10 +61,17 @@ touch ~/.config/pipewire/pipewire.conf
 echo "[Seat:*]" >> ~/.config/lightdm/lightdm.conf
 echo "greeter-session=lightdm-slick-greeter" >> ~/.config/lightdm/lightdm.conf
 
-# Habilitando e iniciando o LightDM
-sudo systemctl enable lightdm
-sudo systemctl start lightdm
+# Por padrão o Openbox não tem os diretorios usuais na /home, precisamos instalar e rodar um pacote para os diretorios aparecerem:
+yes | sudo pacman -S xdg-user-dirs ; xdg-user-dirs-update
+
+# Reconfiguração automática do menu do Openbox usando Menumaker
+mmaker -vf openbox
 
 # Habilitando e iniciando o PipeWire
 sudo systemctl enable pipewire
 sudo systemctl start pipewire
+
+# Habilitando e iniciando o LightDM
+sudo systemctl enable lightdm
+
+printf "\033[0mInstalação do \033[01;37mOpenbox\033[0m concluída. Reinicie o sistema para iniciar o LightDM."
