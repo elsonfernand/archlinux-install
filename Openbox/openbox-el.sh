@@ -3,11 +3,8 @@
 # Atualiza o sistema:
 sudo pacman -Syu --noconfirm
 
-# Instalacao do Openbox, LightDM, PCManFM e alguns pacotes adicionais:
-sudo pacman -S --noconfirm openbox obconf lxappearance-obconf tint2 archlinux-wallpaper xorg-server xorg-xinit lightdm lightdm-gtk-greeter pcmanfm-qt gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc lxterminal menumaker arandr nano chromium vlc fastfetch engrampa
-
-# Instalando o PipeWire
-yes | sudo pacman -S pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber pavucontrol 
+# Instalacao do Openbox, LightDM, PCManFM, emuladores de terminal e alguns pacotes adicionais:
+sudo pacman -S --noconfirm openbox xterm lxterminal obconf lxappearance-obconf tint2 archlinux-wallpaper xorg-server xorg-xinit lightdm lightdm-slick-greeter pcmanfm gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc menumaker arandr nano chromium vlc fastfetch engrampa
 
 ## Instalando o Yay: ##
 yes | sudo pacman -S git go base-devel
@@ -20,15 +17,16 @@ yes | makepkg -si
 # Indo para a home
 cd
 
+# Instalando o PipeWire
+yes | sudo pacman -S pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber pavucontrol qpwgraph
+
 # Instalando o GUI para configuração do menu do Openbox
 # yes | yay obmenu
 
 # Habilitando e iniciando o PipeWire e WirePlumber
+sudo systemctl disable pulseaudio.service
 sudo systemctl enable --now pipewire.service
 sudo systemctl enable --now wireplumber.service
-
-# Habilitando o LightDM (gerenciador de login)
-sudo systemctl enable lightdm.service
 
 # Escolha do driver de video
 echo "Escolha o driver de video para instalar:"
@@ -96,5 +94,8 @@ EOL
 
 # Reconfiguração automática do menu do Openbox usando Menumaker
 mmaker -vf openbox
+
+# Habilitando o LightDM (gerenciador de login)
+sudo systemctl enable lightdm.service
 
 printf "\033[0mInstalação do \033[01;37mOpenbox\033[0m concluída. Reinicie o sistema para iniciar o LightDM."
