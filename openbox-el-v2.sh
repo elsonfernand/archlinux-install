@@ -6,19 +6,27 @@ mkdir -p ~/.config/pcmanfm
 mkdir -p ~/.config/pipewire
 
 # Instalacao do Openbox com algumas dependencias
-sudo pacman -S openbox obconf obmenu-generator
+sudo pacman --noconfirm  -S openbox obconf obmenu-generator
 
 # Instalacao do LightDM com algumas dependencias
-sudo pacman -S lightdm lightdm-slick-greeter
+sudo pacman -S --noconfirm lightdm lightdm-slick-greeter
 
 # Instalacao do PCManFM com algumas dependencias
-sudo pacman -S pcmanfm
+sudo pacman -S --noconfirm pcmanfm
 
 # Instalacao do PipeWire com algumas dependencias
-sudo pacman -S pipewire pipewire-pulse pipewire-alsa
+sudo pacman -S --noconfirm pipewire pipewire-pulse pipewire-alsa
+
+# Instalação drivers placa de video AMD
+#sudo pacman -S --noconfirm xf86-video-amdgpu
+# Instalação drivers placa de video Nvidia
+#sudo pacman -S --noconfirm nvidia nvidia-utils nvidia-settings
+# Instalação e habilitacao drivers para o VirtualBox
+#sudo pacman -S --noconfirm virtualbox-guest-utils
+#sudo systemctl enable --now vboxservice
 
 # Instalacao de alguns pacotes necessarios para customizacao com GUI
-sudo pacman -S \
+sudo pacman -S --noconfirm \
   obtheme \
   lxappearance-obconf \
   gtk-chtheme \
@@ -31,10 +39,11 @@ sudo pacman -S \
   moka-icon-theme \
   paper-icon-theme \
   qt5-styleplugins \
-  qt5ct
+  qt5ctt \
+  menumaker
 
 # Instalacao de todas as ferramentas de customizacao disponiveis no repositorio oficial e multilib
-sudo pacman -S $(pacman -Slq | grep -E 'openbox|lightdm|pcmanfm|pipewire')
+sudo pacman -S --noconfirm $(pacman -Slq | grep -E 'openbox|lightdm|pcmanfm|pipewire')
 
 # Criacao de arquivos necessarios para configuracao do Openbox
 touch ~/.config/openbox/autostart
