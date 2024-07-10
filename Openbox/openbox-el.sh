@@ -4,7 +4,10 @@
 sudo pacman -Syu --noconfirm
 
 # Instalacao do Openbox, LightDM, PCManFM, emuladores de terminal e alguns pacotes adicionais:
-sudo pacman -S --noconfirm openbox xterm lxterminal obconf lxappearance-obconf tint2 archlinux-wallpaper xorg-server xorg-xinit lightdm lightdm-slick-greeter pcmanfm gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc menumaker arandr nano chromium vlc fastfetch engrampa
+sudo pacman -S --noconfirm openbox xterm lxterminal obconf lxappearance-obconf tint2 archlinux-wallpaper xorg-server xorg-xinit lightdm lightdm-slick-greeter pcmanfm gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc menumaker arandr nano chromium vlc fastfetch engrampa dbus
+
+# Agora a gente precisa copiar o .xinirc no diretorio do X11 para o diretorio /home:
+cp /etc/X11/xinit/xinitrc .xinitrc
 
 ## Instalando o Yay: ##
 yes | sudo pacman -S git go base-devel
@@ -27,6 +30,9 @@ yes | sudo pacman -S pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplu
 sudo systemctl disable pulseaudio.service
 sudo systemctl enable --now pipewire.service
 sudo systemctl enable --now wireplumber.service
+
+# Habilita e inicia o serviço do D-Bus
+sudo systemctl enable --now dbus
 
 # Escolha do driver de video
 echo "Escolha o driver de video para instalar:"
@@ -51,6 +57,14 @@ case $driver_choice in
     ;;
 esac
 
+# Criacao de diretorios de configuracao do Openbox
+mkdir -p ~/.config/openbox
+
+# Passo inicial para comecar a configuracao:
+cp -a /etc/xdg/openbox ~/.config/
+
+# Por padrão o Openbox não tem os diretorios usuais na /home, precisamos instalar e rodar um pacote para os diretorios aparecerem:
+yes | sudo pacman -S xdg-user-dirs ; xdg-user-dirs-update
 
 # Criacao de diretorios de configuracao do Openbox
 mkdir -p ~/.config/openbox
