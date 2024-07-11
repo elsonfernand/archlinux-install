@@ -93,7 +93,7 @@ tint2 &
 volumeicon &
 nm-applet &
 xfce4-power-manager &
-feh --bg-scale /caminho/para/seu/wallpaper.jpg &
+nitrogen --restore &
 EOL
 
 cat <<EOL > ~/.config/openbox/menu.xml
