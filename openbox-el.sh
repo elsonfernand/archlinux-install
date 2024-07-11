@@ -14,7 +14,7 @@ sudo pacman -Syu
 sudo pacman -S openbox xorg-xinit xorg obconf
 
 # Instala ferramentas de mudança de wallpaper e resolução de tela #
-sudo pacman -S feh arandr
+sudo pacman -S nitrogen arandr
 
 # Instala emuladores de terminal #
 sudo pacman -S xterm lxterminal
@@ -32,7 +32,7 @@ sudo pacman -S pcmanfm gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc menumaker tu
 yes | sudo pacman -S pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber pavucontrol qpwgraph
 
 # Instala gerenciador de login LXDM #
-sudo pacman -S lxdm
+sudo pacman -S lxdm-gtk3 
 
 # Habilita o LXDM para iniciar no boot #
 sudo systemctl enable lxdm.service
@@ -76,6 +76,15 @@ sudo pacman -S nvidia nvidia-utils nvidia-settings
 # VirtualBox #
 # sudo pacman -S virtualbox-guest-utils
 # systemctl enable vboxservice.service
+
+# Cria atalho para iniciar o Openbox #
+echo "exec openbox-session" > ~/.xinitrc
+
+# Por padrão o Openbox não tem os diretorios usuais na /home, precisamos instalar e rodar um pacote para os diretorios aparecerem: #
+yes | sudo pacman -S xdg-user-dirs ; xdg-user-dirs-update
+
+# Reconfiguração automática do menu do Openbox usando Menumaker #
+mmaker -vf openbox
 
 # Cria arquivos de configuração padrão do Openbox #
 cat <<EOL > ~/.config/openbox/autostart
@@ -164,15 +173,6 @@ panel_padding = 0 0 0
 panel_background_id = 1
 wm_menu = 1
 EOL
-
-# Cria atalho para iniciar o Openbox #
-echo "exec openbox-session" > ~/.xinitrc
-
-# Por padrão o Openbox não tem os diretorios usuais na /home, precisamos instalar e rodar um pacote para os diretorios aparecerem: #
-yes | sudo pacman -S xdg-user-dirs ; xdg-user-dirs-update
-
-# Reconfiguração automática do menu do Openbox usando Menumaker #
-mmaker -vf openbox
 
 # Finaliza a instalação e configuração
 echo "Instalação e configuração inicial do Openbox concluídas. Reinicie o sistema ou faça logout para começar a usar."
