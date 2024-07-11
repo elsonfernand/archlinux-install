@@ -28,14 +28,21 @@ sudo pacman -S tint2 volumeicon network-manager-applet xfce4-power-manager
 # Instala utilitários adicionais e gerenciador de arquivos #
 sudo pacman -S pcmanfm gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc menumaker tumbler ffmpegthumbnailer xarchiver vlc archlinux-wallpaper fastfetch
 
-# Instalando PipeWire #
+# Instalando PipeWire e alguns pacotes relevantes #
 yes | sudo pacman -S pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber pavucontrol qpwgraph
+
+# Habilita e iniciar os serviços do PipeWire #
+systemctl --user enable pipewire.service
+systemctl --user start pipewire.service
+
+systemctl --user enable pipewire-pulse.service
+systemctl --user start pipewire-pulse.service
+
+systemctl --user enable wireplumber.service
+systemctl --user start wireplumber.service
 
 # Instala gerenciador de login LXDM #
 sudo pacman -S lxdm-gtk3 
-
-# Habilita o LXDM para iniciar no boot #
-sudo systemctl enable lxdm.service
 
 # Configurar LXDM para iniciar a sessão do Openbox #
 sudo sed -i 's/^# session=.*/session=\/usr\/bin\/openbox-session/' /etc/lxdm/lxdm.conf
@@ -48,21 +55,8 @@ sudo sed -i 's/^# numlock=.*/numlock=0/' /etc/lxdm/lxdm.conf
 # sudo sed -i 's/^# autologin=.*/autologin=/' /etc/lxdm/lxdm.conf
 # sudo sed -i 's/^# timeout=.*/timeout=10/' /etc/lxdm/lxdm.conf
 
-# Instala PipeWire e dependências #
-yes | sudo pacman -S pipewire pipewire-pulse pipewire-alsa pipewire-jack wireplumber
-
-# Habilita e iniciar os serviços do PipeWire #
-systemctl --user enable pipewire.service
-systemctl --user start pipewire.service
-
-systemctl --user enable pipewire-pulse.service
-systemctl --user start pipewire-pulse.service
-
-systemctl --user enable wireplumber.service
-systemctl --user start wireplumber.service
-
-# Instala ferramentas de áudio recomendadas #
-sudo pacman -S pavucontrol qpwgraph
+# Habilita o LXDM para iniciar no boot #
+sudo systemctl enable lxdm.service
 
 # Cria diretórios necessários para funcionamento do Openbox #
 mkdir -p ~/.config/openbox
