@@ -26,7 +26,7 @@ sudo pacman -S lxappearance-obconf
 sudo pacman -S tint2 volumeicon network-manager-applet xfce4-power-manager
 
 # Instala utilitários adicionais e gerenciador de arquivos #
-sudo pacman -S pcmanfm gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc menumaker tumbler ffmpegthumbnailer unzip xarchiver vlc archlinux-wallpaper fastfetch
+sudo pacman -S pcmanfm gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc menumaker tumbler ffmpegthumbnailer unzip xarchiver vlc archlinux-wallpaper fastfetch picom
 
 # Instalando PipeWire e alguns pacotes relevantes #
 yes | sudo pacman -S pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber pavucontrol qpwgraph
@@ -86,6 +86,16 @@ mmaker -vf openbox
 # Configurar o layout de teclado padrão como br-abnt2 no sistema
 sudo localectl set-keymap br-abnt2
 sudo localectl set-x11-keymap br abnt2
+
+# Configuração do Picom para efeitos de composição #
+mkdir -p ~/.config/picom
+cat <<EOL > ~/.config/picom/picom.conf
+# Configuração básica
+backend = "glx";
+glx-no-stencil = true;
+glx-no-rebind-pixmap = true;
+vsync = "opengl-swc";
+EOL
 
 # Cria arquivos de configuração padrão do Openbox #
 cat <<EOL > ~/.config/openbox/autostart
