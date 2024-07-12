@@ -55,6 +55,9 @@ sudo sed -i 's/^# numlock=.*/numlock=0/' /etc/lxdm/lxdm.conf
 # sudo sed -i 's/^# autologin=.*/autologin=/' /etc/lxdm/lxdm.conf
 # sudo sed -i 's/^# timeout=.*/timeout=10/' /etc/lxdm/lxdm.conf
 
+# Configurar layout de teclado para br-abnt2 no LXDM #
+sudo sed -i 's/^# keyboard=.*/keyboard=br-abnt2/' /etc/lxdm/lxdm.conf
+
 # Habilita o LXDM para iniciar no boot #
 sudo systemctl enable lxdm.service
 
@@ -79,6 +82,10 @@ yes | sudo pacman -S xdg-user-dirs ; xdg-user-dirs-update
 
 # Reconfiguração automática do menu do Openbox usando Menumaker #
 mmaker -vf openbox
+
+# Configurar o layout de teclado padrão como br-abnt2 no sistema
+sudo localectl set-keymap br-abnt2
+sudo localectl set-x11-keymap br abnt2
 
 # Cria arquivos de configuração padrão do Openbox #
 cat <<EOL > ~/.config/openbox/autostart
