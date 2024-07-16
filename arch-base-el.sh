@@ -32,13 +32,22 @@ pacman -S --noconfirm nvidia nvidia-utils nvidia-settings
 grub-install /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 
-# Ativando Internet, bluetooth, impressora, script de espelhos mais proximo, firewall e permicoes de convidado se usando VirtualBox. Descomente apenas o necessario, caso contrario nao ira funcionar.
+# Ativando Internet, criando arquivo de configuracao do Fastfetch, bluetooth, impressora, script de espelhos mais proximo, firewall e permicoes de convidado se usando VirtualBox. Descomente apenas o necessario, caso contrario nao ira funcionar.
+# Internet
 systemctl enable NetworkManager
+# Arquivo do Fastfetch se encontra em ~/.config/fastfetch/config.jsonc e voce pode alterar ele com o nano ou editor de texto de sua preferencia
+#fastfetch --gen-config
+# Bluetooth
 #systemctl enable bluetooth
+# Impressora
 #systemctl enable cups.service
+# Permicao para que programas publiquem e descubram os serviçcs e as maquinas que funcionam em uma rede local sem nenhuma configuração especifica
 #systemctl enable avahi-daemon
+# Script que pode recuperar a lista de espelhos mais recente da pagina MirrorStatus, filtrar os espelhos mais atualizados, classifica-los por velocidade e substituir o arquivo /etc/pacman.d/mirrorlist
 #systemctl enable reflector.timer
+# Seguranca da rede que monitora o trafego de rede de entrada e saida e decide permitir ou bloquear trafegos especificos de acordo com um conjunto definido de regras de segurança
 #systemctl enable firewalld
+# Servico do Virtualbox
 #systemctl enable vboxservice.service
 
 # Atualizando a lista de espelhos para melhor download dos pacotes de atualizacao e novas instalacoes. So descomente se voce ja fez a instalação nos passos anteriores.
