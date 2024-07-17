@@ -29,7 +29,7 @@ sudo pacman -S --noconfirm lxappearance-obconf
 sudo pacman -S --noconfirm tint2 volumeicon network-manager-applet xfce4-power-manager
 
 # Instala utilitários adicionais e gerenciador de arquivos #
-sudo pacman -S --noconfirm pcmanfm gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc menumaker tumbler ffmpegthumbnailer unzip xarchiver vlc archlinux-wallpaper fastfetch picom curl
+sudo pacman -S --noconfirm pcmanfm gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc menumaker tumbler ffmpegthumbnailer unzip xarchiver vlc archlinux-wallpaper fastfetch picom libxml2
 
 # Instala navegador. Descomente a linha da sua preferencia, pois eu uso navegador baseado no Chromium. #
 sudo pacman -S --noconfirm chromium
@@ -110,7 +110,7 @@ install_theme() {
 
     # Baixar a página e extrair o link de download
     curl -s "$url" -o "$temp_dir/page.html"
-    local download_url=$(grep -oP 'href="\K(.*?)(?=".*files)' "$temp_dir/page.html" | head -n 1)
+    local download_url=$(xmllint --html --xpath 'string(//a[contains(@class,"btn-download")]/@href)' "$temp_dir/page.html" 2>/dev/null)
 
     if [[ -z "$download_url" ]]; then
         echo "Não foi possível encontrar o link de download para $url"
