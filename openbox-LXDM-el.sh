@@ -11,25 +11,25 @@
 sudo pacman -Syu
 
 # Instala o Openbox e algumas ferramentas básicas #
-sudo pacman -S openbox xorg-xinit xorg obconf
+sudo pacman -S --noconfirm openbox xorg-xinit xorg obconf
+
+# Instalando PipeWire e alguns pacotes relevantes ao aoudio #
+sudo pacman -S --noconfirm pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber pavucontrol qpwgraph
 
 # Instala ferramentas de mudança de wallpaper e resolução de tela #
-sudo pacman -S nitrogen arandr
+sudo pacman -S --noconfirm nitrogen arandr
 
 # Instala emuladores de terminal #
-sudo pacman -S xterm lxterminal
+sudo pacman -S --noconfirm xterm lxterminal
 
 # Instala ferramentas de tema e ícones do Openbox #
-sudo pacman -S lxappearance-obconf
+sudo pacman -S --noconfirm lxappearance-obconf
 
 # Instala barra de tarefas e aplicativos básicos #
-sudo pacman -S tint2 volumeicon network-manager-applet xfce4-power-manager
+sudo pacman -S --noconfirm tint2 volumeicon network-manager-applet xfce4-power-manager
 
 # Instala utilitários adicionais e gerenciador de arquivos #
-sudo pacman -S pcmanfm gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc menumaker tumbler ffmpegthumbnailer unzip xarchiver vlc archlinux-wallpaper fastfetch picom
-
-# Instalando PipeWire e alguns pacotes relevantes #
-yes | sudo pacman -S pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber pavucontrol qpwgraph
+sudo pacman -S --noconfirm pcmanfm gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc menumaker tumbler ffmpegthumbnailer unzip xarchiver vlc archlinux-wallpaper fastfetch picom
 
 # Habilita e iniciar os serviços do PipeWire #
 systemctl --user enable pipewire.service
@@ -42,7 +42,7 @@ systemctl --user enable wireplumber.service
 systemctl --user start wireplumber.service
 
 # Instala gerenciador de login LXDM #
-sudo pacman -S lxdm-gtk3 
+sudo pacman -S --noconfirm lxdm-gtk3 
 
 # Configurar LXDM para iniciar a sessão do Openbox #
 sudo sed -i 's/^# session=.*/session=\/usr\/bin\/openbox-session/' /etc/lxdm/lxdm.conf
@@ -67,18 +67,18 @@ mkdir -p ~/.config/tint2
 
 # Instalação de drivers de vídeo #
 # Nvidia #
-sudo pacman -S nvidia nvidia-utils nvidia-settings
+sudo pacman -S --noconfirm nvidia nvidia-utils nvidia-settings
 # AMD #
-# sudo pacman -S xf86-video-amdgpu
+# sudo pacman -S --noconfirm xf86-video-amdgpu
 # VirtualBox #
-# sudo pacman -S virtualbox-guest-utils
+# sudo pacman -S --noconfirm virtualbox-guest-utils
 # systemctl enable vboxservice.service
 
 # Cria atalho para iniciar o Openbox #
 echo "exec openbox-session" > ~/.xinitrc
 
 # Por padrão o Openbox não tem os diretorios usuais na /home, precisamos instalar e rodar um pacote para os diretorios aparecerem: #
-yes | sudo pacman -S xdg-user-dirs ; xdg-user-dirs-update
+sudo pacman -S --noconfirm xdg-user-dirs ; xdg-user-dirs-update
 
 # Reconfiguração automática do menu do Openbox usando Menumaker #
 mmaker -vf openbox
@@ -105,6 +105,7 @@ volumeicon &
 nm-applet &
 xfce4-power-manager &
 nitrogen --restore &
+picom -f &
 EOL
 
 # Finaliza a instalação e configuração
