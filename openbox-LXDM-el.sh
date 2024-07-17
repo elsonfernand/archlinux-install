@@ -123,7 +123,7 @@ install_theme() {
     rm -rf "$temp_dir"
 }
 
-# URLs dos arquivos de tema (substitua com os links diretos que você copiou)
+# URLs dos arquivos de tema
 URLS=(
     "https://dl.opendesktop.org/api/files/download/id/1680660870/A-New-Midnight.tar.gz"
     "https://dl.opendesktop.org/api/files/download/id/1462918692/Boom.zip"
