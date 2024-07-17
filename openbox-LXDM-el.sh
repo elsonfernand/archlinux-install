@@ -94,47 +94,6 @@ sudo localectl set-x11-keymap br abnt2
 # Instala alguns temas e cursores #
 sudo pacman -S --noconfirm arc-gtk-theme lxde-icon-theme materia-gtk-theme lxqt-themes papirus-icon-theme xcursor-vanilla-dmz xcursor-vanilla-dmz-aa
 
-# INSTALACAO DE TEMAS ATRAVES DE LINKS #
-# Diretório de temas do Openbox
-THEMES_DIR="$HOME/.themes"
-
-# Verificar se o diretório de temas existe, caso contrário, criar
-if [ ! -d "$THEMES_DIR" ]; then
-    mkdir -p "$THEMES_DIR"
-fi
-
-# Função para baixar e extrair um tema
-install_theme() {
-    local url=$1
-    local file_name=$(basename "$url")
-    local temp_dir=$(mktemp -d)
-
-    # Baixar o tema
-    wget -O "$temp_dir/$file_name" "$url"
-
-    # Verificar o formato do arquivo e extrair
-    case "$file_name" in
-        *.tar.gz) tar -xzf "$temp_dir/$file_name" -C "$THEMES_DIR" ;;
-        *.zip) unzip "$temp_dir/$file_name" -d "$THEMES_DIR" ;;
-        *) echo "Formato de arquivo desconhecido: $file_name" ;;
-    esac
-
-    # Remover o arquivo temporário
-    rm -rf "$temp_dir"
-}
-
-# URLs dos arquivos de tema
-URLS=(
-    "https://dl.opendesktop.org/api/files/download/id/1680660870/A-New-Midnight.tar.gz"
-    "https://dl.opendesktop.org/api/files/download/id/1462918692/Boom.zip"
-    "https://dl.opendesktop.org/api/files/download/id/1320248641/Obsidian-2.tar.gz"
-)
-
-# Instalar cada tema
-for url in "${URLS[@]}"; do
-    install_theme "$url"
-done
-
 # Cria arquivos de configuração padrão do Openbox #
 cat <<EOL > ~/.config/openbox/autostart
 # Iniciar ferramentas no login
