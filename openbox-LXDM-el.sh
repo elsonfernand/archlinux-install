@@ -31,6 +31,10 @@ sudo pacman -S --noconfirm tint2 volumeicon network-manager-applet xfce4-power-m
 # Instala utilitários adicionais e gerenciador de arquivos #
 sudo pacman -S --noconfirm pcmanfm gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc menumaker tumbler ffmpegthumbnailer unzip xarchiver vlc archlinux-wallpaper fastfetch picom
 
+# Instala navegador. Descomente a linha da sua preferencia, pois eu uso navegador baseado no Chromium. #
+sudo pacman -S --noconfirm chromium
+#sudo pacman -S --noconfirm firefox
+
 # Habilita e iniciar os serviços do PipeWire #
 systemctl --user enable pipewire.service
 systemctl --user start pipewire.service
@@ -87,15 +91,49 @@ mmaker -vf openbox
 sudo localectl set-keymap br-abnt2
 sudo localectl set-x11-keymap br abnt2
 
-# Configuração do Picom para efeitos de composição #
-mkdir -p ~/.config/picom
-cat <<EOL > ~/.config/picom/picom.conf
-# Configuração básica
-backend = "glx";
-glx-no-stencil = true;
-glx-no-rebind-pixmap = true;
-vsync = "opengl-swc";
-EOL
+# Instala alguns temas #
+sudo pacman -S --noconfirm arc-gtk-theme lxde-icon-theme materia-gtk-theme lxqt-themes papirus-icon-theme xcursor-vanilla-dmz xcursor-vanilla-dmz-aa
+
+# INSTALACAO DE TEMAS DO OPENBOX #
+# Diretório de temas do Openbox
+THEMES_DIR="$HOME/.themes"
+
+# Verifica se o diretório de temas existe, caso contrário, criar
+if [ ! -d "$THEMES_DIR" ]; then
+    mkdir -p "$THEMES_DIR"
+fi
+
+# Função para baixar e extrair um tema
+install_theme() {
+    local url=$1
+    local theme_name=$(basename "$url")
+    local temp_dir=$(mktemp -d)
+
+    # Baixa o tema
+    wget -O "$temp_dir/$theme_name" "$url"
+
+    # Verifica o formato do arquivo e extrai
+    case "$theme_name" in
+        *.tar.gz) tar -xzf "$temp_dir/$theme_name" -C "$THEMES_DIR" ;;
+        *.zip) unzip "$temp_dir/$theme_name" -d "$THEMES_DIR" ;;
+        *) echo "Formato de arquivo desconhecido: $theme_name" ;;
+    esac
+
+    # Remove o arquivo temporário
+    rm -rf "$temp_dir"
+}
+
+# URLs dos temas. Se quiser adicione outros.
+URLS=(
+    "https://www.box-look.org/p/2133934"
+    "https://www.box-look.org/p/1416095/"
+    "https://www.box-look.org/p/1017591/"
+)
+
+# Instala cada tema
+for url in "${URLS[@]}"; do
+    install_theme "$url"
+done
 
 # Cria arquivos de configuração padrão do Openbox #
 cat <<EOL > ~/.config/openbox/autostart
@@ -108,5 +146,15 @@ nitrogen --restore &
 picom -f &
 EOL
 
+# Configuração do Picom para efeitos de composição #
+mkdir -p ~/.config/picom
+cat <<EOL > ~/.config/picom/picom.conf
+# Configuração básica
+backend = "glx";
+glx-no-stencil = true;
+glx-no-rebind-pixmap = true;
+vsync = "opengl-swc";
+EOL
+
 # Finaliza a instalação e configuração
-echo "Instalação e configuração inicial do Openbox concluídas. Reinicie o sistema ou faça logout para começar a usar."
+echo "Instalação e configuração inicial do Openbox concluídas. Reinicie o sistema para começar a usar."
