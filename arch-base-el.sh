@@ -21,6 +21,9 @@ echo root:password | chpasswd
 # Alguns pacotes sugeridos.
 # pacman -S --noconfirm grub efibootmgr networkmanager network-manager-applet fastfetch dialog wpa_supplicant mtools base-devel linux-headers avahi xdg-user-dirs xdg-utils gvfs gvfs-smb nfs-utils inetutils dnsutils bluez bluez-utils cups pipewire pipewire-alsa pipewire-pulse pipewire-jack bash-completion rsync reflector acpi acpi_call tlp edk2-ovmf bridge-utils dnsmasq vde2 ipset firewalld sof-firmware nss-mdns acpid ntfs-3g
 
+# Pacote do Pacman que contem alguns scripts
+sudo pacman -S --noconfirm pacman-contrib
+
 # Descomente a opcao abaixo se você esta usando o VirtualBox.
 pacman -S --noconfirm virtualbox-guest-utils
 # Descomente a opcao abaixo se você usa placa de vídeo da AMD.
