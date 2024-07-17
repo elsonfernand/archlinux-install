@@ -106,28 +106,11 @@ fi
 # Função para baixar e extrair um tema
 install_theme() {
     local url=$1
+    local file_name=$(basename "$url")
     local temp_dir=$(mktemp -d)
 
-    # Baixar a página e extrair o link de download
-    curl -s "$url" -o "$temp_dir/page.html"
-    local download_url=$(xmllint --html --xpath 'string(//a[contains(@class,"btn-download")]/@href)' "$temp_dir/page.html" 2>/dev/null)
-
-    if [[ -z "$download_url" ]]; then
-        echo "Não foi possível encontrar o link de download para $url"
-        rm -rf "$temp_dir"
-        return
-    fi
-
-    # Adicionar o prefixo se necessário
-    if [[ "$download_url" != http* ]]; then
-        download_url="https://www.box-look.org$download_url"
-    fi
-
-    # Nome do arquivo
-    local file_name=$(basename "$download_url")
-
     # Baixar o tema
-    wget -O "$temp_dir/$file_name" "$download_url"
+    wget -O "$temp_dir/$file_name" "$url"
 
     # Verificar o formato do arquivo e extrair
     case "$file_name" in
@@ -140,11 +123,11 @@ install_theme() {
     rm -rf "$temp_dir"
 }
 
-# URLs das páginas dos temas
+# URLs dos arquivos de tema (substitua com os links diretos que você copiou)
 URLS=(
-    "https://www.box-look.org/p/2133934"
-    "https://www.box-look.org/p/1416095/"
-    "https://www.box-look.org/p/1017591/"
+    "https://dl.opendesktop.org/api/files/download/id/1680660870/A-New-Midnight.tar.gz"
+    "https://dl.opendesktop.org/api/files/download/id/1462918692/Boom.zip"
+    "https://dl.opendesktop.org/api/files/download/id/1320248641/Obsidian-2.tar.gz"
 )
 
 # Instalar cada tema
