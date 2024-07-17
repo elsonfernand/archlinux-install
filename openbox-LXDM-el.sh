@@ -29,7 +29,7 @@ sudo pacman -S --noconfirm lxappearance-obconf
 sudo pacman -S --noconfirm tint2 volumeicon network-manager-applet xfce4-power-manager
 
 # Instala utilitários adicionais e gerenciador de arquivos #
-sudo pacman -S --noconfirm pcmanfm gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc menumaker tumbler ffmpegthumbnailer unzip xarchiver vlc archlinux-wallpaper fastfetch picom wget
+sudo pacman -S --noconfirm pcmanfm gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc menumaker tumbler ffmpegthumbnailer unzip xarchiver vlc archlinux-wallpaper fastfetch picom curl
 
 # Instala navegador. Descomente a linha da sua preferencia, pois eu uso navegador baseado no Chromium. #
 sudo pacman -S --noconfirm chromium
@@ -109,13 +109,18 @@ install_theme() {
     local temp_dir=$(mktemp -d)
 
     # Baixar a página e extrair o link de download
-    wget -q -O "$temp_dir/page.html" "$url"
-    local download_url=$(grep -oP '(?<=href=")[^"]*(?=".*Download)' "$temp_dir/page.html" | head -n 1)
+    curl -s "$url" -o "$temp_dir/page.html"
+    local download_url=$(grep -oP 'href="\K(.*?)(?=".*files)' "$temp_dir/page.html" | head -n 1)
 
     if [[ -z "$download_url" ]]; then
         echo "Não foi possível encontrar o link de download para $url"
         rm -rf "$temp_dir"
         return
+    fi
+
+    # Adicionar o prefixo se necessário
+    if [[ "$download_url" != http* ]]; then
+        download_url="https://www.box-look.org$download_url"
     fi
 
     # Nome do arquivo
