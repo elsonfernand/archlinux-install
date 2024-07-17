@@ -91,14 +91,14 @@ mmaker -vf openbox
 sudo localectl set-keymap br-abnt2
 sudo localectl set-x11-keymap br abnt2
 
-# Instala alguns temas #
+# Instala alguns temas e cursores #
 sudo pacman -S --noconfirm arc-gtk-theme lxde-icon-theme materia-gtk-theme lxqt-themes papirus-icon-theme xcursor-vanilla-dmz xcursor-vanilla-dmz-aa
 
-# INSTALACAO DE TEMAS DO OPENBOX #
+# INSTALACAO DE TEMAS ATRAVES DE LINKS #
 # Diretório de temas do Openbox
 THEMES_DIR="$HOME/.themes"
 
-# Verifica se o diretório de temas existe, caso contrário, criar
+# Verificar se o diretório de temas existe, caso contrário, criar
 if [ ! -d "$THEMES_DIR" ]; then
     mkdir -p "$THEMES_DIR"
 fi
@@ -106,31 +106,43 @@ fi
 # Função para baixar e extrair um tema
 install_theme() {
     local url=$1
-    local theme_name=$(basename "$url")
     local temp_dir=$(mktemp -d)
 
-    # Baixa o tema
-    wget -O "$temp_dir/$theme_name" "$url"
+    # Baixar a página e extrair o link de download
+    wget -q -O "$temp_dir/page.html" "$url"
+    local download_url=$(grep -oP '(?<=href=")[^"]*(?=".*Download)' "$temp_dir/page.html" | head -n 1)
 
-    # Verifica o formato do arquivo e extrai
-    case "$theme_name" in
-        *.tar.gz) tar -xzf "$temp_dir/$theme_name" -C "$THEMES_DIR" ;;
-        *.zip) unzip "$temp_dir/$theme_name" -d "$THEMES_DIR" ;;
-        *) echo "Formato de arquivo desconhecido: $theme_name" ;;
+    if [[ -z "$download_url" ]]; then
+        echo "Não foi possível encontrar o link de download para $url"
+        rm -rf "$temp_dir"
+        return
+    fi
+
+    # Nome do arquivo
+    local file_name=$(basename "$download_url")
+
+    # Baixar o tema
+    wget -O "$temp_dir/$file_name" "$download_url"
+
+    # Verificar o formato do arquivo e extrair
+    case "$file_name" in
+        *.tar.gz) tar -xzf "$temp_dir/$file_name" -C "$THEMES_DIR" ;;
+        *.zip) unzip "$temp_dir/$file_name" -d "$THEMES_DIR" ;;
+        *) echo "Formato de arquivo desconhecido: $file_name" ;;
     esac
 
-    # Remove o arquivo temporário
+    # Remover o arquivo temporário
     rm -rf "$temp_dir"
 }
 
-# URLs dos temas. Se quiser adicione outros.
+# URLs das páginas dos temas
 URLS=(
     "https://www.box-look.org/p/2133934"
     "https://www.box-look.org/p/1416095/"
     "https://www.box-look.org/p/1017591/"
 )
 
-# Instala cada tema
+# Instalar cada tema
 for url in "${URLS[@]}"; do
     install_theme "$url"
 done
