@@ -19,42 +19,68 @@ echo "archlinux" >> /etc/hostname
 echo root:password | chpasswd
 
 # Alguns pacotes sugeridos.
-# pacman -S --noconfirm grub efibootmgr networkmanager network-manager-applet fastfetch dialog wpa_supplicant mtools base-devel linux-headers avahi xdg-user-dirs xdg-utils gvfs gvfs-smb nfs-utils inetutils dnsutils bluez bluez-utils cups pipewire pipewire-alsa pipewire-pulse pipewire-jack bash-completion rsync reflector acpi acpi_call tlp edk2-ovmf bridge-utils dnsmasq vde2 ipset firewalld sof-firmware nss-mdns acpid ntfs-3g
+pacman -S --noconfirm network-manager-applet dialog wpa_supplicant base-devel linux-headers xdg-user-dirs xdg-utils gvfs gvfs-smb nfs-utils bash-completion rsync reflector ntfs-3g
 
 # Pacote do Pacman que contem alguns scripts
 sudo pacman -S --noconfirm pacman-contrib
 
-# Descomente a opcao abaixo se você esta usando o VirtualBox.
+#####################
+## OPCOES DE VIDEO ##
+#####################
+
+# Descomente a opcao abaixo se você esta usando o VirtualBox ou se planeja usar.
 pacman -S --noconfirm virtualbox-guest-utils
+systemctl enable vboxservice.service
 # Descomente a opcao abaixo se você usa placa de vídeo da AMD.
 # pacman -S --noconfirm xf86-video-amdgpu
 # Opção descomentada porque uso nvidia, se não for o seu caso, comente.
 pacman -S --noconfirm nvidia nvidia-utils nvidia-settings
+# Opção descomentada porque uso processador da Intel
+pacman -S --noconfirm intel-ucode intel-media-driver
+# Descomente a opção abaixo se você usa processador AMD
+pacman -S --noconfirm amd-ucode
 
 # Instalando e gerando o GRUB
 grub-install /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 
-# Ativando Internet, criando arquivo de configuracao do Fastfetch, bluetooth, impressora, script de espelhos mais proximo, firewall e permicoes de convidado se usando VirtualBox. Descomente apenas o necessario, caso contrario nao ira funcionar.
+#########################################
+### ATIVACAO E INSTALACAO DE SERVICOS ###
+#########################################
+
 # Internet
 systemctl enable NetworkManager
+
 # Arquivo do Fastfetch se encontra em ~/.config/fastfetch/config.jsonc e voce pode alterar ele com o nano ou editor de texto de sua preferencia
+# pacman -S --noconfirm fastfetch
 #fastfetch --gen-config
+
 # Bluetooth
+# pacman -S --noconfirm bluez bluez-utils
 #systemctl enable bluetooth
+
 # Impressora
+# pacman -S --noconfirm cups system-config-printer
 #systemctl enable cups.service
+
 # Permicao para que programas publiquem e descubram os servicos e as maquinas que funcionam em uma rede local sem nenhuma configuração especifica
+# pacman -S --noconfirm avahi
 #systemctl enable avahi-daemon
-# Script que pode recuperar a lista de espelhos mais recente da pagina MirrorStatus, filtrar os espelhos mais atualizados, classifica-los por velocidade e substituir o arquivo /etc/pacman.d/mirrorlist
-#systemctl enable reflector.timer
+
 # Seguranca da rede que monitora o trafego de rede de entrada e saida e decide permitir ou bloquear trafegos especificos de acordo com um conjunto definido de regras de segurança
+# pacman -S --noconfirm firewalld
 #systemctl enable firewalld
-# Servico do Virtualbox
-#systemctl enable vboxservice.service
+
+# Gerenciamento de energia para notebook
+# pacman -S --noconfirm tlp
+#systemctl enable tlp.service
 
 # Atualizando a lista de espelhos para melhor download dos pacotes de atualizacao e novas instalacoes. So descomente se voce ja fez a instalação nos passos anteriores.
 # pacman -S --noconfirm reflector ; sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup ; reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
+
+################################################
+### FIM DE ATIVACAO E INSTALACAO DE SERVICOS ###
+################################################
 
 # Adicionando e criando um usuario no grupo "wheel". Troque o "el" pelo nome do seu usuario.
 useradd -mG wheel -s /bin/bash el
