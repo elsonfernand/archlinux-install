@@ -62,9 +62,6 @@ panel_background_id = 1
 wm_menu = 1
 EOL
 
-# Criar atalho para iniciar o Openbox
-echo "exec openbox-session" > ~/.xinitrc
-
 # Finalizar a configuração
 echo "Configuração inicial do Openbox concluída."
-echo "Leia a Wiki do Arch Linux sobre o Openbox e altere ao seu gosto."
+echo "Leia a Wiki do Arch Linux sobre o Openbox, Tint2, Picom e altere ao seu gosto."
