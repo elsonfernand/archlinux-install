@@ -44,7 +44,7 @@ systemctl enable NetworkManager
 #systemctl enable bluetooth
 # Impressora
 #systemctl enable cups.service
-# Permicao para que programas publiquem e descubram os serviçcs e as maquinas que funcionam em uma rede local sem nenhuma configuração especifica
+# Permicao para que programas publiquem e descubram os servicos e as maquinas que funcionam em uma rede local sem nenhuma configuração especifica
 #systemctl enable avahi-daemon
 # Script que pode recuperar a lista de espelhos mais recente da pagina MirrorStatus, filtrar os espelhos mais atualizados, classifica-los por velocidade e substituir o arquivo /etc/pacman.d/mirrorlist
 #systemctl enable reflector.timer
