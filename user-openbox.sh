@@ -3,6 +3,41 @@
 # Cria diretórios necessários, se não existirem
 [ ! -d ~/.config/openbox ] && mkdir -p ~/.config/openbox
 [ ! -d ~/.config/tint2 ] && mkdir -p ~/.config/tint2
+[ ! -d ~/.config/picom ] && mkdir -p ~/.config/picom
+
+# Criar um arquivo de configuração básico do Picom
+cat <<EOL > ~/.config/picom/picom.conf
+# Shadows
+shadow = true;
+shadow-radius = 12;
+shadow-offset-x = -12;
+shadow-offset-y = -12;
+shadow-opacity = 0.7;
+shadow-exclude = [
+  "name = 'Notification'",
+  "class_g = 'Conky'",
+  "class_g = 'URxvt' && _NET_WM_STATE@:32a",
+  "_GTK_FRAME_EXTENTS@:c"
+];
+
+# Fading
+fading = true;
+fade-in-step = 0.03;
+fade-out-step = 0.03;
+fade-delta = 4;
+
+# Opacity
+inactive-opacity = 0.9;
+active-opacity = 1.0;
+frame-opacity = 0.8;
+inactive-opacity-override = true;
+
+# Backend
+backend = "glx";
+
+# VSync
+vsync = true;
+EOL
 
 # Criando arquivo de autostart do Openbox
 cat <<EOL > ~/.config/openbox/autostart
@@ -11,76 +46,8 @@ tint2 &
 volumeicon &
 nm-applet &
 xfce4-power-manager &
-feh --bg-scale /caminho/para/seu/wallpaper.jpg &
-EOL
-
-# Criando arquivo de menu do Openbox
-cat <<EOL > ~/.config/openbox/menu.xml
-<openbox_menu>
-    <menu id="root-menu" label="Openbox 3">
-        <item label="Terminal">
-            <action name="Execute">
-                <command>xfce4-terminal</command>
-            </action>
-        </item>
-        <item label="Navegador">
-            <action name="Execute">
-                <command>firefox</command>
-            </action>
-        </item>
-        <separator />
-        <item label="Reconfigurar">
-            <action name="Reconfigure" />
-        </item>
-        <item label="Reiniciar">
-            <action name="Execute">
-                <command>reboot</command>
-            </action>
-        </item>
-        <item label="Desligar">
-            <action name="Execute">
-                <command>poweroff</command>
-            </action>
-        </item>
-        <separator />
-        <item label="Logout">
-            <action name="Exit" />
-        </item>
-    </menu>
-</openbox_menu>
-EOL
-
-# Criar arquivo de configuração rc.xml do Openbox
-cat <<EOL > ~/.config/openbox/rc.xml
-<openbox_config>
-    <mouse>
-        <context name="Frame">
-            <mousebind button="A-Left" action="Press">
-                <action name="Focus" />
-                <action name="Raise" />
-                <action name="Move" />
-            </mousebind>
-            <mousebind button="A-Right" action="Press">
-                <action name="Focus" />
-                <action name="Raise" />
-                <action name="Resize" />
-            </mousebind>
-        </context>
-    </mouse>
-    <keyboard>
-        <keybind key="A-F4">
-            <action name="Close" />
-        </keybind>
-        <keybind key="W-Return">
-            <action name="Execute">
-                <command>xfce4-terminal</command>
-            </action>
-        </keybind>
-        <keybind key="W-d">
-            <action name="ShowDesktop" />
-        </keybind>
-    </keyboard>
-</openbox_config>
+nitrogen --restore &
+picom &
 EOL
 
 # Criar arquivo de configuração do Tint2
@@ -99,4 +66,5 @@ EOL
 echo "exec openbox-session" > ~/.xinitrc
 
 # Finalizar a configuração
-echo "Configuração do Openbox concluída."
+echo "Configuração inicial do Openbox concluída."
+echo "Leia a Wiki do Arch Linux sobre o Openbox e altere ao seu gosto."
