@@ -94,6 +94,47 @@ sudo localectl set-x11-keymap br abnt2
 # Instala alguns temas e cursores #
 sudo pacman -S --noconfirm arc-gtk-theme lxde-icon-theme materia-gtk-theme lxqt-themes papirus-icon-theme xcursor-vanilla-dmz xcursor-vanilla-dmz-aa
 
+##############################################################
+### INSTALANDO E ATIVANDO O NUMLOCK NO TTY, LXDM E OPENBOX ###
+##############################################################
+
+# Instalando numlockx
+sudo pacman -S --noconfirm numlockx
+
+# Configurando numlock no tty
+sudo bash -c 'echo "KEYMAP=br-abnt2" >> /etc/vconsole.conf'
+sudo bash -c 'cat << EOF > /etc/systemd/system/numlock.service
+[Unit]
+Description=Activate numlock on boot
+
+[Service]
+ExecStart=/usr/bin/setleds +num < /dev/tty1
+
+[Install]
+WantedBy=multi-user.target
+EOF'
+sudo systemctl enable numlock.service
+
+# Configurando numlock no LXDM
+sudo sed -i '/^\[base\]/a numlock=1' /etc/lxdm/lxdm.conf
+
+# Configurando numlock no Openbox
+if grep -q 'numlockx on &' ~/.config/openbox/autostart; then
+    echo "Numlock already configured in Openbox autostart."
+else
+    echo "numlockx on &" >> ~/.config/openbox/autostart
+fi
+
+if grep -q 'numlockx on &' ~/.xinitrc; then
+    echo "Numlock already configured in .xinitrc."
+else
+    echo "numlockx on &" >> ~/.xinitrc
+fi
+
+#############################################################################
+### FINALIZACAO DA INSTALACAO E ATIVACAO O NUMLOCK NO TTY, LXDM E OPENBOX ###
+#############################################################################
+
 # Cria arquivos de configuração padrão do Openbox #
 cat <<EOL > ~/.config/openbox/autostart
 # Iniciar ferramentas no login
