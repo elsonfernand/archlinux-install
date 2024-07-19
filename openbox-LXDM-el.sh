@@ -26,7 +26,7 @@ sudo pacman -S --noconfirm xterm lxterminal
 sudo pacman -S --noconfirm lxappearance-obconf
 
 # Instala barra de tarefas e aplicativos básicos #
-sudo pacman -S --noconfirm tint2 volumeicon network-manager-applet xfce4-power-manager
+sudo pacman -S --noconfirm tint2 volumeicon network-manager-applet xfce4-power-manager gsimplecal 
 
 # Instala utilitários adicionais e gerenciador de arquivos #
 sudo pacman -S --noconfirm pcmanfm gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc menumaker tumbler ffmpegthumbnailer unzip xarchiver vlc archlinux-wallpaper fastfetch picom libxml2 wget curl zathura leafpad
