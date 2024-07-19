@@ -29,7 +29,7 @@ sudo pacman -S --noconfirm lxappearance-obconf
 sudo pacman -S --noconfirm tint2 volumeicon network-manager-applet xfce4-power-manager gsimplecal 
 
 # Instala utilitários adicionais e gerenciador de arquivos #
-sudo pacman -S --noconfirm pcmanfm gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc menumaker tumbler ffmpegthumbnailer unzip xarchiver vlc archlinux-wallpaper fastfetch picom libxml2 wget curl zathura leafpad scrot
+sudo pacman -S --noconfirm pcmanfm gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc menumaker tumbler ffmpegthumbnailer unzip xarchiver vlc archlinux-wallpaper fastfetch picom libxml2 wget curl zathura leafpad scrot rofi
 
 # Instala navegador. Descomente a linha da sua preferencia, pois eu uso navegador baseado no Chromium. #
 sudo pacman -S --noconfirm chromium
@@ -86,6 +86,7 @@ sudo pacman -S --noconfirm xdg-user-dirs ; xdg-user-dirs-update
 
 # Reconfiguração automática do menu do Openbox usando Menumaker #
 mmaker -vf openbox
+# Lembrete: No AUR existe um pacote chamado "obmenu-generator" que você pode rodar no terminal "obmenu-generator -p -i" pra gerar um menu com icones.
 
 # Configurar o layout de teclado padrão como br-abnt2 no sistema
 sudo localectl set-keymap br-abnt2
