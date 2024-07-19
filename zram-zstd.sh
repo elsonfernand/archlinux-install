@@ -1,26 +1,24 @@
 #!/bin/bash
 
-# Atualizar sistema
-sudo pacman -Syu
+# Atualizacao dos repositorios e instalacao do zram-generator
+sudo pacman -Syu --noconfirm
+sudo pacman -S --noconfirm zram-generator
 
-# Instalar o zram-generator
-sudo pacman -S zram-generator
-
-# Criar diretório de configuração do zram-generator
+# Criar o diretório de configuração do zram-generator
 sudo mkdir -p /etc/systemd/zram-generator.conf.d
 
-# Criar arquivo de configuração do zram-generator para usar zstd
-cat <<EOL | sudo tee /etc/systemd/zram-generator.conf.d/zram.conf
+# Criar o arquivo de configuração do zram-generator
+cat << EOF | sudo tee /etc/systemd/zram-generator.conf.d/override.conf
 [zram0]
 zram-size = ram / 2
 compression-algorithm = zstd
-EOL
+EOF
 
-# Habilitar e iniciar o serviço do zram-generator
-sudo systemctl enable /usr/lib/systemd/system-generators/zram-generator
-sudo systemctl start /usr/lib/systemd/system-generators/zram-generator
+# Reinicializacao do serviço systemd-modules-load para aplicar a nova configuracao
+sudo systemctl daemon-reload
+sudo systemctl restart systemd-modules-load
 
 # Verificar se o zram está funcionando
 echo "Configuração do Zram com compressão zstd concluída."
-echo "Verifique o estado do Zram com o comando: lsblk -o NAME,TYPE,SIZE,MODEL,STATE"
 echo "Espero que tenha dado tudo certo!"
+echo -e "Se quiser verificar use o comando \033[0;32mlsblk\033[0m no terminal."
