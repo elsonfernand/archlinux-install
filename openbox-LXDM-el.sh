@@ -29,7 +29,7 @@ sudo pacman -S --noconfirm lxappearance-obconf
 sudo pacman -S --noconfirm tint2 volumeicon network-manager-applet xfce4-power-manager gsimplecal 
 
 # Instala utilitários adicionais e gerenciador de arquivos #
-sudo pacman -S --noconfirm pcmanfm gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc menumaker tumbler ffmpegthumbnailer unzip xarchiver vlc archlinux-wallpaper fastfetch picom libxml2 wget curl zathura leafpad scrot rofi
+sudo pacman -S --noconfirm pcmanfm gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc menumaker tumbler ffmpegthumbnailer unzip xarchiver vlc archlinux-wallpaper fastfetch picom libxml2 wget curl zathura leafpad
 
 # Instala navegador. Descomente a linha da sua preferencia, pois eu uso navegador baseado no Chromium. #
 sudo pacman -S --noconfirm chromium
@@ -94,6 +94,87 @@ sudo localectl set-x11-keymap br abnt2
 
 # Instala alguns temas e cursores #
 sudo pacman -S --noconfirm arc-gtk-theme lxde-icon-theme materia-gtk-theme lxqt-themes papirus-icon-theme xcursor-vanilla-dmz xcursor-vanilla-dmz-aa
+
+#######################################
+## Instalação e configuração do Rofi ##
+#######################################
+# Atualiza os repositórios e instala o rofi e o tema de ícones Papirus
+sudo pacman -Syu --noconfirm rofi papirus-icon-theme
+
+# Cria o diretório de configuração do Openbox, se não existir
+mkdir -p ~/.config/openbox
+
+# Cria o diretório de configuração do rofi, se não existir
+mkdir -p ~/.config/rofi
+
+# Adiciona configuração para mostrar ícones no rofi
+cat <<EOL > ~/.config/rofi/config.rasi
+configuration {
+    show-icons: true;
+    theme: "Papirus";
+}
+EOL
+
+# Adiciona um atalho para o rofi no arquivo de configuração do Openbox
+cat <<EOL >> ~/.config/openbox/rc.xml
+<keyboard>
+    <!-- Atalho para abrir o rofi com Super + D -->
+    <keybind key="W-d">
+        <action name="Execute">
+            <command>rofi -show drun</command>
+        </action>
+    </keybind>
+</keyboard>
+EOL
+
+# Recarrega as configurações do Openbox
+openbox --reconfigure
+
+#############################################
+## Fim da nstalação e configuração do Rofi ##
+#############################################
+
+##########################################################################
+## Instalação e configuração do scrot, utilitário para tirar screenchot ##
+##########################################################################
+# Instalacao do scrot
+sudo pacman -S --noconfirm scrot
+
+# Diretório para salvar capturas de tela
+SCREENSHOT_DIR="$HOME/Pictures/Screenshots"
+
+# Cria o diretório se ele não existir
+mkdir -p "$SCREENSHOT_DIR"
+
+# Criação do script para tirar screenshot
+cat << 'EOF' > $HOME/bin/scrot_screenshot.sh
+#!/bin/bash
+# Script para tirar screenshot e salvar no diretório especificado
+DATE=$(date +%Y-%m-%d_%H-%M-%S)
+scrot "$HOME/Pictures/Screenshots/screenshot_$DATE.png"
+EOF
+
+# Torna o script executável
+chmod +x $HOME/bin/scrot_screenshot.sh
+
+# Adiciona atalho no Openbox (Assumindo que o usuário usa Openbox)
+OPENBOX_CONFIG="$HOME/.config/openbox/rc.xml"
+
+if ! grep -q "scrot_screenshot.sh" "$OPENBOX_CONFIG"; then
+    sed -i '/<keyboard>/ a\
+        <keybind key="Print">\
+            <action name="Execute">\
+                <command>$HOME/bin/scrot_screenshot.sh</command>\
+            </action>\
+        </keybind>' "$OPENBOX_CONFIG"
+fi
+
+# Recarregar a configuração do Openbox
+openbox --reconfigure
+
+#################################################################################
+## Fim da instalação e configuração do scrot, utilitário para tirar screenchot ##
+#################################################################################
 
 ##############################################################
 ### INSTALANDO E ATIVANDO O NUMLOCK NO TTY, LXDM E OPENBOX ###
