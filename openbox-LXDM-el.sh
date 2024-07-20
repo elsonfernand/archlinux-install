@@ -101,6 +101,29 @@ sudo pacman -S --noconfirm arc-gtk-theme lxde-icon-theme materia-gtk-theme lxqt-
 # Atualiza os repositórios e instala o rofi e o tema de ícones Papirus
 sudo pacman -Syu --noconfirm rofi papirus-icon-theme
 
+# Configurações de Locale
+echo "Configurando locales..."
+# Descomenta en_US.UTF-8 no arquivo locale.gen
+sudo sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
+
+# Gera os locales
+sudo locale-gen
+
+# Configura o locale padrão
+echo 'LANG=en_US.UTF-8' | sudo tee /etc/locale.conf
+echo 'LC_ALL=en_US.UTF-8' | sudo tee -a /etc/locale.conf
+
+# Exporta as variáveis de locale para a sessão atual
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+# Adiciona as variáveis de locale ao .bashrc para garantir que sejam configuradas em cada sessão
+echo 'export LANG=en_US.UTF-8' >> ~/.bashrc
+echo 'export LC_ALL=en_US.UTF-8' >> ~/.bashrc
+source ~/.bashrc
+
+echo "Locales configurados."
+
 # Cria o diretório de configuração do Openbox, se não existir
 mkdir -p ~/.config/openbox
 
@@ -111,8 +134,8 @@ mkdir -p ~/.config/rofi
 cat <<EOL > ~/.config/rofi/config.rasi
 configuration {
     show-icons: true;
-    theme: "Papirus";
 }
+@theme "Papirus"
 EOL
 
 # Adiciona um atalho para o rofi no arquivo de configuração do Openbox
