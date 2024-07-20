@@ -16,8 +16,8 @@ sudo pacman -S --noconfirm openbox xorg-xinit xorg obconf
 # Instalando PipeWire e alguns pacotes relevantes ao aoudio #
 sudo pacman -S --noconfirm pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber pavucontrol qpwgraph
 
-# Instala ferramentas de mudança de wallpaper e resolução de tela #
-sudo pacman -S --noconfirm nitrogen arandr
+# Instala ferramentas de mudança de wallpaper #
+sudo pacman -S --noconfirm nitrogen
 
 # Instala emuladores de terminal #
 sudo pacman -S --noconfirm xterm lxterminal
@@ -152,9 +152,60 @@ EOL
 # Recarrega as configurações do Openbox
 openbox --reconfigure
 
-#############################################
+##############################################
 ## Fim da instalação e configuração do Rofi ##
-#############################################
+##############################################
+
+#########################################
+## INSTALAÇÃO E CONFIGURAÇÃO DO ARANDR ##
+#########################################
+# Atualiza o sistema e instala o Arandr
+sudo pacman -Syu --noconfirm
+sudo pacman -S --noconfirm arandr
+
+# Cria o diretório para o script de configuração do xrandr se não existir
+mkdir -p ~/.config/openbox
+
+# Cria o script de configuração do xrandr
+cat <<EOL > ~/.config/openbox/monitor_layout.sh
+#!/bin/bash
+
+# Configuração do xrandr para dois monitores
+# Monitor secundário à esquerda
+xrandr --output HDMI-1 --primary --auto --output HDMI-2 --auto --left-of HDMI-1
+EOL
+
+# Torna o script executável
+chmod +x ~/.config/openbox/monitor_layout.sh
+
+# Adiciona a execução do script no arquivo autostart do Openbox
+if ! grep -q "~/.config/openbox/monitor_layout.sh" ~/.config/openbox/autostart; then
+    echo "~/.config/openbox/monitor_layout.sh" >> ~/.config/openbox/autostart
+fi
+
+################################################
+## FIM DA INSTALAÇÃO E CONFIGURAÇÃO DO ARANDR ##
+################################################
+
+##########################################
+### CONFIGURAÇÃO DO ARANDR PARA O LXDM ###
+##########################################
+# Adiciona a configuração do xrandr para o LXDM
+sudo mkdir -p /etc/X11/xinit/xinitrc.d
+cat <<EOL | sudo tee /etc/X11/xinit/xinitrc.d/10-monitor_layout.sh > /dev/null
+#!/bin/bash
+
+# Configuração do xrandr para dois monitores
+# Monitor secundário à esquerda
+xrandr --output HDMI-1 --primary --auto --output HDMI-2 --auto --left-of HDMI-1
+EOL
+
+# Torna o script executável
+sudo chmod +x /etc/X11/xinit/xinitrc.d/10-monitor_layout.sh
+
+#################################################
+### FIM DA CONFIGURAÇÃO DO ARANDR PARA O LXDM ###
+#################################################
 
 ##########################################################################
 ## Instalação e configuração do scrot, utilitário para tirar screenchot ##
