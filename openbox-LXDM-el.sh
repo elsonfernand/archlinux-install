@@ -135,7 +135,6 @@ cat <<EOL > ~/.config/rofi/config.rasi
 configuration {
     show-icons: true;
 }
-@theme "Papirus"
 EOL
 
 # Adiciona um atalho para o rofi no arquivo de configuração do Openbox
@@ -154,7 +153,7 @@ EOL
 openbox --reconfigure
 
 #############################################
-## Fim da nstalação e configuração do Rofi ##
+## Fim da instalação e configuração do Rofi ##
 #############################################
 
 ##########################################################################
