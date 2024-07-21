@@ -105,8 +105,8 @@ chmod +x <nome-do-script>.sh
 ./<nome-do-script>.sh
 ```
 > [!IMPORTANT]
-> Depois que sair do *arch-chroot* (com o *exit*), desmontar as partições com *umount -a*, desligar o sistema com o *poweroff* e religar o sistema para saber se está tudo certo, eu recomendo que copie essa pasta que acabou de ser usada com ***cp -r /archlinux-install .*** para que continue a instalação de uma Ambiente de Trabalho e ou Window Manager de sua preferência.
+> Use ***cp -r /archlinux-install .*** antes de sair do *arch-chroot* (com o *exit*), desmontar as partições com *umount -a*, desligar o sistema com o *poweroff* para que continue a instalação de um Ambiente de Trabalho e ou Window Manager de sua preferência. Esse comando copia a pasta com esses scripts e você pode continuar depois de reiniciar o sistema sem se preocupar com clonar esse repositório novamente.
 
 ## Licença
 
-Esse projeto não está sob licença. Modifique, refaça, me mande uma DM pra me xingar.
+Pode passar.
