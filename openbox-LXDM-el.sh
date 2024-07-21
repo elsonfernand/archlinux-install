@@ -283,7 +283,6 @@ nm-applet &
 xfce4-power-manager &
 nitrogen --restore &
 picom -f &
-thunar --daemon &
 EOL
 
 # Configuração do Picom para efeitos de composição #
