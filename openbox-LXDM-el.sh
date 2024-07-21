@@ -137,18 +137,6 @@ configuration {
 }
 EOL
 
-# Adiciona um atalho para o rofi no arquivo de configuração do Openbox
-cat <<EOL >> ~/.config/openbox/rc.xml
-<keyboard>
-    <!-- Atalho para abrir o rofi com Super + D -->
-    <keybind key="W-d">
-        <action name="Execute">
-            <command>rofi -show drun</command>
-        </action>
-    </keybind>
-</keyboard>
-EOL
-
 # Recarrega as configurações do Openbox
 openbox --reconfigure
 
