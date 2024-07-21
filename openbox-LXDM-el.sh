@@ -52,7 +52,7 @@ sudo pacman -S --noconfirm lxdm-gtk3
 sudo sed -i 's/^# session=.*/session=\/usr\/bin\/openbox-session/' /etc/lxdm/lxdm.conf
 
 # Configurações adicionais recomendadas pela wiki do LXDM #
-sudo sed -i 's/^# numlock=.*/numlock=0/' /etc/lxdm/lxdm.conf
+sudo sed -i 's/^# numlock=.*/numlock=1/' /etc/lxdm/lxdm.conf
 # sudo sed -i 's/^# default_lang=.*/default_lang=en_US.UTF-8/' /etc/lxdm/lxdm.conf
 # sudo sed -i 's/^# skip_password=.*/skip_password=0/' /etc/lxdm/lxdm.conf
 # sudo sed -i 's/^# hide=.*/hide=/' /etc/lxdm/lxdm.conf
