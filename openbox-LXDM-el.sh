@@ -29,7 +29,7 @@ sudo pacman -S --noconfirm lxappearance-obconf
 sudo pacman -S --noconfirm tint2 volumeicon network-manager-applet xfce4-power-manager gsimplecal 
 
 # Instala utilitários adicionais e gerenciador de arquivos #
-sudo pacman -S --noconfirm pcmanfm gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc menumaker tumbler ffmpegthumbnailer unzip xarchiver vlc archlinux-wallpaper fastfetch picom libxml2 wget curl zathura leafpad
+sudo pacman -S --noconfirm pcmanfm gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc menumaker tumbler ffmpegthumbnailer unzip xarchiver vlc archlinux-wallpaper fastfetch picom libxml2 zathura leafpad
 
 # Instala navegador. Descomente a linha da sua preferencia. Eu dou preferencia a navegador baseado no Chromium. #
 #sudo pacman -S --noconfirm chromium
@@ -301,6 +301,31 @@ cd google-chrome
 makepkg -si --noconfirm
 cd ..
 rm -rf google-chrome
+
+###################################
+### ICONE DE CONTROLE DE VOLUME ###
+###################################
+# Atualizar o sistema e instalar o pasystray
+echo "Atualizando o sistema e instalando o pasystray..."
+sudo pacman -Syu --noconfirm pasystray
+
+# Verificar se o diretório de configuração do Openbox existe, se não, criar
+CONFIG_DIR="$HOME/.config/openbox"
+if [ ! -d "$CONFIG_DIR" ]; then
+    echo "Criando diretório de configuração do Openbox em $CONFIG_DIR..."
+    mkdir -p "$CONFIG_DIR"
+fi
+
+# Adicionar o pasystray ao autostart do Openbox
+AUTOSTART_FILE="$CONFIG_DIR/autostart"
+if ! grep -q "pasystray &" "$AUTOSTART_FILE"; then
+    echo "Adicionando pasystray ao autostart do Openbox..."
+    echo "pasystray &" >> "$AUTOSTART_FILE"
+else
+    echo "pasystray já está configurado para iniciar automaticamente."
+fi
+
+echo "Configuração de ícone de controle de volume concluída."
 
 # Reconfiguração automática do menu do Openbox usando Menumaker #
 mmaker -vf openbox
