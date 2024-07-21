@@ -84,22 +84,18 @@ echo "exec openbox-session" > ~/.xinitrc
 # Por padrão o Openbox não tem os diretorios usuais na /home, precisamos instalar e rodar um pacote para os diretorios aparecerem: #
 sudo pacman -S --noconfirm xdg-user-dirs ; xdg-user-dirs-update
 
-# Reconfiguração automática do menu do Openbox usando Menumaker #
-mmaker -vf openbox
-# Lembrete: No AUR existe um pacote chamado "obmenu-generator" que você pode rodar no terminal "obmenu-generator -p -i" pra gerar um menu com icones.
-
 # Configurar o layout de teclado padrão como br-abnt2 no sistema
 sudo localectl set-keymap br-abnt2
 sudo localectl set-x11-keymap br abnt2
 
-# Instala alguns temas e cursores #
-sudo pacman -S --noconfirm arc-gtk-theme lxde-icon-theme materia-gtk-theme lxqt-themes papirus-icon-theme xcursor-vanilla-dmz xcursor-vanilla-dmz-aa
+# Instala alguns temas, cursores e fontes #
+sudo pacman -S --noconfirm arc-gtk-theme lxde-icon-theme materia-gtk-theme lxqt-themes papirus-icon-theme xcursor-vanilla-dmz xcursor-vanilla-dmz-aa noto-fonts-emoji ttf-dejavu ttf-liberation
 
 #######################################
 ## Instalação e configuração do Rofi ##
 #######################################
-# Atualiza os repositórios e instala o rofi e o tema de ícones Papirus
-sudo pacman -Syu --noconfirm rofi papirus-icon-theme
+# Atualiza os repositórios e instala o rofi
+sudo pacman -Syu --noconfirm rofi
 
 # Configurações de Locale
 echo "Configurando locales..."
