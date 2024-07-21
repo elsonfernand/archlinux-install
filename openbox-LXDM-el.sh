@@ -31,8 +31,8 @@ sudo pacman -S --noconfirm tint2 volumeicon network-manager-applet xfce4-power-m
 # Instala utilitários adicionais e gerenciador de arquivos #
 sudo pacman -S --noconfirm pcmanfm gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc menumaker tumbler ffmpegthumbnailer unzip xarchiver vlc archlinux-wallpaper fastfetch picom libxml2 wget curl zathura leafpad
 
-# Instala navegador. Descomente a linha da sua preferencia, pois eu uso navegador baseado no Chromium. #
-sudo pacman -S --noconfirm chromium
+# Instala navegador. Descomente a linha da sua preferencia. Eu dou preferencia a navegador baseado no Chromium. #
+#sudo pacman -S --noconfirm chromium
 #sudo pacman -S --noconfirm firefox
 
 # Habilita e iniciar os serviços do PipeWire #
@@ -298,6 +298,17 @@ glx-no-stencil = true;
 glx-no-rebind-pixmap = true;
 vsync = "opengl-swc";
 EOL
+
+# Caso queira instalar o Google Chrome normal do Google sem ajudante do AUR #
+git clone https://aur.archlinux.org/google-chrome.git
+cd google-chrome
+makepkg -si --noconfirm
+cd ..
+rm -rf google-chrome
+
+# Reconfiguração automática do menu do Openbox usando Menumaker #
+mmaker -vf openbox
+# Lembrete: No AUR existe um pacote chamado "obmenu-generator" que você pode rodar no terminal "obmenu-generator -p -i" pra gerar um menu com icones.
 
 # Finaliza a instalação e configuração
 echo "Instalação e configuração inicial do Openbox concluídas. Reinicie o sistema para começar a usar."
