@@ -12,7 +12,7 @@ shadow = true;
 shadow-radius = 12;
 shadow-offset-x = -12;
 shadow-offset-y = -12;
-shadow-opacity = 0.7;
+shadow-opacity = 0.43;
 shadow-exclude = [
   "name = 'Notification'",
   "class_g = 'Conky'",
@@ -23,13 +23,13 @@ shadow-exclude = [
 # Fading
 fading = true;
 fade-in-step = 0.03;
-fade-out-step = 0.03;
+fade-out-step = 0.05;
 fade-delta = 4;
 
 # Opacity
-inactive-opacity = 0.9;
+inactive-opacity = 1.0;
 active-opacity = 1.0;
-frame-opacity = 0.8;
+frame-opacity = 1.0;
 inactive-opacity-override = true;
 
 # Backend
@@ -41,23 +41,43 @@ EOL
 
 # Criando arquivo de autostart do Openbox
 cat <<EOL > ~/.config/openbox/autostart
-# Iniciar ferramentas no login
+## Iniciar ferramentas no login ##
+
+#Barra de tarefas
 tint2 &
-volumeicon &
+
+# Controle de conexão com a intenet
 nm-applet &
+
+# Controle de energia
 xfce4-power-manager &
+
+# Controle e escolha de wallpaper
 nitrogen --restore &
+
+# Compositor
 picom &
+
+# Esquema de layout de monitor seguindo as configurações do ArandR
+~/.screenlayout/2nd-monitor.sh &
+
+# Controle e ícone de volume
+pasystray &
+
+# Temegram (mensageiro)
+telegram-desktop  -startintray &
+
+#
 EOL
 
 # Criar arquivo de configuração do Tint2
 cat <<EOL > ~/.config/tint2/tint2rc
 # Configurações básicas do tint2
-panel_monitor = 1
-panel_position = top center
-panel_size = 100% 40
+panel_monitor = primary
+panel_position = bottom center horizontal
+panel_size = 100% 43
 panel_margin = 0 0
-panel_padding = 0 0 0
+panel_padding = 7 0 7
 panel_background_id = 1
 wm_menu = 1
 EOL
