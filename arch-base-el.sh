@@ -68,8 +68,8 @@ systemctl enable NetworkManager
 #systemctl enable avahi-daemon
 
 # Seguranca da rede que monitora o trafego de rede de entrada e saida e decide permitir ou bloquear trafegos especificos de acordo com um conjunto definido de regras de segurança
-# pacman -S --noconfirm firewalld
-#systemctl enable firewalld
+# pacman -S --noconfirm ufw gufw 
+#systemctl enable --now ufw.service
 
 # Gerenciamento de energia para notebook
 # pacman -S --noconfirm tlp
