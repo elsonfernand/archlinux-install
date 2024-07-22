@@ -3,6 +3,9 @@
 # Atualizacao do sistema
 sudo pacman -Syu
 
+#Para que o Kdenlive tenha uma interface bonitinha tem que ser instalado o tema "breeze"
+sudo pacman -S --noconfirm breeze
+
 # Instalacao de pacotes design gráfico. Exclua os tres ultimos pacotes se nao for lidar com imagens RAW.
 sudo pacman -S --noconfirm kdenlive inkscape scribus gimp blender darktable opencl-nvidia opencl-headers 
 
