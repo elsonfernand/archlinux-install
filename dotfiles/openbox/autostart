@@ -1,0 +1,24 @@
+## Iniciar ferramentas no login ##
+
+#Barra de tarefas
+tint2 &
+
+# Controle de conexão com a intenet
+nm-applet &
+
+# Controle de energia
+xfce4-power-manager &
+
+# Controle e escolha de wallpaper
+nitrogen --restore &
+
+# Compositor
+picom &
+
+# Esquema de layout de monitor seguindo as configurações do ArandR
+~/.screenlayout/2nd-monitor.sh &pasystray &
+
+# Temegram (mensageiro)
+telegram-desktop  -startintray &
+
+#
