@@ -107,6 +107,9 @@ chmod +x <nome-do-script>.sh
 > [!IMPORTANT]
 > Use ***cp -r /archlinux-install .*** antes de sair do *arch-chroot* (com o *exit*), desmontar as partições com *umount -a*, desligar o sistema com o *poweroff* para que continue a instalação de um Ambiente de Trabalho e ou Window Manager de sua preferência. Esse comando copia a pasta com esses scripts e você pode continuar depois de reiniciar o sistema sem se preocupar com clonar esse repositório novamente.
 
+> [!TIP]
+> Se você escolher usar o Openbox, <a href="https://github.com/addy-dclxvi/openbox-theme-collections" target="blank">nesse repositório</a> tem muitas opções legais de tema. Eu mesmo utilizo o tema Arc-Dark em qualquer ambiente de trabalho que escolho.
+
 ## Licença
 
 Pode passar.
