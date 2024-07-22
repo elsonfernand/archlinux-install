@@ -19,4 +19,4 @@ sudo pacman -S --noconfirm libreoffice-still
 
 echo "Instalação dos pacotes necessários para começar a trabalhar está concluída."
 echo "Se você executou esse script antes de instalar um ambiente de trabalho, já pode reniciar o sistema."
-echo "Caso contrário pode começar a fazer dinehiro. kkkkk"
+echo "Caso contrário pode começar a fazer dinheiro. kkkkk"
