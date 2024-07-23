@@ -3,6 +3,10 @@
 # Atualizar o sistema
 sudo pacman -Syu --noconfirm
 
+##############################################
+####### PACOTES DO REPOSITÓRIO OFICIAL #######
+##############################################
+
 # Função para verificar se um pacote está instalado
 function instalar_pacote {
     for pacote in "$@"; do
@@ -74,100 +78,60 @@ fi
 # Utilitário para escanear documentos
 instalar_pacote simple-scan
 
-# Baixar e instalar o utilitário de funções básicas e avançadas de digitalização
-if ! command -v epsonscan2 &> /dev/null; then
-    echo "Instalando epsonscan2..."
-    git clone https://aur.archlinux.org/epsonscan2.git
-    cd epsonscan2
-    yes | makepkg -si
-    cd ..
-    rm -rf epsonscan2
-else
-    echo "epsonscan2 já está instalado."
-fi
+##############################
+####### PACOTES DO AUR #######
+##############################
+
+# Função para exibir mensagens
+function msg() {
+    echo -e "\e[1;32m$1\e[0m"
+}
+
+# Função para instalar um pacote do AUR
+function instalar_pacote_aur() {
+    local pacote=$1
+    local url=$2
+
+    if ! pacman -Qi "$pacote" &> /dev/null; then
+        msg "Instalando $pacote..."
+        if git clone "$url"; then
+            cd "$pacote" || { echo "Falha ao entrar no diretório $pacote"; exit 1; }
+            if yes | makepkg -si; then
+                msg "$pacote instalado com sucesso."
+            else
+                echo "Falha ao compilar e instalar $pacote"
+                exit 1
+            fi
+            cd .. || { echo "Falha ao voltar para o diretório anterior"; exit 1; }
+            rm -rf "$pacote"
+        else
+            echo "Falha ao clonar o repositório $pacote"
+            exit 1
+        fi
+    else
+        msg "$pacote já está instalado."
+    fi
+}
 
 # Baixar e instalar o driver Epson do AUR
-if ! command -v epson-inkjet-printer-escpr &> /dev/null; then
-    echo "Instalando epson-inkjet-printer-escpr..."
-    git clone https://aur.archlinux.org/epson-inkjet-printer-escpr.git
-    cd epson-inkjet-printer-escpr
-    yes | makepkg -si
-    cd ..
-    rm -rf epson-inkjet-printer-escpr
-else
-    echo "epson-inkjet-printer-escpr já está instalado."
-fi
+instalar_pacote_aur "epson-inkjet-printer-escpr" "https://aur.archlinux.org/epson-inkjet-printer-escpr.git"
 
 # Baixar e instalar o driver Epson do AUR
-if ! command -v epson-inkjet-printer-escpr2 &> /dev/null; then
-    echo "Instalando epson-inkjet-printer-escpr2..."
-    git clone https://aur.archlinux.org/epson-inkjet-printer-escpr2.git
-    cd epson-inkjet-printer-escpr2
-    yes | makepkg -si
-    cd ..
-    rm -rf epson-inkjet-printer-escpr2
-else
-    echo "epson-inkjet-printer-escpr2 já está instalado."
-fi
+instalar_pacote_aur "epson-inkjet-printer-escpr2" "https://aur.archlinux.org/epson-inkjet-printer-escpr2.git"
 
 # Baixar e instalar a descoberta de scanner através do iScan, o "Image Scan for Linux"
-if ! command -v iscan-plugin-network &> /dev/null; then
-    echo "Instalando iscan-plugin-network..."
-    git clone https://aur.archlinux.org/iscan-plugin-network.git
-    cd iscan-plugin-network
-    yes | makepkg -si
-    cd ..
-    rm -rf iscan-plugin-network
-else
-    echo "iscan-plugin-network já está instalado."
-fi
+instalar_pacote_aur "iscan-plugin-network" "https://aur.archlinux.org/iscan-plugin-network.git"
 
 # Baixar e instalar o utilitário Epson Connect do AUR para imprimir e-mails, documentos ou fotos a partir de qualquer dispositivo que possa enviar um e-mail
-if ! command -v epson-printer-utility &> /dev/null; then
-    echo "Instalando epson-printer-utility..."
-    git clone https://aur.archlinux.org/epson-printer-utility.git
-    cd epson-printer-utility
-    yes | makepkg -si
-    cd ..
-    rm -rf epson-printer-utility
-else
-    echo "epson-printer-utility já está instalado."
-fi
+instalar_pacote_aur "epson-printer-utility" "https://aur.archlinux.org/epson-printer-utility.git"
 
 # Baixar e instalar o suporte para aplicativos que podem ser iniciados apenas uma vez por usuário
-if ! command -v qt5-singleapplication &> /dev/null; then
-    echo "Instalando qt5-singleapplication..."
-    git clone https://aur.archlinux.org/qt5-singleapplication.git
-    cd qt5-singleapplication
-    yes | makepkg -si
-    cd ..
-    rm -rf qt5-singleapplication
-else
-    echo "qt5-singleapplication já está instalado."
-fi
+instalar_pacote_aur "qt5-singleapplication" "https://aur.archlinux.org/qt5-singleapplication.git"
 
 # Baixar e instalar o utilitário Imagescan Plugin Networkscan para utilização do scanner através da rede
-if ! command -v imagescan-plugin-networkscan &> /dev/null; then
-    echo "Instalando imagescan-plugin-networkscan..."
-    git clone https://aur.archlinux.org/imagescan-plugin-networkscan.git
-    cd imagescan-plugin-networkscan
-    yes | makepkg -si
-    cd ..
-    rm -rf imagescan-plugin-networkscan
-else
-    echo "imagescan-plugin-networkscan já está instalado."
-fi
+instalar_pacote_aur "imagescan-plugin-networkscan" "https://aur.archlinux.org/imagescan-plugin-networkscan.git"
 
 # Baixar e instalar o utilitário para usar scanner da Epson
-if ! command -v iscan &> /dev/null; then
-    echo "Instalando iscan..."
-    git clone https://aur.archlinux.org/iscan.git
-    cd iscan
-    yes | makepkg -si
-    cd ..
-    rm -rf iscan
-else
-    echo "iscan já está instalado."
-fi
+instalar_pacote_aur "iscan" "https://aur.archlinux.org/iscan.git"
 
 echo "Configuração concluída. Reinicie o sistema para garantir que todas as alterações tenham efeito."
