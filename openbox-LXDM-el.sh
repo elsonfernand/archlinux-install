@@ -261,9 +261,9 @@ rm -rf google-chrome
 ####### FIM DA INSTALAÇÃO DO GOOGLE CHROME #######
 ##################################################
 
-###################################
-### ICONE DE CONTROLE DE VOLUME ###
-###################################
+#############################################################
+### INSTALAÇÃO DO ICONE DE CONTROLE DE VOLUME PULSE AUDIO ###
+#############################################################
 # Atualizar o sistema e instalar o pasystray
 echo "Atualizando o sistema e instalando o pasystray..."
 sudo pacman -Syu --noconfirm pasystray
@@ -285,6 +285,23 @@ else
 fi
 
 echo "Configuração de ícone de controle de volume concluída."
+
+####################################################################
+### FIM DA INSTALAÇÃO DO ICONE DE CONTROLE DE VOLUME PULSE AUDIO ###
+####################################################################
+
+#################
+### FASTFETCH ###
+#################
+
+# Arquivo do Fastfetch se encontra em ~/.config/fastfetch/config.jsonc e voce pode alterar ele com o nano ou editor de texto de sua preferencia.
+# Se quiser, pode usar a pasta com a configuração desse repositório. Só copiar e colar a pasta "fastfetch" para dentro do "~/.config".
+sudo pacman -S --noconfirm fastfetch
+#fastfetch --gen-config
+
+#################
+### FASTFETCH ###
+#################
 
 # Reconfiguração automática do menu do Openbox usando Menumaker #
 mmaker -vf openbox
