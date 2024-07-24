@@ -434,6 +434,12 @@
         <command>lxterminal</command>
       </action>
     </keybind>
+    <!-- Launch i3lock when Super + L is pressed -->
+    <keybind key="W-l">
+      <action name="Execute">
+        <command>i3lock -i ~/.config/openbox/lockscreen.png</command>
+      </action>
+    </keybind>
     <!-- Launch scrot when Print is pressed -->
     <keybind key="Print">
       <action name="Execute">
