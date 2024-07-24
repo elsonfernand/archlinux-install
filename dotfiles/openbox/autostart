@@ -16,7 +16,7 @@ nitrogen --restore &
 picom &
 
 # Esquema de layout de monitor seguindo as configurações do ArandR
-~/.config/openbox/monitor_layout &
+~/.config/openbox/dual-monitor.sh &
 
 # Controle de volume de áudio
 pasystray &
