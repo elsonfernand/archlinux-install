@@ -16,9 +16,12 @@ nitrogen --restore &
 picom &
 
 # Esquema de layout de monitor seguindo as configurações do ArandR
-~/.screenlayout/2nd-monitor.sh &pasystray &
+~/.config/openbox/monitor_layout &
 
-# Temegram (mensageiro)
+# Controle de volume de áudio
+pasystray &
+
+# Telegram (mensageiro)
 telegram-desktop  -startintray &
 
 #
