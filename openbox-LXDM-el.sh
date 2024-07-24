@@ -140,32 +140,12 @@ openbox --reconfigure
 ## Fim da instalação e configuração do Rofi ##
 ##############################################
 
-#########################################
-## INSTALAÇÃO E CONFIGURAÇÃO DO ARANDR ##
-#########################################
+#################################################
+###### INSTALAÇÃO E CONFIGURAÇÃO DO ARANDR ######
+#################################################
 # Atualiza o sistema e instala o Arandr
 sudo pacman -Syu --noconfirm
 sudo pacman -S --noconfirm arandr
-
-# Cria o diretório para o script de configuração do xrandr se não existir
-mkdir -p ~/.config/openbox
-
-# Cria o script de configuração do xrandr
-cat <<EOL > ~/.config/openbox/monitor_layout.sh
-#!/bin/bash
-
-# Configuração do xrandr para dois monitores
-# Monitor secundário à esquerda
-xrandr --output HDMI-1 --primary --auto --output HDMI-2 --auto --left-of HDMI-1
-EOL
-
-# Torna o script executável
-chmod +x ~/.config/openbox/monitor_layout.sh
-
-# Adiciona a execução do script no arquivo autostart do Openbox
-if ! grep -q "~/.config/openbox/monitor_layout.sh" ~/.config/openbox/autostart; then
-    echo "~/.config/openbox/monitor_layout.sh" >> ~/.config/openbox/autostart
-fi
 
 ################################################
 ## FIM DA INSTALAÇÃO E CONFIGURAÇÃO DO ARANDR ##
@@ -196,35 +176,6 @@ sudo chmod +x /etc/X11/xinit/xinitrc.d/10-monitor_layout.sh
 ##########################################################################
 # Instalacao do scrot
 sudo pacman -S --noconfirm scrot
-
-# Diretório para salvar capturas de tela
-SCREENSHOT_DIR="$HOME/Pictures/Screenshots"
-
-# Cria o diretório se ele não existir
-mkdir -p "$SCREENSHOT_DIR"
-
-# Criação do script para tirar screenshot
-cat << 'EOF' > $HOME/bin/scrot_screenshot.sh
-#!/bin/bash
-# Script para tirar screenshot e salvar no diretório especificado
-DATE=$(date +%Y-%m-%d_%H-%M-%S)
-scrot "$HOME/Pictures/Screenshots/screenshot_$DATE.png"
-EOF
-
-# Torna o script executável
-chmod +x $HOME/bin/scrot_screenshot.sh
-
-# Adiciona atalho no Openbox (Assumindo que o usuário usa Openbox)
-OPENBOX_CONFIG="$HOME/.config/openbox/rc.xml"
-
-if ! grep -q "scrot_screenshot.sh" "$OPENBOX_CONFIG"; then
-    sed -i '/<keyboard>/ a\
-        <keybind key="Print">\
-            <action name="Execute">\
-                <command>$HOME/bin/scrot_screenshot.sh</command>\
-            </action>\
-        </keybind>' "$OPENBOX_CONFIG"
-fi
 
 # Recarregar a configuração do Openbox
 openbox --reconfigure
@@ -295,12 +246,20 @@ glx-no-rebind-pixmap = true;
 vsync = "opengl-swc";
 EOL
 
+###################################################
+########### INSTALAÇÃO DO GOOGLE CHROME ###########
+###################################################
+
 # Caso queira instalar o Google Chrome normal do Google sem ajudante do AUR #
 git clone https://aur.archlinux.org/google-chrome.git
 cd google-chrome
 makepkg -si --noconfirm
 cd ..
 rm -rf google-chrome
+
+##################################################
+####### FIM DA INSTALAÇÃO DO GOOGLE CHROME #######
+##################################################
 
 ###################################
 ### ICONE DE CONTROLE DE VOLUME ###
