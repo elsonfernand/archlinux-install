@@ -51,32 +51,24 @@ grub-mkconfig -o /boot/grub/grub.cfg
 # Internet
 systemctl enable NetworkManager
 
-# Arquivo do Fastfetch se encontra em ~/.config/fastfetch/config.jsonc e voce pode alterar ele com o nano ou editor de texto de sua preferencia
-# pacman -S --noconfirm fastfetch
-#fastfetch --gen-config
-
 # Bluetooth
-# pacman -S --noconfirm bluez bluez-utils
-#systemctl enable bluetooth
-
-# Impressora
-# pacman -S --noconfirm cups system-config-printer
-#systemctl enable cups.service
+pacman -S --noconfirm bluez bluez-utils
+systemctl enable bluetooth
 
 # Permicao para que programas publiquem e descubram os servicos e as maquinas que funcionam em uma rede local sem nenhuma configuração especifica
-# pacman -S --noconfirm avahi
-#systemctl enable avahi-daemon
+pacman -S --noconfirm avahi
+systemctl enable avahi-daemon
 
 # Seguranca da rede que monitora o trafego de rede de entrada e saida e decide permitir ou bloquear trafegos especificos de acordo com um conjunto definido de regras de segurança
-# pacman -S --noconfirm ufw gufw 
-#systemctl enable --now ufw.service
+pacman -S --noconfirm ufw gufw 
+systemctl enable --now ufw.service
 
 # Gerenciamento de energia para notebook
-# pacman -S --noconfirm tlp
-#systemctl enable tlp.service
+pacman -S --noconfirm tlp
+systemctl enable tlp.service
 
 # Atualizando a lista de espelhos para melhor download dos pacotes de atualizacao e novas instalacoes. So descomente se voce ja fez a instalação nos passos anteriores.
-# pacman -S --noconfirm reflector ; sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup ; reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
+pacman -S --noconfirm reflector ; sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup ; reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
 
 ################################################
 ### FIM DE ATIVACAO E INSTALACAO DE SERVICOS ###
