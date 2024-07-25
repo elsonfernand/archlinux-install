@@ -305,7 +305,7 @@ sudo pacman -S --noconfirm fastfetch
 
 # Reconfiguração automática do menu do Openbox usando Menumaker #
 mmaker -vf openbox
-# Lembrete: No AUR existe um pacote chamado "obmenu-generator" que você pode rodar no terminal "obmenu-generator -p -i" pra gerar um menu com icones.
+# Lembrete: No AUR existe um pacote chamado "obmenu-generator" que você pode rodar no terminal "obmenu-generator -p -i" pra gerar um menu com icones. Esse eu recomendo fortemente.
 
 # Finaliza a instalação e configuração
 echo "Instalação e configuração inicial do Openbox concluídas. Reinicie o sistema para começar a usar."
