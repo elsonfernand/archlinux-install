@@ -28,9 +28,9 @@ sudo pacman -S --noconfirm pacman-contrib
 ## OPCOES DE VIDEO ##
 #####################
 
-# Descomente a opcao abaixo se você esta usando o VirtualBox ou se planeja usar.
-pacman -S --noconfirm virtualbox-guest-utils
-systemctl enable vboxservice.service
+# Descomente as duas opcoes abaixo se você esta usando o VirtualBox ou se planeja usar.
+# pacman -S --noconfirm virtualbox-guest-utils
+# systemctl enable vboxservice.service
 # Descomente a opcao abaixo se você usa placa de vídeo da AMD.
 # pacman -S --noconfirm xf86-video-amdgpu
 # Opção descomentada porque uso nvidia, se não for o seu caso, comente.
