@@ -38,7 +38,7 @@ pacman -S --noconfirm nvidia nvidia-utils nvidia-settings
 # Opção descomentada porque uso processador da Intel
 pacman -S --noconfirm intel-ucode intel-media-driver
 # Descomente a opção abaixo se você usa processador AMD
-pacman -S --noconfirm amd-ucode
+# pacman -S --noconfirm amd-ucode
 
 # Instalando e gerando o GRUB
 grub-install /dev/sda
