@@ -41,7 +41,7 @@ cfdisk
 ```
 lsblk
 ```
-#### Ficará menos assim:
+#### Ficará assim:
 ```
 NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
 sda      8:0    0 335.4G  0 disk 
