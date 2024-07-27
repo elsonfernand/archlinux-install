@@ -41,6 +41,14 @@ cfdisk
 ```
 lsblk
 ```
+#### Ficará menos assim:
+```
+NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+sda      8:0    0 335.4G  0 disk 
+├─sda1   8:1    0   285M  0 part 
+├─sda2   8:2    0  55.9G  0 part 
+└─sda3   8:3    0 279.2G  0 part 
+```
 06. Formate a partição boot/efi:
 ```
 mkfs.fat -F32 /dev/sda1
@@ -70,6 +78,16 @@ mount /dev/sda1 /mnt/boot/efi
 ```
 > [!TIP]
 > Se estiver fazendo esse processo com a **/home** separada crie um diretório com ***mkdir -p /mnt/home*** e monte com ***mount /dev/sda3 /mnt/home***, nessa ordem, deixando a */home* por último.
+
+#### Com as partições montadas (use *lsblk* para verificar). Ficará assim:
+```
+NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+sda      8:0    0 335.4G  0 disk 
+├─sda1   8:1    0   285M  0 part /boot/efi
+├─sda2   8:2    0  55.9G  0 part /
+└─sda3   8:3    0 279.2G  0 part /home
+```
+
 11. Instale os pacotes base com o pacstrap:
 ```
 pacstrap -K /mnt base linux linux-firmware base-devel intel-ucode grub dosfstools btrfs-progs efibootmgr git nano networkmanager
