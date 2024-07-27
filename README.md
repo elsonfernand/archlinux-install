@@ -68,7 +68,7 @@ mount /dev/sda1 /mnt/boot/efi
 > Se estiver fazendo esse processo com a **/home** separada crie um diretório com ***mkdir -p /mnt/home*** e monte com ***mount /dev/sda3 /mnt/home***, nessa ordem, deixando a */home* por último.
 11. Instale os pacotes base com o pacstrap:
 ```
-pacstrap -K /mnt base linux linux-firmware base-devel intel-ucode grub btrfs-progs efibootmgr git nano networkmanager
+pacstrap -K /mnt base linux linux-firmware base-devel intel-ucode grub dosfstools btrfs-progs efibootmgr git nano networkmanager
 ```
 > [!NOTE]
 > *base-devel* será instalado aqui de início para que os pacotes do AUR, com algum ajudante (paru ou yay), seja instalado lá na frente; *intel-ucode*, para processadores intel mas se estiver usando AMD utilize *amd-ucode*; *grub* e *efibootmgr* serão instalados também para dar suporte na inicialização do sistema; o *grub-btrfs* é necessário para uso do BTRFS; o *nano* será instalado para termos um editor de texto simples de terminal e finalmente o *networkmanager* será instalado para termos acesso a internet.
