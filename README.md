@@ -1,20 +1,22 @@
+<p align="center">
+  <img height="100" src="https://archlinux.org/static/logos/archlinux-logo-dark-scalable.518881f04ca9.svg" alt="Arch Linux logo svg" >
+</p>
+
 # Scripts simples em shell
-
-<img align="center" src="https://archlinux.org/static/logos/archlinux-logo-dark-scalable.518881f04ca9.svg" alt="Arch Linux logo svg" height="100">
-
-> Scripts simples em shell para otimização de tempo em instalações básicas do Arch Linux.
+   
+> Scripts simples em shell para otimização de tempo, que leva a vida de um burro, em instalações básicas do Arch Linux.
 
 ## Pré-requisitos
 
-Antes de começar, verifique se você atendeu aos seguintes requisitos:
+#### Antes de começar, verifique se você atendeu aos seguintes requisitos:
 - Você instalou a versão mais recente de `<paciência / vista grossa para código n00b / autocontrole>`
 - Você tem na sua máquina `<PC ou notebook dando boot / Secure Boot desativado>`.
 - Pendrive bootável com ISO mais atual do Arch Linux. Você pode fazer o download <a href="https://archlinux.org/download/" target="blank">aqui</a>.
 - Você leu <a href="https://wiki.archlinux.org/title/Installation_guide" target="blank">a wiki do projeto</a>.
 
-Esse repositório está em constante desenvolvimento e aqui você encontrará scripts para a instalação base do Arch Linux e ambientes de desktop (por enquanto apenas o KDE Plasma 6, pois é o único que uso no momento). Edite baseado na sua necessidade, dê permissão de escrita com ***chmod +x <nome-do-script>.sh*** e então execute com ***./<nome-do-script>.sh***. Lembre-se que a primeira parte da instalação do Arch Linux é manual, ou seja, você terá que particionar, formatar e montar o disco você mesmo. Instale os pacotes base e certifique-se de incluir o git para que você possa clonar o repositório no *chroot*.
+*Esse repositório está em constante desenvolvimento e aqui você encontrará scripts para a instalação base do Arch Linux e ambientes de desktop (por enquanto apenas o *KDE Plasma 6* e *Openbox*, esse último é o que uso no momento e o KDE Plasma usei por quase dois anos). Edite baseado na sua necessidade, dê permissão de escrita com ***chmod +x "nome-do-script".sh*** e então execute com ***./"nome-do-script".sh***. Lembre-se que a primeira parte da instalação do Arch Linux é manual, ou seja, você terá que particionar, formatar e montar o disco você mesmo. Instale os pacotes base e certifique-se de incluir o **git** para que você possa clonar o repositório no *chroot*.*
 
-#### Um pequeno resumo da instalação do Arch Linux para que você possa utilizar os scripts desse repositório:
+### Um pequeno resumo da instalação do Arch Linux que eu sigo:
 
 01. Carregue seu mapa de teclado (nesse caso, o layout padrão do Brasil):
 ```
@@ -34,7 +36,7 @@ lsblk
 cfdisk
 ```
 > [!NOTE]
-> Utilizo UEFI, então, particiono 100MB, (dependendo do disco) 60GB e o resto. No total, 3 partições. 
+> Utilizo UEFI, então, particiono 100MB (*/dev/sda1* = partição EFI Filesystem), dependendo do tamanho do disco 60GB ou 30GB (*/dev/sda2* = partição Raíz ou "/") e o restante (*/dev/sda3* = partição de arquivos do usuário ou "/home"). No total, 3 partições. Não utilizo *swap* porque prefiro utilizar <a href="https://wiki.archlinux.org/title/Zram" target="blank">zram</a>.
 05. Verifique se o particionamento deu certo com:
 ```
 lsblk
@@ -43,7 +45,9 @@ lsblk
 ```
 mkfs.fat -F32 /dev/sda1
 ```
-07. Aqui irei usar o sistema *BTRFS* na raiz (e na Home se ela tiver sido particionada):
+07. Aqui irei usar o sistema *BTRFS* na raiz:
+> [!NOTE]
+> Na Home, se ela já tiver sido particionada e cheia de arquivos, você pode pular essa parte e continuar com seus arquivos com o sistema de arquivos que já estiver nela (seja *ext4*, *ext3*, *ZFS*, ou o que for). Caso deseje mudar o sistema de arquivos, aproveitando que estará instalando um sistema base, salve antes tudo o que for importante numa nuvem ou pendrive ou HD externo e meta bala nessa instalação!!
 ```
 mkfs.btrfs /dev/sda2
 ```
@@ -56,7 +60,7 @@ mkfs.btrfs /dev/sda3
 ```
 mount /dev/sda2 /mnt
 ```
-09. Agora vamos montar a partição de boot em um local que ainda não existe. Sendo assim deve-se usar:
+09. Agora vamos montar a partição de boot em um diretório que ainda não existe. Sendo assim deve-se usar:
 ```
 mkdir -p /mnt/boot/efi
 ```
@@ -83,7 +87,7 @@ genfstab  /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 ```
 > [!NOTE]
-> A partir de agora você já se encontra dentro da instalação. Uma coisa que eu faço nessa parte, antes de tudo, é alterar alguns parâmetros do arquivo do **pacman**. Utilizo o comando ***nano /etc/pacman.conf***, descomento a opção *Color* dentro de *# Misc Options*, descomento o *ParallelDownloads* e coloco ***10*** ao invés de 5, adiciono nessa sessão, na última linha, ***ILoveCandy*** que é o efeito do Pacman comendo as frutinhas na barra de progresso quando o gerenciador de pacotes Pacman é executado e descomento as duas linhas do *multilib*, salvo com *CTRL + S* e fecho o ***nano*** com *CTRL + X*. Agora dê um **pacman -Sy** pra ele atualizar as bibliotecas e continue o processo.
+> A partir de agora você já se encontra dentro da instalação. Uma coisa que eu faço nessa parte, antes de tudo, é alterar alguns parâmetros do arquivo do **pacman**. Utilizo o comando ***nano /etc/pacman.conf***, descomento a opção *Color* dentro de *# Misc Options*, descomento o *ParallelDownloads* e coloco ***16*** ao invés de 5, adiciono nessa sessão, na última linha, ***ILoveCandy*** que é o efeito do Pacman comendo as frutinhas na barra de progresso quando o gerenciador de pacotes Pacman é executado e descomento as duas linhas do *multilib*, salvo com *CTRL + S* e fecho o ***nano*** com *CTRL + X*. Agora dou um **pacman -Sy** pra ele atualizar as bibliotecas e continuo o processo.
 14. Agora é a hora de pegar o script com:
 ```
 git clone https://github.com/elsonfernand/archlinux-install.git
