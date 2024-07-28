@@ -29,7 +29,7 @@ sudo pacman -S --noconfirm lxappearance-obconf
 sudo pacman -S --noconfirm tint2 network-manager-applet xfce4-power-manager gsimplecal 
 
 # Instala utilitários adicionais e gerenciador de arquivos #
-sudo pacman -S --noconfirm thunar thunar-archive-plugin gwenview gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc menumaker tumbler ffmpegthumbnailer unzip xarchiver vlc archlinux-wallpaper fastfetch picom libxml2 zathura leafpad telegram-desktop i3lock
+sudo pacman -S --noconfirm thunar thunar-archive-plugin gwenview gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc menumaker tumbler ffmpegthumbnailer unzip xarchiver vlc archlinux-wallpaper fastfetch picom libxml2 zathura geany telegram-desktop i3lock
 
 # Instala navegador. Descomente a linha da sua preferencia. Eu dou preferencia a navegador baseado no Chromium. #
 #sudo pacman -S --noconfirm chromium
