@@ -89,7 +89,7 @@ sudo localectl set-keymap br-abnt2
 sudo localectl set-x11-keymap br abnt2
 
 # Instala alguns temas, cursores e fontes #
-sudo pacman -S --noconfirm arc-gtk-theme lxde-icon-theme materia-gtk-theme lxqt-themes papirus-icon-theme xcursor-vanilla-dmz xcursor-vanilla-dmz-aa noto-fonts-emoji ttf-dejavu ttf-liberation
+sudo pacman -S --noconfirm arc-gtk-theme lxde-icon-theme materia-gtk-theme lxqt-themes papirus-icon-theme xcursor-vanilla-dmz xcursor-vanilla-dmz-aa noto-fonts-emoji ttf-dejavu ttf-liberation nerd-fonts
 
 #######################################
 ## Instalação e configuração do Rofi ##
