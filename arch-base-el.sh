@@ -67,6 +67,9 @@ systemctl enable --now ufw.service
 pacman -S --noconfirm tlp
 systemctl enable tlp.service
 
+# Habilitacao do "fstrim.timer" que eh um servico usado em uma partição montada para descartar blocos que não estejam em uso, caso esteja utilizando um SSD e essa verificacao acontece toda semana
+systemctl enable fstrim.timer
+
 # Atualizando a lista de espelhos para melhor download dos pacotes de atualizacao e novas instalacoes. So descomente se voce ja fez a instalação nos passos anteriores.
 pacman -S --noconfirm reflector ; sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup ; reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
 
