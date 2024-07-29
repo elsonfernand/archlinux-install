@@ -78,7 +78,7 @@ pacman -S --noconfirm reflector ; sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d
 ################################################
 
 # Adicionando e criando um usuario no grupo "wheel". Troque o "el" pelo nome do seu usuario.
-useradd -mG wheel -s /bin/bash el
+useradd -mG wheel,storage,audio,video,lp,scanner -s /bin/bash el
 # Crie senha para esse usuário. Altere 'password' para a sua senha.
 echo el:password | chpasswd
 
