@@ -446,14 +446,53 @@
         <command>scrot</command>
       </action>
     </keybind>
-    <!-- Keybindings for exiting out of Openbox -->
-    <keybind key="W-S-x">
+    <!-- Keybindings for volume control -->
+    <keybind key="XF86AudioRaiseVolume">
+      <action name="Execute"> 
+        <command>pactl set-sink-volume @DEFAULT_SINK@ +5%</command>
+      </action>
+    </keybind>
+    <keybind key="XF86AudioLowerVolume">
       <action name="Execute">
-        <startupnotify>
-          <enabled>true</enabled>
-          <name>Logout</name>
-        </startupnotify>
-        <command>obsession-logout</command>
+        <command>pactl set-sink-volume @DEFAULT_SINK@ -5%</command>
+      </action>
+    </keybind>
+    <keybind key="XF86AudioMute">
+      <action name="Execute"> 
+        <command>pactl set-sink-mute @DEFAULT_SINK@ toggle</command>
+      </action>
+    </keybind>
+    <!-- Keybindings for media control -->
+     <keybind key="XF86AudioPlay">
+       <action name="Execute">
+         <command>playerctl play-pause</command>
+       </action>
+    </keybind>
+    <keybind key="XF86AudioPrev">
+    <action name="Execute">
+        <command>playerctl previous</command>
+    </action>
+    </keybind>
+    <keybind key="XF86AudioNext">
+      <action name="Execute">
+        <command>playerctl next</command>
+      </action>
+    </keybind>
+    <!-- Keybindings for brightness control -->
+    <keybind key="W-F3">
+      <action name="Execute">
+        <command>brightnessctl set 5%-</command>
+      </action>
+    </keybind>
+    <keybind key="W-F4">
+      <action name="Execute">
+        <command>brightnessctl set +5%</command>
+      </action>
+    </keybind>
+    <!-- Keybinding for reconfigure Openbox -->
+    <keybind key="W-A-r">
+      <action name="Execute">
+        <command>openbox --reconfigure</command>
       </action>
     </keybind>
   </keyboard>
