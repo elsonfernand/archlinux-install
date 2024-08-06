@@ -11,7 +11,7 @@
 sudo pacman -Syu
 
 # Instala o Openbox e algumas ferramentas básicas #
-sudo pacman -S --noconfirm openbox xorg-xinit xorg obconf lxsession
+sudo pacman -S --noconfirm openbox xorg-xinit xorg obconf lxsession numlockx
 
 # Instalando PipeWire e alguns pacotes relevantes ao aoudio #
 sudo pacman -S --noconfirm pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber pavucontrol qpwgraph
@@ -78,8 +78,11 @@ sudo pacman -S --noconfirm nvidia nvidia-utils nvidia-settings
 # sudo pacman -S --noconfirm virtualbox-guest-utils
 # systemctl enable vboxservice.service
 
-# Cria atalho para iniciar o Openbox #
-echo "exec openbox-session" > ~/.xinitrc
+# Cria atalho para iniciar o Openbox e ativação do NumLock #
+cat <<EOL > ~/.xinitrc
+numlockx on &
+exec openbox-session
+EOL
 
 # Por padrão o Openbox não tem os diretorios usuais na /home, precisamos instalar e rodar um pacote para os diretorios aparecerem: #
 sudo pacman -S --noconfirm xdg-user-dirs ; xdg-user-dirs-update
@@ -181,71 +184,8 @@ sudo pacman -S --noconfirm scrot
 openbox --reconfigure
 
 #################################################################################
-## Fim da instalação e configuração do scrot, utilitário para tirar screenchot ##
+## Fim da instalação e configuração do scrot, utilitário para tirar screenshot ##
 #################################################################################
-
-##############################################################
-### INSTALANDO E ATIVANDO O NUMLOCK NO TTY, LXDM E OPENBOX ###
-##############################################################
-
-# Instalando numlockx
-sudo pacman -S --noconfirm numlockx
-
-# Configurando numlock no tty
-sudo bash -c 'echo "KEYMAP=br-abnt2" >> /etc/vconsole.conf'
-sudo bash -c 'cat << EOF > /etc/systemd/system/numlock.service
-[Unit]
-Description=Activate numlock on boot
-
-[Service]
-ExecStart=/usr/bin/setleds +num < /dev/tty1
-
-[Install]
-WantedBy=multi-user.target
-EOF'
-sudo systemctl enable numlock.service
-
-# Configurando numlock no LXDM
-#sudo sed -i '/^\[base\]/a numlock=1' /etc/lxdm/lxdm.conf
-
-# Configurando numlock no Openbox
-if grep -q 'numlockx on &' ~/.config/openbox/autostart; then
-    echo "Numlock already configured in Openbox autostart."
-else
-    echo "numlockx on &" >> ~/.config/openbox/autostart
-fi
-
-if grep -q 'numlockx on &' ~/.xinitrc; then
-    echo "Numlock already configured in .xinitrc."
-else
-    echo "numlockx on &" >> ~/.xinitrc
-fi
-
-#############################################################################
-### FINALIZACAO DA INSTALACAO E ATIVACAO O NUMLOCK NO TTY, LXDM E OPENBOX ###
-#############################################################################
-
-# Cria arquivos de configuração padrão do Openbox #
-cat <<EOL > ~/.config/openbox/autostart
-# Iniciar ferramentas no login
-tint2 &
-volumeicon &
-nm-applet &
-xfce4-power-manager &
-nitrogen --restore &
-picom -f &
-lxsession &
-EOL
-
-# Configuração do Picom para efeitos de composição #
-mkdir -p ~/.config/picom
-cat <<EOL > ~/.config/picom/picom.conf
-# Configuração básica
-backend = "glx";
-glx-no-stencil = true;
-glx-no-rebind-pixmap = true;
-vsync = "opengl-swc";
-EOL
 
 ###################################################
 ########### INSTALAÇÃO DO GOOGLE CHROME ###########
