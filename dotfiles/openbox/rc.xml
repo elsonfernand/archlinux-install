@@ -42,7 +42,7 @@
                   'Active' - where the active window is -->
   </placement>
   <theme>
-    <name>Arc-Clone</name>
+    <name>Kaunas-1.0.1</name>
     <titleLayout>NLIMC</titleLayout>
     <!--
       available characters are NDSLIMC, each can occur at most once.
@@ -326,7 +326,7 @@
       <action name="ToggleShowDesktop"/>
     </keybind>
     <!-- Keybindings for windows -->
-    <keybind key="W-S-c">
+    <keybind key="W-q">
       <action name="Close"/>
     </keybind>
     <keybind key="A-Escape">
@@ -401,9 +401,10 @@
       <action name="Execute">
         <startupnotify>
           <enabled>true</enabled>
-          <name>Leafpad</name>
+          <name>Geany</name>
         </startupnotify>
-        <command>leafpad</command>
+        <command>geany
+        </command>
       </action>
     </keybind>
     <keybind key="W-f">
@@ -434,16 +435,16 @@
         <command>lxterminal</command>
       </action>
     </keybind>
-    <!-- Launch i3lock when Super + L is pressed -->
-    <keybind key="W-l">
-      <action name="Execute">
-        <command>i3lock -i ~/.config/openbox/lockscreen.png</command>
-      </action>
-    </keybind>
     <!-- Launch scrot when Print is pressed -->
     <keybind key="Print">
       <action name="Execute">
         <command>scrot</command>
+      </action>
+    </keybind>
+    <!-- Launch i3lock when Super + L is pressed -->
+    <keybind key="W-l">
+      <action name="Execute">
+        <command>i3lock -i ~/.config/openbox/lockscreen.png</command>
       </action>
     </keybind>
     <!-- Keybindings for volume control -->
