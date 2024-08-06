@@ -24,4 +24,5 @@ pasystray &
 # Telegram (mensageiro)
 telegram-desktop  -startintray &
 
-#
+#Polkit do LXQt
+lxpolkit &
