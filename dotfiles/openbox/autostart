@@ -24,5 +24,8 @@ pasystray &
 # Telegram (mensageiro)
 telegram-desktop  -startintray &
 
-#Polkit do LXDE
+# Polkit do LXDE
 lxpolkit &
+
+#Ativação do NumLock
+numlockx &
