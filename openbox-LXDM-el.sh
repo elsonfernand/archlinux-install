@@ -29,7 +29,7 @@ sudo pacman -S --noconfirm lxappearance-obconf
 sudo pacman -S --noconfirm tint2 network-manager-applet xfce4-power-manager gsimplecal 
 
 # Instala utilitários adicionais e gerenciador de arquivos #
-sudo pacman -S --noconfirm thunar thunar-archive-plugin gwenview gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc menumaker tumbler ffmpegthumbnailer unzip xarchiver vlc archlinux-wallpaper fastfetch picom libxml2 zathura geany geany-plugins telegram-desktop i3lock playerctl brightnessctl
+sudo pacman -S --noconfirm thunar thunar-archive-plugin gwenview gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc menumaker tumbler ffmpegthumbnailer unzip xarchiver vlc archlinux-wallpaper fastfetch picom libxml2 evince geany geany-plugins telegram-desktop i3lock playerctl brightnessctl
 
 # Instala navegador. Descomente a linha da sua preferencia. Eu dou preferencia a navegador baseado no Chromium. #
 #sudo pacman -S --noconfirm chromium
@@ -46,13 +46,13 @@ systemctl --user enable wireplumber.service
 systemctl --user start wireplumber.service
 
 # Instala gerenciador de login LXDM #
-sudo pacman -S --noconfirm lxdm-gtk3 
+#sudo pacman -S --noconfirm lxdm-gtk3 
 
 # Configurar LXDM para iniciar a sessão do Openbox #
 sudo sed -i 's/^# session=.*/session=\/usr\/bin\/openbox-session/' /etc/lxdm/lxdm.conf
 
 # Configurações adicionais recomendadas pela wiki do LXDM #
-sudo sed -i 's/^# numlock=.*/numlock=1/' /etc/lxdm/lxdm.conf
+#sudo sed -i 's/^# numlock=.*/numlock=1/' /etc/lxdm/lxdm.conf
 # sudo sed -i 's/^# default_lang=.*/default_lang=en_US.UTF-8/' /etc/lxdm/lxdm.conf
 # sudo sed -i 's/^# skip_password=.*/skip_password=0/' /etc/lxdm/lxdm.conf
 # sudo sed -i 's/^# hide=.*/hide=/' /etc/lxdm/lxdm.conf
@@ -60,10 +60,10 @@ sudo sed -i 's/^# numlock=.*/numlock=1/' /etc/lxdm/lxdm.conf
 # sudo sed -i 's/^# timeout=.*/timeout=10/' /etc/lxdm/lxdm.conf
 
 # Configurar layout de teclado para br-abnt2 no LXDM #
-sudo sed -i 's/^# keyboard=.*/keyboard=br-abnt2/' /etc/lxdm/lxdm.conf
+#sudo sed -i 's/^# keyboard=.*/keyboard=br-abnt2/' /etc/lxdm/lxdm.conf
 
 # Habilita o LXDM para iniciar no boot #
-sudo systemctl enable lxdm.service
+#sudo systemctl enable lxdm.service
 
 # Cria diretórios necessários para funcionamento do Openbox #
 mkdir -p ~/.config/openbox
@@ -155,24 +155,24 @@ sudo pacman -S --noconfirm arandr
 ### CONFIGURAÇÃO DO ARANDR PARA O LXDM ###
 ##########################################
 # Adiciona a configuração do xrandr para o LXDM
-sudo mkdir -p /etc/X11/xinit/xinitrc.d
-cat <<EOL | sudo tee /etc/X11/xinit/xinitrc.d/10-monitor_layout.sh > /dev/null
+#sudo mkdir -p /etc/X11/xinit/xinitrc.d
+#cat <<EOL | sudo tee /etc/X11/xinit/xinitrc.d/10-monitor_layout.sh > /dev/null
 #!/bin/bash
 
 # Configuração do xrandr para dois monitores
 # Monitor secundário à esquerda
-xrandr --output eDP-1 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --output HDMI-1 --mode 1920x1080 --pos 0x0 --rotate normal --output DP-1 --off --output HDMI-2 --off
-EOL
+#xrandr --output eDP-1 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --output HDMI-1 --mode 1920x1080 --pos 0x0 --rotate normal --output DP-1 --off --output HDMI-2 --off
+#EOL
 
 # Torna o script executável
-sudo chmod +x /etc/X11/xinit/xinitrc.d/10-monitor_layout.sh
+#sudo chmod +x /etc/X11/xinit/xinitrc.d/10-monitor_layout.sh
 
 #################################################
 ### FIM DA CONFIGURAÇÃO DO ARANDR PARA O LXDM ###
 #################################################
 
 ##########################################################################
-## Instalação e configuração do scrot, utilitário para tirar screenchot ##
+## Instalação e configuração do scrot, utilitário para tirar screenshot ##
 ##########################################################################
 # Instalacao do scrot
 sudo pacman -S --noconfirm scrot
@@ -206,7 +206,7 @@ EOF'
 sudo systemctl enable numlock.service
 
 # Configurando numlock no LXDM
-sudo sed -i '/^\[base\]/a numlock=1' /etc/lxdm/lxdm.conf
+#sudo sed -i '/^\[base\]/a numlock=1' /etc/lxdm/lxdm.conf
 
 # Configurando numlock no Openbox
 if grep -q 'numlockx on &' ~/.config/openbox/autostart; then
@@ -234,6 +234,7 @@ nm-applet &
 xfce4-power-manager &
 nitrogen --restore &
 picom -f &
+lxsession &
 EOL
 
 # Configuração do Picom para efeitos de composição #
