@@ -59,15 +59,19 @@ nitrogen --restore &
 picom &
 
 # Esquema de layout de monitor seguindo as configurações do ArandR
-~/.screenlayout/2nd-monitor.sh &
+~/.config/openbox/dual-monitor.sh &
 
-# Controle e ícone de volume
+# Controle de volume de áudio
 pasystray &
 
-# Temegram (mensageiro)
+# Telegram (mensageiro)
 telegram-desktop  -startintray &
 
-#
+# Polkit do LXDE
+lxpolkit &
+
+#Ativação do NumLock
+numlockx &
 EOL
 
 # Criar arquivo de configuração do Tint2
