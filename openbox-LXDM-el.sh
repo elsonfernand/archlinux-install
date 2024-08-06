@@ -49,7 +49,7 @@ systemctl --user start wireplumber.service
 #sudo pacman -S --noconfirm lxdm-gtk3 
 
 # Configurar LXDM para iniciar a sessão do Openbox #
-sudo sed -i 's/^# session=.*/session=\/usr\/bin\/openbox-session/' /etc/lxdm/lxdm.conf
+#sudo sed -i 's/^# session=.*/session=\/usr\/bin\/openbox-session/' /etc/lxdm/lxdm.conf
 
 # Configurações adicionais recomendadas pela wiki do LXDM #
 #sudo sed -i 's/^# numlock=.*/numlock=1/' /etc/lxdm/lxdm.conf
