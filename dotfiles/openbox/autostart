@@ -19,7 +19,7 @@ picom &
 ~/.config/openbox/dual-monitor.sh &
 
 # Controle de volume de áudio
-pasystray &
+volumeicon &
 
 # Telegram (mensageiro)
 telegram-desktop  -startintray &
