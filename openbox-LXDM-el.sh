@@ -222,15 +222,32 @@ openbox --reconfigure
 ###################################################
 
 # Caso queira instalar o Google Chrome normal do Google sem ajudante do AUR #
-git clone https://aur.archlinux.org/google-chrome.git
-cd google-chrome
-makepkg -si --noconfirm
-cd ..
-rm -rf google-chrome
+#git clone https://aur.archlinux.org/google-chrome.git
+#cd google-chrome
+#makepkg -si --noconfirm
+#cd ..
+#rm -rf google-chrome
 
 ##################################################
 ####### FIM DA INSTALAÇÃO DO GOOGLE CHROME #######
 ##################################################
+
+###################################################
+########### INSTALAÇÃO DO BRAVE BROWSER ###########
+###################################################
+
+# Caso queira instalar o Brave (navegador de código aberto e com bloqueador de anúncios embutido e baseado no Chromium) sem ajudante do AUR #
+git clone https://aur.archlinux.org/brave-bin.git
+cd brave-bin
+makepkg -si --noconfirm
+cd ..
+rm -rf brave-bin
+
+##################################################
+####### FIM DA INSTALAÇÃO DO BRAVE BROWSER #######
+##################################################
+
+
 
 #############################################################
 ### INSTALAÇÃO DO ICONE DE CONTROLE DE VOLUME PULSE AUDIO ###
