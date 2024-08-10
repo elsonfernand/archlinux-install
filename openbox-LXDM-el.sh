@@ -166,12 +166,30 @@ configuration {
 }
 EOL
 
-# Recarrega as configurações do Openbox
-openbox --reconfigure
-
 ##############################################
 ## Fim da instalação e configuração do Rofi ##
 ##############################################
+
+########################################################
+####### RECONFIGURAÇÃO DO MENU PADRÃO DO OPENBOX #######
+########################################################
+
+### A PRIMEIRA OPÇÃO É A PADRÃO ###
+# Recarrega as configurações do Openbox
+#openbox --reconfigure
+
+### A SEGUNDA OPÇÃO VEM DIRETO DO AUR E VOCÊ PODE GERAR O MENU COM ICONES ###
+git clone https://aur.archlinux.org/obmenu-generator.git
+cd obmenu-generator
+makepkg -si --noconfirm
+cd ..
+rm -rf obmenu-generator
+# Para gerar o menu com ícones é só usar o comando abaixo #
+obmenu-generator -p -i
+
+###############################################################
+####### FIM DA RECONFIGURAÇÃO DO MENU PADRÃO DO OPENBOX #######
+###############################################################
 
 #################################################
 ###### INSTALAÇÃO E CONFIGURAÇÃO DO ARANDR ######
