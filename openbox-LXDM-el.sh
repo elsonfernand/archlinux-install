@@ -31,6 +31,9 @@ sudo pacman -S --noconfirm tint2 network-manager-applet xfce4-power-manager gsim
 # Instala utilitários adicionais e gerenciador de arquivos #
 sudo pacman -S --noconfirm thunar thunar-archive-plugin volumeicon alsa-utils alsa-plugins gpicview gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc menumaker tumbler ffmpegthumbnailer unzip xarchiver vlc archlinux-wallpaper fastfetch picom libxml2 zathura zathura-pdf-mupdf geany geany-plugins telegram-desktop i3lock playerctl brightnessctl
 
+# Cliente de email
+sudo pacman -S thunderbird systray-x-common thunderbird-i18n-pt-br thunderbird-i18n-en-us
+
 # Instala navegador. Descomente a linha da sua preferencia. Eu dou preferencia a navegador baseado no Chromium. #
 #sudo pacman -S --noconfirm chromium
 #sudo pacman -S --noconfirm firefox
