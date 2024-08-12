@@ -32,7 +32,7 @@ sudo pacman -S --noconfirm tint2 network-manager-applet xfce4-power-manager gsim
 sudo pacman -S --noconfirm thunar thunar-archive-plugin volumeicon alsa-utils alsa-plugins gpicview gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc menumaker tumbler ffmpegthumbnailer unzip xarchiver vlc archlinux-wallpaper fastfetch picom libxml2 zathura zathura-pdf-mupdf geany geany-plugins telegram-desktop i3lock playerctl brightnessctl
 
 # Cliente de email
-sudo pacman -S thunderbird systray-x-common thunderbird-i18n-pt-br thunderbird-i18n-en-us
+sudo pacman -S --noconfirm thunderbird systray-x-common thunderbird-i18n-pt-br thunderbird-i18n-en-us
 
 # Instala navegador. Descomente a linha da sua preferencia. Eu dou preferencia a navegador baseado no Chromium. #
 #sudo pacman -S --noconfirm chromium
@@ -48,38 +48,14 @@ systemctl --user start pipewire-pulse.service
 systemctl --user enable wireplumber.service
 systemctl --user start wireplumber.service
 
-# Instala gerenciador de login LXDM #
-#sudo pacman -S --noconfirm lxdm-gtk3 
-
-# Configurar LXDM para iniciar a sessão do Openbox #
-#sudo sed -i 's/^# session=.*/session=\/usr\/bin\/openbox-session/' /etc/lxdm/lxdm.conf
-
-# Configurações adicionais recomendadas pela wiki do LXDM #
-#sudo sed -i 's/^# numlock=.*/numlock=1/' /etc/lxdm/lxdm.conf
-# sudo sed -i 's/^# default_lang=.*/default_lang=en_US.UTF-8/' /etc/lxdm/lxdm.conf
-# sudo sed -i 's/^# skip_password=.*/skip_password=0/' /etc/lxdm/lxdm.conf
-# sudo sed -i 's/^# hide=.*/hide=/' /etc/lxdm/lxdm.conf
-# sudo sed -i 's/^# autologin=.*/autologin=/' /etc/lxdm/lxdm.conf
-# sudo sed -i 's/^# timeout=.*/timeout=10/' /etc/lxdm/lxdm.conf
-
-# Configurar layout de teclado para br-abnt2 no LXDM #
-#sudo sed -i 's/^# keyboard=.*/keyboard=br-abnt2/' /etc/lxdm/lxdm.conf
-
-# Habilita o LXDM para iniciar no boot #
-#sudo systemctl enable lxdm.service
 
 # Cria diretórios necessários para funcionamento do Openbox #
-mkdir -p ~/.config/openbox
-mkdir -p ~/.config/tint2
+#mkdir -p ~/.config/openbox
+#mkdir -p ~/.config/tint2
 
 # Instalação de drivers de vídeo #
 # Nvidia #
 sudo pacman -S --noconfirm nvidia nvidia-utils nvidia-settings
-# AMD #
-# sudo pacman -S --noconfirm xf86-video-amdgpu
-# VirtualBox #
-# sudo pacman -S --noconfirm virtualbox-guest-utils
-# systemctl enable vboxservice.service
 
 # Cria script para definir o numlock nos TTYs #
 cat <<EOL > /usr/local/bin/numlock
@@ -125,7 +101,7 @@ sudo localectl set-keymap br-abnt2
 sudo localectl set-x11-keymap br abnt2
 
 # Instala alguns temas, cursores e fontes #
-sudo pacman -S --noconfirm arc-gtk-theme lxde-icon-theme materia-gtk-theme lxqt-themes papirus-icon-theme xcursor-vanilla-dmz xcursor-vanilla-dmz-aa noto-fonts-emoji ttf-dejavu ttf-liberation nerd-fonts
+sudo pacman -S --noconfirm arc-gtk-theme materia-gtk-theme papirus-icon-theme xcursor-vanilla-dmz xcursor-vanilla-dmz-aa noto-fonts-emoji ttf-dejavu ttf-liberation nerd-fonts
 
 #######################################
 ## Instalação e configuração do Rofi ##
@@ -179,16 +155,11 @@ EOL
 
 ### A PRIMEIRA OPÇÃO É A PADRÃO ###
 # Recarrega as configurações do Openbox
-#openbox --reconfigure
+openbox --reconfigure
 
-### A SEGUNDA OPÇÃO VEM DIRETO DO AUR E VOCÊ PODE GERAR O MENU COM ICONES ###
-git clone https://aur.archlinux.org/obmenu-generator.git
-cd obmenu-generator
-makepkg -si --noconfirm
-cd ..
-rm -rf obmenu-generator
+### A SEGUNDA OPÇÃO VEM DIRETO DO AUR E VOCÊ PODE GERAR O MENU COM ICONES  ATRAVÉS DO https://aur.archlinux.org/obmenu-generator.git ###
 # Para gerar o menu com ícones é só usar o comando abaixo #
-obmenu-generator -p -i
+#obmenu-generator -p -i
 
 ###############################################################
 ####### FIM DA RECONFIGURAÇÃO DO MENU PADRÃO DO OPENBOX #######
@@ -200,30 +171,6 @@ obmenu-generator -p -i
 # Atualiza o sistema e instala o Arandr
 sudo pacman -Syu --noconfirm
 sudo pacman -S --noconfirm arandr
-
-################################################
-## FIM DA INSTALAÇÃO E CONFIGURAÇÃO DO ARANDR ##
-################################################
-
-##########################################
-### CONFIGURAÇÃO DO ARANDR PARA O LXDM ###
-##########################################
-# Adiciona a configuração do xrandr para o LXDM
-#sudo mkdir -p /etc/X11/xinit/xinitrc.d
-#cat <<EOL | sudo tee /etc/X11/xinit/xinitrc.d/10-monitor_layout.sh > /dev/null
-#!/bin/bash
-
-# Configuração do xrandr para dois monitores
-# Monitor secundário à esquerda
-#xrandr --output eDP-1 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --output HDMI-1 --mode 1920x1080 --pos 0x0 --rotate normal --output DP-1 --off --output HDMI-2 --off
-#EOL
-
-# Torna o script executável
-#sudo chmod +x /etc/X11/xinit/xinitrc.d/10-monitor_layout.sh
-
-#################################################
-### FIM DA CONFIGURAÇÃO DO ARANDR PARA O LXDM ###
-#################################################
 
 ##########################################################################
 ## Instalação e configuração do scrot, utilitário para tirar screenshot ##
@@ -239,21 +186,6 @@ openbox --reconfigure
 #################################################################################
 
 ###################################################
-########### INSTALAÇÃO DO GOOGLE CHROME ###########
-###################################################
-
-# Caso queira instalar o Google Chrome normal do Google sem ajudante do AUR #
-#git clone https://aur.archlinux.org/google-chrome.git
-#cd google-chrome
-#makepkg -si --noconfirm
-#cd ..
-#rm -rf google-chrome
-
-##################################################
-####### FIM DA INSTALAÇÃO DO GOOGLE CHROME #######
-##################################################
-
-###################################################
 ########### INSTALAÇÃO DO BRAVE BROWSER ###########
 ###################################################
 
@@ -267,37 +199,6 @@ rm -rf brave-bin
 ##################################################
 ####### FIM DA INSTALAÇÃO DO BRAVE BROWSER #######
 ##################################################
-
-
-
-#############################################################
-### INSTALAÇÃO DO ICONE DE CONTROLE DE VOLUME PULSE AUDIO ###
-#############################################################
-# Atualizar o sistema e instalar o pasystray
-#echo "Atualizando o sistema e instalando o pasystray..."
-#sudo pacman -Syu --noconfirm pasystray
-
-# Verificar se o diretório de configuração do Openbox existe, se não, criar
-#CONFIG_DIR="$HOME/.config/openbox"
-#if [ ! -d "$CONFIG_DIR" ]; then
-#    echo "Criando diretório de configuração do Openbox em $CONFIG_DIR..."
-#    mkdir -p "$CONFIG_DIR"
-#fi
-
-# Adicionar o pasystray ao autostart do Openbox
-#AUTOSTART_FILE="$CONFIG_DIR/autostart"
-#if ! grep -q "pasystray &" "$AUTOSTART_FILE"; then
-#    echo "Adicionando pasystray ao autostart do Openbox..."
-#    echo "pasystray &" >> "$AUTOSTART_FILE"
-#else
-#    echo "pasystray já está configurado para iniciar automaticamente."
-#fi
-
-#echo "Configuração de ícone de controle de volume concluída."
-
-####################################################################
-### FIM DA INSTALAÇÃO DO ICONE DE CONTROLE DE VOLUME PULSE AUDIO ###
-####################################################################
 
 #################
 ### FASTFETCH ###
