@@ -22,3 +22,5 @@ cd yay
 yes | makepkg -si
 # Indo para a home
 cd
+# Limpando resíduos de download feito
+rm -rf yay
