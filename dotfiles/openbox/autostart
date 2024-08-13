@@ -28,4 +28,4 @@ telegram-desktop  -startintray &
 lxpolkit &
 
 #Ativação do NumLock
-numlockx &
+numlockx on &
