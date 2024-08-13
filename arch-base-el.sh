@@ -24,11 +24,10 @@ pacman -S --noconfirm network-manager-applet dialog wpa_supplicant base-devel li
 # Pacote do Pacman que contem alguns scripts
 sudo pacman -S --noconfirm pacman-contrib
 
-#####################
-## OPCOES DE VIDEO ##
-#####################
 
-# Descomente as duas opcoes abaixo se você esta usando o VirtualBox ou se planeja usar.
+# █░█ █ █▀▄ █▀▀ █▀█
+# ▀▄▀ █ █▄▀ ██▄ █▄█
+## Descomente as duas opcoes abaixo se você esta usando o VirtualBox ou se planeja usar.
 # pacman -S --noconfirm virtualbox-guest-utils
 # systemctl enable vboxservice.service
 # Descomente a opcao abaixo se você usa placa de vídeo da AMD.
@@ -44,9 +43,8 @@ pacman -S --noconfirm intel-ucode intel-media-driver
 grub-install /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 
-#########################################
-### ATIVACAO E INSTALACAO DE SERVICOS ###
-#########################################
+# █▀ █▀▀ █▀█ █░█ █ █▀▀ █▀█ █▀
+# ▄█ ██▄ █▀▄ ▀▄▀ █ █▄▄ █▄█ ▄█
 
 # Internet
 systemctl enable NetworkManager
@@ -73,9 +71,8 @@ systemctl enable fstrim.timer
 # Atualizando a lista de espelhos para melhor download dos pacotes de atualizacao e novas instalacoes. So descomente se voce ja fez a instalação nos passos anteriores.
 pacman -S --noconfirm reflector ; sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup ; reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
 
-################################################
-### FIM DE ATIVACAO E INSTALACAO DE SERVICOS ###
-################################################
+# █░█ █▀ █▀▀ █▀█   █▀▀ █▀█ █▀█ █░█ █▀█ █▀
+# █▄█ ▄█ ██▄ █▀▄   █▄█ █▀▄ █▄█ █▄█ █▀▀ ▄█
 
 # Adicionando e criando um usuario no grupo "wheel". Troque o "el" pelo nome do seu usuario.
 useradd -mG wheel,storage,audio,video,lp,scanner -s /bin/bash el
@@ -85,9 +82,11 @@ echo el:password | chpasswd
 # Adicionando privilegios de superusuario, lembre-se de trocar o "el" pelo nome de usuario que voce colocou la atras.
 echo "el ALL=(ALL) ALL" >> /etc/sudoers.d/el
 
-# LEMRETES
-# Lembre-se de alterar o arquivo /etc/pacman.conf, aumente o numero de downloads para 10, descomente a opcao de multilib, descomente a opcao de Color, salve e fecheo editor. Agora atualize com "pacman -Sy" e continue.
-# Para copiar os arquivos baixados do GitHub voce deve usar o comando "cp -r /archlinux-install ." depois desse processo de instalação da base e continuar a instalacao da interface grafica.
+
+# █░░ █▀▀ █▀▄▀█ █▄▄ █▀█ █▀▀ ▀█▀ █▀▀ █▀
+# █▄▄ ██▄ █░▀░█ █▄█ █▀▄ ██▄ ░█░ ██▄ ▄█
+# Lembre-se de alterar o arquivo /etc/pacman.conf, aumente o numero de downloads para 16, descomente a opcao de multilib, descomente a opcao de Color, salve e feche o editor. Agora atualize com "pacman -Sy" e continue.
+# Para copiar os arquivos baixados do GitHub voce deve usar o comando "cp -r /archlinux-install /home" depois desse processo de instalação da base e continuar a instalacao da interface grafica.
 # Caso queira adicionar algumas opções no /etc/fstab eu recomendo essas aqui: noatime,space_cache=v2,compress=zstd,ssd,discard=async
 
 printf "\033[0mConfigurações básicas terminadas com sucesso! Agora copie os arquivos do Github com \033[01;37mcp -r /archlinux-install .\033[0m e depois digite \033[01;37mexit\033[0m para sair desse modo. Agore desmonte todas as partições com \033[01;37mumount -a\033[0m e desligue o sistema com \033[01;37mpoweroff\033[0m. Retire a mídia de instalação e inicie o sistema apertando no botão físico de ligar para começar a instalação de um Ambiente de Desktop ou Window Manager de sua preferência."
