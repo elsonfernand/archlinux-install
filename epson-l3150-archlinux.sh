@@ -3,9 +3,9 @@
 # Atualizar o sistema
 sudo pacman -Syu --noconfirm
 
-##############################################
-####### PACOTES DO REPOSITÓRIO OFICIAL #######
-##############################################
+
+# █▀█ █▀▀ █▀█ █▀█ █▀ █ ▀█▀ █▀█ █▀█ █ █▀█   █▀█ █▀▀ █ █▀▀ █ ▄▀█ █░░
+# █▀▄ ██▄ █▀▀ █▄█ ▄█ █ ░█░ █▄█ █▀▄ █ █▄█   █▄█ █▀░ █ █▄▄ █ █▀█ █▄▄
 
 # Função para verificar se um pacote está instalado
 function instalar_pacote {
@@ -78,9 +78,9 @@ fi
 # Utilitário para escanear documentos
 instalar_pacote simple-scan
 
-##############################
-####### PACOTES DO AUR #######
-##############################
+
+# ▄▀█ █░█ █▀█
+# █▀█ █▄█ █▀▄
 
 # Função para exibir mensagens
 function msg() {
