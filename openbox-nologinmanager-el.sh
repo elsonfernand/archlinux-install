@@ -1,11 +1,13 @@
 #!/bin/bash
 
-#################################################################################
-#################################################################################
-###### Você deve ficar de olho para saber o que esse script está fazendo, #######
-###### ele atente apenas as minhas necessidades em uma instalação inicial #######
-#################################################################################
-#################################################################################
+# ╭━━━╮╱╱╱╱╱╱╱╱╭╮
+# ┃╭━╮┃╱╱╱╱╱╱╱╱┃┃
+# ┃┃╱┃┣━━┳━━┳━╮┃╰━┳━━┳╮╭╮
+# ┃┃╱┃┃╭╮┃┃━┫╭╮┫╭╮┃╭╮┣╋╋╯
+# ┃╰━╯┃╰╯┃┃━┫┃┃┃╰╯┃╰╯┣╋╋╮
+# ╰━━━┫╭━┻━━┻╯╰┻━━┻━━┻╯╰╯
+# ╱╱╱╱┃┃
+# ╱╱╱╱╰╯
 
 # Atualiza o sistema #
 sudo pacman -Syu
@@ -103,9 +105,9 @@ sudo localectl set-x11-keymap br abnt2
 # Instala alguns temas, cursores e fontes #
 sudo pacman -S --noconfirm arc-gtk-theme materia-gtk-theme papirus-icon-theme xcursor-vanilla-dmz xcursor-vanilla-dmz-aa noto-fonts-emoji ttf-dejavu ttf-liberation nerd-fonts
 
-#######################################
-## Instalação e configuração do Rofi ##
-#######################################
+# █▀█ █▀█ █▀▀ █
+# █▀▄ █▄█ █▀░ █
+
 # Atualiza os repositórios e instala o rofi
 sudo pacman -Syu --noconfirm rofi
 
@@ -145,13 +147,8 @@ configuration {
 }
 EOL
 
-##############################################
-## Fim da instalação e configuração do Rofi ##
-##############################################
-
-########################################################
-####### RECONFIGURAÇÃO DO MENU PADRÃO DO OPENBOX #######
-########################################################
+# █▀▄▀█ █▀▀ █▄░█ █░█   █▀█ ▄▀█ █▀▄ █▀█ ▄▀█ █▀█   █▀█ █▀█ █▀▀ █▄░█ █▄▄ █▀█ ▀▄▀
+# █░▀░█ ██▄ █░▀█ █▄█   █▀▀ █▀█ █▄▀ █▀▄ █▀█ █▄█   █▄█ █▀▀ ██▄ █░▀█ █▄█ █▄█ █░█
 
 ### A PRIMEIRA OPÇÃO É A PADRÃO ###
 # Recarrega as configurações do Openbox
@@ -161,33 +158,24 @@ openbox --reconfigure
 # Para gerar o menu com ícones é só usar o comando abaixo #
 #obmenu-generator -p -i
 
-###############################################################
-####### FIM DA RECONFIGURAÇÃO DO MENU PADRÃO DO OPENBOX #######
-###############################################################
+# ▄▀█ █▀█ ▄▀█ █▄░█ █▀▄ █▀█
+# █▀█ █▀▄ █▀█ █░▀█ █▄▀ █▀▄
 
-#################################################
-###### INSTALAÇÃO E CONFIGURAÇÃO DO ARANDR ######
-#################################################
 # Atualiza o sistema e instala o Arandr
 sudo pacman -Syu --noconfirm
 sudo pacman -S --noconfirm arandr
 
-##########################################################################
-## Instalação e configuração do scrot, utilitário para tirar screenshot ##
-##########################################################################
+# █▀ █▀▀ █▀█ █▀█ ▀█▀
+# ▄█ █▄▄ █▀▄ █▄█ ░█░
+## Utilitário para tirar screenshot ##
 # Instalacao do scrot
 sudo pacman -S --noconfirm scrot
 
 # Recarregar a configuração do Openbox
 openbox --reconfigure
 
-#################################################################################
-## Fim da instalação e configuração do scrot, utilitário para tirar screenshot ##
-#################################################################################
-
-###################################################
-########### INSTALAÇÃO DO BRAVE BROWSER ###########
-###################################################
+# █▄▄ █▀█ ▄▀█ █░█ █▀▀   █▄▄ █▀█ █▀█ █░█░█ █▀ █▀▀ █▀█
+# █▄█ █▀▄ █▀█ ▀▄▀ ██▄   █▄█ █▀▄ █▄█ ▀▄▀▄▀ ▄█ ██▄ █▀▄
 
 # Caso queira instalar o Brave (navegador de código aberto e com bloqueador de anúncios embutido e baseado no Chromium) sem ajudante do AUR #
 git clone https://aur.archlinux.org/brave-bin.git
@@ -196,22 +184,13 @@ makepkg -si --noconfirm
 cd ..
 rm -rf brave-bin
 
-##################################################
-####### FIM DA INSTALAÇÃO DO BRAVE BROWSER #######
-##################################################
-
-#################
-### FASTFETCH ###
-#################
+# █▀▀ ▄▀█ █▀ ▀█▀ █▀▀ █▀▀ ▀█▀ █▀▀ █░█
+# █▀░ █▀█ ▄█ ░█░ █▀░ ██▄ ░█░ █▄▄ █▀█
 
 # Arquivo do Fastfetch se encontra em ~/.config/fastfetch/config.jsonc e voce pode alterar ele com o nano ou editor de texto de sua preferencia.
 # Se quiser, pode usar a pasta com a configuração desse repositório. Só copiar e colar a pasta "fastfetch" para dentro do "~/.config".
 sudo pacman -S --noconfirm fastfetch
 #fastfetch --gen-config
-
-#################
-### FASTFETCH ###
-#################
 
 # Reconfiguração automática do menu do Openbox usando Menumaker #
 mmaker -vf openbox
