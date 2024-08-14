@@ -59,6 +59,9 @@ systemctl --user start wireplumber.service
 # Nvidia #
 sudo pacman -S --noconfirm nvidia nvidia-utils nvidia-settings
 
+
+# █▄░█ █░█ █▀▄▀█ █░░ █▀█ █▀▀ █▄▀   ▀█▀ ▀█▀ █▄█
+# █░▀█ █▄█ █░▀░█ █▄▄ █▄█ █▄▄ █░█   ░█░ ░█░ ░█░
 # Cria script para definir o numlock nos TTYs #
 cat <<EOL > /usr/local/bin/numlock
 #!/bin/bash
