@@ -59,45 +59,6 @@ systemctl --user start wireplumber.service
 # Nvidia #
 sudo pacman -S --noconfirm nvidia nvidia-utils nvidia-settings
 
-
-# █▄░█ █░█ █▀▄▀█ █░░ █▀█ █▀▀ █▄▀   ▀█▀ ▀█▀ █▄█
-# █░▀█ █▄█ █░▀░█ █▄▄ █▄█ █▄▄ █░█   ░█░ ░█░ ░█░
-# Cria script para definir o numlock nos TTYs #
-cat <<EOL > /usr/local/bin/numlock
-#!/bin/bash
-
-for tty in /dev/tty{1..6}
-do
-    /usr/bin/setleds -D +num < "$tty";
-done
-EOL
-
-# Torna o script anterior executável #
-sudo chmod +x /usr/local/bin/numlock
-
-# Criação e habilitação de um serviço no SystemD #
-cat <<EOL > /etc/systemd/system/numlock.service
-[Unit]
-Description=Activate numlock on boot
-
-[Service]
-ExecStart=/usr/local/bin/numlock
-StandardInput=tty
-RemainAfterExit=yes
-
-[Install]
-WantedBy=multi-user.target
-EOL
-
-# Habilitação desse serviço #
-sudo systemctl enable --now numlock.service
-
-# Cria atalho para iniciar o Openbox e ativação do NumLock #
-cat <<EOL > ~/.xinitrc
-numlockx on &
-exec openbox-session
-EOL
-
 # Por padrão o Openbox não tem os diretorios usuais na /home, precisamos instalar e rodar um pacote para os diretorios aparecerem: #
 sudo pacman -S --noconfirm xdg-user-dirs ; xdg-user-dirs-update
 
