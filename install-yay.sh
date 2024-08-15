@@ -1,5 +1,14 @@
 #!/bin/bash
 
+#╭╮╱╱╭╮
+#┃╰╮╭╯┃
+#╰╮╰╯╭┻━┳╮╱╭╮
+#╱╰╮╭┫╭╮┃┃╱┃┃
+#╱╱┃┃┃╭╮┃╰━╯┃
+#╱╱╰╯╰╯╰┻━╮╭╯
+#╱╱╱╱╱╱╱╭━╯┃
+#╱╱╱╱╱╱╱╰━━╯
+
 # Função para verificar se um pacote está instalado
 function instalar_pacote {
     for pacote in "$@"; do
