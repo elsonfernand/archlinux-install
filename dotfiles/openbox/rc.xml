@@ -339,13 +339,7 @@
         <menu>client-menu</menu>
       </action>
     </keybind>
-    <!-- Take a screenshot of the current window with scrot when Alt+Print are pressed -->
-    <keybind key="A-Print">
-      <action name="Execute">
-        <command>scrot -s</command>
-      </action>
-    </keybind>
-    <!-- Keybindings for window switching -->
+        <!-- Keybindings for window switching -->
     <keybind key="A-Tab">
       <action name="NextWindow">
         <finalactions>
@@ -416,13 +410,22 @@
         <command>thunar</command>
       </action>
     </keybind>
-    <keybind key="W-b">
+    <!-- <keybind key="W-b">
       <action name="Execute">
         <startupnotify>
           <enabled>true</enabled>
           <name>Google Chrome</name>
         </startupnotify>
         <command>google-chrome-stable</command>
+      </action>
+    </keybind> -->
+    <keybind key="W-b">
+      <action name="Execute">
+        <startupnotify>
+          <enabled>true</enabled>
+          <name>Brave</name>
+        </startupnotify>
+        <command>brave</command>
       </action>
     </keybind>
     <keybind key="W-space">
@@ -435,10 +438,16 @@
         <command>lxterminal</command>
       </action>
     </keybind>
-    <!-- Launch scrot when Print is pressed -->
+    <!-- Launch scrot when Print is pressed to screenshot the entire screen-->
     <keybind key="Print">
       <action name="Execute">
-        <command>scrot</command>
+        <command>~/.config/openbox/screenshot_full.sh</command>
+      </action>
+    </keybind>
+    <!-- Take a screenshot area when Alt+Print are pressed -->
+    <keybind key="A-Print">
+      <action name="Execute">
+        <command>~/.config/openbox/screenshot_area.sh</command>
       </action>
     </keybind>
     <!-- Launch i3lock when Super + L is pressed -->
@@ -449,7 +458,7 @@
     </keybind>
     <!-- Keybindings for volume control -->
     <keybind key="XF86AudioRaiseVolume">
-      <action name="Execute"> 
+      <action name="Execute">
         <command>pactl set-sink-volume @DEFAULT_SINK@ +5%</command>
       </action>
     </keybind>
@@ -459,20 +468,20 @@
       </action>
     </keybind>
     <keybind key="XF86AudioMute">
-      <action name="Execute"> 
+      <action name="Execute">
         <command>pactl set-sink-mute @DEFAULT_SINK@ toggle</command>
       </action>
     </keybind>
     <!-- Keybindings for media control -->
-     <keybind key="XF86AudioPlay">
-       <action name="Execute">
-         <command>playerctl play-pause</command>
-       </action>
+    <keybind key="XF86AudioPlay">
+      <action name="Execute">
+        <command>playerctl play-pause</command>
+      </action>
     </keybind>
     <keybind key="XF86AudioPrev">
-    <action name="Execute">
+      <action name="Execute">
         <command>playerctl previous</command>
-    </action>
+      </action>
     </keybind>
     <keybind key="XF86AudioNext">
       <action name="Execute">
