@@ -1,17 +1,9 @@
 #!/bin/bash
 
-# Função para verificar se o script está sendo executado como root
-function check_root() {
-    if [ "$EUID" -ne 0 ]; then
-        echo "Por favor, execute este script como root."
-        exit 1
-    fi
-}
-
 # Função para instalar o pacote numlockx
 function install_numlockx() {
     echo "Instalando o pacote numlockx..."
-    pacman -S --noconfirm numlockx
+    sudo pacman -S --noconfirm numlockx
 }
 
 # Função para criar o script numlock em /usr/local/bin/
@@ -25,7 +17,7 @@ do
     /usr/bin/setleds -D +num < "$tty";
 done
 EOF
-    chmod +x /usr/local/bin/numlock
+    sudo chmod +x /usr/local/bin/numlock
 }
 
 # Função para criar o arquivo de serviço systemd
@@ -48,7 +40,8 @@ EOF
 # Função para habilitar e iniciar o serviço systemd
 function enable_and_start_service() {
     echo "Habilitando e iniciando o serviço numlock.service..."
-    systemctl enable --now numlock.service
+    sudo systemctl enable numlock.service
+    sudo systemctl start numlock.service
 }
 
 # Função para verificar o status do serviço
@@ -58,7 +51,6 @@ function check_service_status() {
 }
 
 # Fluxo principal
-check_root
 install_numlockx
 create_numlock_script
 create_systemd_service
