@@ -1,3 +1,10 @@
+#╭━╮╭━╮╱╱╱╱╱╱╱╱╭╮
+#┃┃╰╯┃┃╱╱╱╱╱╱╱╭╯╰╮
+#┃╭╮╭╮┣━━┳━╮╭╮┣╮╭╋━━┳━╮╭━━┳━━┳━━╮
+#┃┃┃┃┃┃╭╮┃╭╮┫┃┃┃┃┃┃━┫╭╮┫╭━┫╭╮┃╭╮┃
+#┃┃┃┃┃┃╭╮┃┃┃┃╰╯┃╰┫┃━┫┃┃┃╰━┫╭╮┃╰╯┃
+#╰╯╰╯╰┻╯╰┻╯╰┻━━┻━┻━━┻╯╰┻━━┻╯╰┻━━╯
+
 # Script que ajuda a manter a boa saúde do sistema
 # Cheque os serviços do sistema que falharam
 systemctl --failed
