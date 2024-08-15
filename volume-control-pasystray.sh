@@ -1,5 +1,13 @@
 #!/bin/bash
 
+#╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╭╮
+#╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╭╯╰╮
+#╭━━┳━━┳━━┳╮╱╭┳━┻╮╭╋━┳━━┳╮╱╭╮
+#┃╭╮┃╭╮┃━━┫┃╱┃┃━━┫┃┃╭┫╭╮┃┃╱┃┃
+#┃╰╯┃╭╮┣━━┃╰━╯┣━━┃╰┫┃┃╭╮┃╰━╯┃
+#┃╭━┻╯╰┻━━┻━╮╭┻━━┻━┻╯╰╯╰┻━╮╭╯
+#┃┃╱╱╱╱╱╱╱╭━╯┃╱╱╱╱╱╱╱╱╱╱╭━╯┃
+#╰╯╱╱╱╱╱╱╱╰━━╯╱╱╱╱╱╱╱╱╱╱╰━━╯
 # Atualiza o sistema e instala o pasystray.
 echo "Atualizando o sistema e instalando o pasystray..."
 sudo pacman -Syu --noconfirm pasystray
