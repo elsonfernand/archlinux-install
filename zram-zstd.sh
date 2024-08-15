@@ -1,5 +1,11 @@
 #!/bin/bash
 
+#╭━━━━╮
+#╰━━╮━┃
+#╱╱╭╯╭╋━┳━━┳╮╭╮
+#╱╭╯╭╯┃╭┫╭╮┃╰╯┃
+#╭╯━╰━┫┃┃╭╮┃┃┃┃
+#╰━━━━┻╯╰╯╰┻┻┻╯
 # Atualizacao dos repositorios e instalacao do zram-generator
 sudo pacman -Syu --noconfirm
 sudo pacman -S --noconfirm zram-generator
