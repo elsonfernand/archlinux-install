@@ -143,4 +143,4 @@ instalar_pacote_aur "imagescan-plugin-networkscan" "https://aur.archlinux.org/im
 # Baixar e instalar o utilitário para usar scanner da Epson
 instalar_pacote_aur "iscan" "https://aur.archlinux.org/iscan.git"
 
-echo "Configuração concluída. Reinicie o sistema para garantir que todas as alterações tenham efeito."
+echo "Configuração concluída. Reinicie o sistema para garantir que todas as alterações tenham efeito. Caso dê algum erro no download/instalação, sugiro que instale um ajudante do AUR e instale os pacotes separadamente."
