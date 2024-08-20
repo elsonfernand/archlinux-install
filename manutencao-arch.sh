@@ -5,6 +5,8 @@
 #┃┃┃┃┃┃╭╮┃┃┃┃╰╯┃╰┫┃━┫┃┃┃╰━┫╭╮┃╰╯┃
 #╰╯╰╯╰┻╯╰┻╯╰┻━━┻━┻━━┻╯╰┻━━┻╯╰┻━━╯
 
+# Para automatizar esse script sem a necessidade de confirmação do usuário adicione a partir da atualização do Yay "yes | " antes do comando. Por exemplo: "yes | yay". Os dois últimos itens não tem necessidade desse acréscimo.
+
 # Script que ajuda a manter a boa saúde do sistema
 # Cheque os serviços do sistema que falharam
 systemctl --failed
