@@ -23,7 +23,7 @@ sudo pacman -S --noconfirm inkscape scribus gimp blender darktable opencl-nvidia
 #▄▀█ █░█ █▀▄ █ █▀█
 #█▀█ █▄█ █▄▀ █ █▄█
 # Instalacao audio: gravacao de guitarra e sugestoes de plugins (Ardour para gravacao, o Guitarix apenas para fazer um som e o resto sao plugins)
-sudo pacman -S --noconfirm ardour harvid guitarix gxplugins.lv2 lv2 carla x42-plugins avldrums.lv2 lsp-plugins-lv2 calf noise-repellent dragonfly-reverb-lv2 master_me-lv2 eq10q gmsynth.lv2 zam-plugins-lv2 
+sudo pacman -S --noconfirm ardour harvid easytag guitarix gxplugins.lv2 lv2 carla x42-plugins avldrums.lv2 lsp-plugins-lv2 calf noise-repellent dragonfly-reverb-lv2 master_me-lv2 eq10q gmsynth.lv2 zam-plugins-lv2 
 
 #█ █▀█   █░░ █▀█ ▄▀█ █▀▄ █▀▀ █▀█
 #█ █▀▄   █▄▄ █▄█ █▀█ █▄▀ ██▄ █▀▄
