@@ -14,7 +14,13 @@
 - Pendrive bootável com ISO mais atual do Arch Linux. Você pode fazer o download <a href="https://archlinux.org/download/" target="blank">aqui</a>.
 - Você leu <a href="https://wiki.archlinux.org/title/Installation_guide" target="blank">a wiki do projeto</a>.
 
-*Esse repositório está em constante desenvolvimento e aqui você encontrará scripts para a instalação base do Arch Linux e ambientes de desktop (por enquanto apenas o *KDE Plasma 6* e *Openbox*, esse último é o que uso no momento e o KDE Plasma usei por quase dois anos). Edite baseado na sua necessidade, dê permissão de escrita com ***chmod +x "nome-do-script".sh*** e então execute com ***./"nome-do-script".sh***. Lembre-se que a primeira parte da instalação do Arch Linux é manual, ou seja, você terá que particionar, formatar e montar o disco você mesmo. Instale os pacotes base e certifique-se de incluir o **git** para que você possa clonar o repositório no *chroot*.*
+⇢ Esse repositório está em constante desenvolvimento e aqui você encontrará scripts para a instalação base do Arch Linux e ambientes de desktop (por enquanto o **KDE Plasma 6**, **Openbox** e o **i3wm** esse último é o que uso no momento);
+
+⇢ Edite baseado na sua necessidade, dê permissão de escrita com ***chmod +x "nome-do-script".sh*** e então execute com ***./"nome-do-script".sh***;
+
+⇢ Lembre-se que a primeira parte da instalação do Arch Linux é manual, ou seja, você terá que particionar, formatar e montar o disco você mesmo;
+
+⇢ Instale os pacotes base e certifique-se de incluir o **git** para que você possa clonar o repositório no *chroot*;
 
 ### Um pequeno resumo da instalação do Arch Linux que eu sigo:
 
@@ -36,7 +42,7 @@ lsblk
 cfdisk
 ```
 > [!NOTE]
-> Utilizo UEFI, então, particiono 100MB (*/dev/sda1* = partição EFI Filesystem), dependendo do tamanho do disco 60GB ou 30GB (*/dev/sda2* = partição Raíz ou "/") e o restante (*/dev/sda3* = partição de arquivos do usuário ou "/home"). No total, 3 partições. Não utilizo *swap* porque prefiro utilizar <a href="https://wiki.archlinux.org/title/Zram" target="blank">zram</a>.
+> Utilizo UEFI, então, particiono 100MB (*/dev/sda1* = partição EFI Filesystem), dependendo do tamanho do disco 60GB ou 30GB (*/dev/sda2* = partição Raiz ou "/") e o restante (*/dev/sda3* = partição de arquivos do usuário ou "/home"). No total, 3 partições. Não utilizo *swap* porque prefiro utilizar <a href="https://wiki.archlinux.org/title/Zram" target="blank">zram</a>.
 05. Verifique se o particionamento deu certo com:
 ```
 lsblk
@@ -118,6 +124,9 @@ cd /archlinux-install/
 ```
 nano <nome-do-script>.sh
 ```
+> [!TIP]
+> **Dica 1**: Se usar o editor *nano* navegue pelas palavras com as setas do teclado. Para salvar as alterações é só pressionar *CTRL + S* e para fechar esse editor é só pressionar *CTRL + X* ou se quiser "Salvar como..." é só pressionar *CTRL + O* e confirmar que gostaria de salvar por cima do mesmo arquivo. **Dica 2**: Se não quiser instalar algo é só comentar a linha (você faz isso colocando # antes da primeira palavra dessa linha e salvar o arquivo) ou apague-a.
+
 17. Dê permissão de escrita:
 ```
 chmod +x <nome-do-script>.sh
@@ -127,10 +136,12 @@ chmod +x <nome-do-script>.sh
 ./<nome-do-script>.sh
 ```
 > [!IMPORTANT]
-> Use ***cp -r /archlinux-install /home*** antes de sair do *arch-chroot* (com o *exit*), desmontar as partições com *umount -a*, desligar o sistema com o *poweroff* para que continue a instalação de um Ambiente de Trabalho e ou Window Manager de sua preferência. Esse comando copia a pasta com esses scripts e você pode continuar depois de reiniciar o sistema sem se preocupar com clonar esse repositório novamente.
+> Use ***cp -r /archlinux-install /mnt/home*** antes de sair do *arch-chroot* (com o *exit*), desmonte as partições com *umount -a*, desligue o sistema com o *poweroff* para que continue a instalação de um Ambiente de Trabalho e ou Window Manager de sua preferência. Esse comando copia a pasta com esses scripts e você pode continuar depois de reiniciar o sistema sem se preocupar com clonar esse repositório novamente.
 
 > [!TIP]
-> Se você escolher usar o Openbox, <a href="https://github.com/addy-dclxvi/openbox-theme-collections" target="blank">nesse repositório</a> tem muitas opções legais de tema. Eu mesmo utilizo o tema Arc-Dark em qualquer ambiente de trabalho que escolho.
+> Se você escolher usar o Openbox, <a href="https://github.com/addy-dclxvi/openbox-theme-collections" target="blank">nesse repositório</a> tem muitas opções legais de tema. Eu mesmo utilizo o tema Arc-Dark na maioria dos ambientes de trabalho que escolho.
+
+⇢ Pronto! É assim que eu faço a minha instalação do Arch Linux. Agora você também pode dizer a todo mundo que não precisa do *Archinstall* e pode dizer com propriedade *I use Arch BTW* em todos os fóruns que encontrar, na sua roda de amigos (reais, virtuais e imaginários), nas reuniões de família, no seu trabalho, na sua *call* e no seu mensageiro favorito.
 
 ## Licença
 
