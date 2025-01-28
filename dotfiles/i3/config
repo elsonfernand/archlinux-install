@@ -86,7 +86,7 @@ bindsym Print exec /home/el/.config/i3/screenshot_full_i3wm.sh
 bindsym --release Shift+Print exec /home/el/.config/i3/screenshot_area_i3wm.sh
 
 # i3lock
-bindsym $mod+x exec i3lock -i ~/.config/openbox/lockscreen.png
+bindsym $mod+x exec i3lock -i ~/.config/i3/lockscreen.png
 
 # kill focused window
 bindsym $mod+Shift+q kill
