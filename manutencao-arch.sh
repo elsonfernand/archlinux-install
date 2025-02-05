@@ -40,3 +40,7 @@ rm -rf .cache/*
 
 # Limpe o Journal
 sudo journalctl --vacuum-time=2weeks
+
+# Dica: se quiser automatizar esse processo você também pode adicionar um "alias" no seu  seu arquivo _.bashrc_, por exemplo, adicionando o seguinte:
+#alias upsysfull='yes| sudo pacman -Syu; yes | yay ; yes | sudo pacman -Scc ; yes| yay -Scc ; sudo pacman -Rns $(pacman -Qdtq) ; yes | rm -rf .cache/*'
+#Agora, no seu terminal, é só digitar "upsysfull", sem as aspas, que esse processo vai ser feito automaticamente.
