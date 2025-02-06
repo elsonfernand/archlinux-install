@@ -332,7 +332,7 @@ bindsym $mod+Pause mode "$mode_system"
 # ----------------------------------------------------------
 
 # Display Resolution
-exec_always ~/.config/openbox/dual-monitor.sh
+exec_always ~/.config/i3/dual-monitor-layout.sh
 
 # Wallpaper
 exec_always nitrogen --restore
