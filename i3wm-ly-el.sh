@@ -1,5 +1,12 @@
 #!/bin/bash
 
+###  _ ____                      ###
+### (_)___ \                     ###
+###  _  __) |_      ___ __ ___   ###
+### | ||__ <\ \ /\ / / '_ ` _ \  ###
+### | |___) |\ V  V /| | | | | | ###
+### |_|____/  \_/\_/ |_| |_| |_| ###
+
 # Verificação se o script está sendo executado como root
 if [ "$EUID" -ne 0 ]; then
   echo "Por favor, execute como root."
