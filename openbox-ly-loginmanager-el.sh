@@ -15,7 +15,7 @@ sudo pacman -Syu
 # Instala o Openbox e algumas ferramentas básicas #
 sudo pacman -S --noconfirm openbox xorg-xinit xorg obconf lxsession numlockx
 
-# Instalando PipeWire e alguns pacotes relevantes ao aoudio #
+# Instalando PipeWire e alguns pacotes relevantes ao áudio #
 sudo pacman -S --noconfirm pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber pavucontrol qpwgraph
 
 # Instala ferramentas de mudança de wallpaper #
