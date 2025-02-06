@@ -19,7 +19,7 @@ pacman -Syu --noconfirm
 
 echo "Instalando i3wm, i3status, i3lock, i3blocks, rofi e ly..."
 # Instalando o i3wm, i3status, i3lock, i3blocks, dmenu e o display manager Ly
-pacman -S i3-wm i3status i3lock i3blocks rofi ly xorg-xinit xorg obconf lxsession numlockx --noconfirm
+pacman -S i3-wm i3status i3lock i3blocks rofi ly xorg-xinit xorg lxsession numlockx --noconfirm
 
 echo "Instalando PipeWire e alguns pacotes relevantes ao audio..."
 # Instalando PipeWire e alguns pacotes relevantes ao audio #
