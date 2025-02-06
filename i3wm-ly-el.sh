@@ -28,7 +28,7 @@ pacman -S --noconfirm xterm alacritty
 
 echo "Instalando ferramentas de tema e ícones..."
 # Instala ferramentas de tema e ícones #
-pacman -S --noconfirm lxappearance-obconf
+pacman -S --noconfirm lxappearance
 
 echo "Instalando aplicativos básicos..."
 # Instala barra de tarefas e aplicativos básicos #
@@ -65,8 +65,7 @@ fi
 
 echo "Habilitando o display manager Ly..."
 # Habilitando e iniciando o Ly como Display Manager
-systemctl enable ly.service
-systemctl start ly.service
+systemctl enable --now ly.service
 
 echo "Habilitando e iniciando os serviços do PipeWire..."
 # Habilita e iniciar os serviços do PipeWire #
@@ -78,6 +77,10 @@ systemctl --user start pipewire-pulse.service
 
 systemctl --user enable wireplumber.service
 systemctl --user start wireplumber.service
+
+# Instalação de drivers de vídeo #
+# Nvidia #
+sudo pacman -S --noconfirm nvidia nvidia-utils nvidia-settings
 
 echo "Criando diretórios usuais na /home..."
 # Por padrão o i3wm não tem os diretorios usuais na /home, precisamos instalar e rodar um pacote para os diretorios aparecerem #
