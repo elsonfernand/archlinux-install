@@ -152,7 +152,7 @@ bindsym $mod+F11 fullscreen toggle
 # bindsym $mod+w layout tabbed
 # bindsym $mod+e layout toggle split
 
-bindsym #mod+Shift+question layout toggle all
+bindsym $mod+Shift+question layout toggle all
 
 # ----------------------------------------------------------
 
@@ -255,6 +255,7 @@ bar {
 #		status_command i3status
 #		status_command i3status -c ~/.config/i3status/i3status.conf
 		status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
+		padding 2px
 		output primary
 		tray_output primary
 		font pango:DejaVu Sans Mono 12
@@ -295,11 +296,11 @@ client.background				$textcolor
 
 # Gaps
 # Configure 5px of space between windows and to the screen edges.
-gaps inner 5px
+gaps inner 3px
 
 # Configure an additional 5px of extra space to the screen edges,
 # for a total gap of 10px to the screen edges, and 5px between windows.
-gaps outer 5px
+gaps outer 3px
 
 # Enabling “Smart Gaps” means no gaps will be shown when there is
 # precisely one window or split container on the workspace.
@@ -308,6 +309,9 @@ gaps outer 5px
 # window or split container on the workspace.
 # Parameters: on|off|inverse_outer
 smart_gaps inverse_outer
+
+# Pixel border
+default_border pixel 3
 
 # ----------------------------------------------------------
 
@@ -351,5 +355,9 @@ exec_always volumeicon &
 exec_always telegram-desktop -startintray
 
 # Cliente de e-mail
-exec_always thunderbird -startintray
+#exec_always thunderbird -startintray
 
+# ----------------------------------------------------------
+
+# Programs to workspaces
+#for_window [class="thunderbird"] move to workspace $ws1
