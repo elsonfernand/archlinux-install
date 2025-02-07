@@ -50,6 +50,12 @@ set $sm HDMI-2
 
 # ----------------------------------------------------------
 
+# Focus follows mouse
+# Parameters: yes|no
+focus_follows_mouse yes
+
+# ----------------------------------------------------------
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 # floating_modifier $mod
 
