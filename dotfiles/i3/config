@@ -261,9 +261,10 @@ bar {
 #		status_command i3status
 #		status_command i3status -c ~/.config/i3status/i3status.conf
 		status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
-		padding 2px
+		padding 4px
 		output primary
 		tray_output primary
+		tray_padding 6px
 		font pango:DejaVu Sans Mono 12
 }
 
