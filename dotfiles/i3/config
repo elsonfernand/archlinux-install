@@ -303,11 +303,11 @@ client.background				$textcolor
 
 # Gaps
 # Configure 5px of space between windows and to the screen edges.
-gaps inner 3px
+gaps inner 16px
 
 # Configure an additional 5px of extra space to the screen edges,
 # for a total gap of 10px to the screen edges, and 5px between windows.
-gaps outer 3px
+gaps outer 1px
 
 # Enabling “Smart Gaps” means no gaps will be shown when there is
 # precisely one window or split container on the workspace.
@@ -315,10 +315,11 @@ gaps outer 3px
 # inverse_outer only enables outer gaps when there is exactly one
 # window or split container on the workspace.
 # Parameters: on|off|inverse_outer
-smart_gaps inverse_outer
+# smart_gaps inverse_outer
+smart_gaps on
 
 # Pixel border
-default_border pixel 3
+default_border pixel 4
 
 # ----------------------------------------------------------
 
@@ -356,7 +357,7 @@ exec_always numlockx on
 
 # Volume
 # Controle e escolha de wallpaper
-exec_always volumeicon &
+exec_always volumeicon
 
 # Telegram (mensageiro)
 exec_always telegram-desktop -startintray
