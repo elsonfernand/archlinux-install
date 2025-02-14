@@ -41,9 +41,22 @@ echo "Instalando aplicativos básicos..."
 # Instala barra de tarefas e aplicativos básicos #
 pacman -S --noconfirm network-manager-applet xfce4-power-manager 
 
-echo "Instalando utilitários adicionais e gerenciador de arquivos..."
+echo "Instalando utilitários adicionais..."
 # Instala utilitários adicionais e gerenciador de arquivos #
-pacman -S --noconfirm arandr scrot thunar thunar-archive-plugin dunst volumeicon alsa-utils alsa-plugins gpicview gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc menumaker tumbler ffmpegthumbnailer poppler-glib libgsf libgepub libopenraw freetype2 unzip p7zip xarchiver vlc archlinux-wallpaper fastfetch picom libxml2 zathura zathura-pdf-mupdf geany geany-plugins telegram-desktop i3lock playerctl brightnessctl
+pacman -S --noconfirm arandr scrot dunst volumeicon alsa-utils alsa-plugins gpicview gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc menumaker tumbler ffmpegthumbnailer cdrtools p7zip unrar unzip zip poppler-glib libgsf libgepub libopenraw freetype2 xarchiver vlc archlinux-wallpaper fastfetch picom libxml2 zathura zathura-pdf-mupdf geany geany-plugins telegram-desktop playerctl brightnessctl
+
+# Se o "unrar" não funcionar para compressão em rar você pode instalar o "rar" manualmente pelo AUR
+#pacman -S base-devel git
+#git clone https://aur.archlinux.org/rar.git
+#cd rar
+#makepkg -si
+
+echo "Instalando gerenciador de arquivos..."
+# Se optar por escolher o Thunar
+# pacman -S --noconfirm thunar thunar-archive-plugin thunar-volman thunar-media-tags-plugin 
+
+# Se optar por escolher o PCManFM
+pacman -S --noconfirm sudo pacman -S pcmanfm
 
 # Verificação da pasta de configuração do i3 se já existe
 I3_CONFIG_DIR="$HOME/.config/i3"
