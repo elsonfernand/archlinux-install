@@ -43,7 +43,7 @@ pacman -S --noconfirm network-manager-applet xfce4-power-manager
 
 echo "Instalando utilitários adicionais..."
 # Instala utilitários adicionais e gerenciador de arquivos #
-pacman -S --noconfirm arandr scrot dunst volumeicon alsa-utils alsa-plugins gpicview gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc menumaker tumbler ffmpegthumbnailer cdrtools p7zip unrar unzip zip poppler-glib libgsf libgepub libopenraw freetype2 xarchiver vlc archlinux-wallpaper fastfetch picom libxml2 zathura zathura-pdf-mupdf geany geany-plugins telegram-desktop playerctl brightnessctl
+pacman -S --noconfirm lib32-libx11 arandr scrot dunst volumeicon alsa-utils alsa-plugins gpicview gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc menumaker tumbler ffmpegthumbnailer cdrtools p7zip unrar unzip zip poppler-glib libgsf libgepub libopenraw freetype2 xarchiver vlc archlinux-wallpaper fastfetch picom libxml2 zathura zathura-pdf-mupdf geany geany-plugins telegram-desktop playerctl brightnessctl
 
 # Se o "unrar" não funcionar para compressão em rar você pode instalar o "rar" manualmente pelo AUR
 #pacman -S base-devel git
@@ -100,7 +100,12 @@ systemctl --user start wireplumber.service
 
 # Instalação de drivers de vídeo #
 # Nvidia #
-sudo pacman -S --noconfirm nvidia nvidia-utils nvidia-settings
+#sudo pacman -S --noconfirm nvidia nvidia-utils nvidia-settings
+
+# AMD
+sudo pacman -S --noconfirm xf86-video-amdgpu
+# Nota: fica mais facil instalar os outros pacotes por um gerenciador do AUR, por exemplo o Yay.
+# Os pacotes recomendados pela Arch Wiki sao: amdgpu-pro-oglp, lib32-amdgpu-pro-oglp, vulkan-amdgpu-pro e lib32-vulkan-amdgpu-pro.
 
 echo "Criando diretórios usuais na /home..."
 # Por padrão o i3wm não tem os diretorios usuais na /home, precisamos instalar e rodar um pacote para os diretorios aparecerem #
