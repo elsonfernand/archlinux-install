@@ -76,7 +76,7 @@ tiling_drag modifier titlebar
 bindsym $mod+b exec brave
 
 # start file manager
-bindsym $mod+f exec thunar
+bindsym $mod+f exec pcmanfm
 
 # start text editor
 bindsym $mod+e exec geany
