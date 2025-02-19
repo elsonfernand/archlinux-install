@@ -1,0 +1,5 @@
+# Colocar esse arquivo /home
+
+xterm*vt100.background: black
+xterm*vt100.foreground: lightgray
+xterm*faceName: monospace:pixelsize=14
