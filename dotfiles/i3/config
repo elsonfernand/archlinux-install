@@ -343,8 +343,11 @@ bindsym $mod+Pause mode "$mode_system"
 
 # ----------------------------------------------------------
 
+# Keyboard Layout
+exec_always setxkbmap -model abnt2 -layout br
+
 # Display Resolution
-exec_always ~/.config/i3/dual-monitor-layout.sh
+exec_always ~/.config/i3/layout-single.sh
 
 # Wallpaper
 exec_always nitrogen --restore
@@ -352,20 +355,14 @@ exec_always nitrogen --restore
 # Compositor
 exec_always --no-startup-id picom --config ~/.config/picom/picom.conf -b
 
-# Ativação do NumLock
+# NumLock activation
 exec_always numlockx on
 
-# Telegram (mensageiro)
-exec_always telegram-desktop -startintray
-
-# Telegram (mensageiro)
+# Telegram on systray
 exec_always telegram-desktop -startintray
 
 # Volume
-exec_always volumeicon
-
-# Cliente de e-mail
-#exec_always thunderbird -startintray
+exec --no-startup-id sh -c "sleep 1 && volumeicon"
 
 # ----------------------------------------------------------
 
