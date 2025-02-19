@@ -1,4 +1,4 @@
-# Colocar esse arquivo /home
+# Colocar esse arquivo na /home
 
 xterm*vt100.background: black
 xterm*vt100.foreground: lightgray
