@@ -355,12 +355,14 @@ exec_always --no-startup-id picom --config ~/.config/picom/picom.conf -b
 # Ativação do NumLock
 exec_always numlockx on
 
-# Volume
-# Controle e escolha de wallpaper
-exec_always volumeicon
+# Telegram (mensageiro)
+exec_always telegram-desktop -startintray
 
 # Telegram (mensageiro)
 exec_always telegram-desktop -startintray
+
+# Volume
+exec_always volumeicon
 
 # Cliente de e-mail
 #exec_always thunderbird -startintray
