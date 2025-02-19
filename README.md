@@ -43,6 +43,9 @@ cfdisk
 ```
 > [!NOTE]
 > Utilizo UEFI, então, particiono 100MB (*/dev/sda1* = partição EFI Filesystem), dependendo do tamanho do disco 60GB ou 30GB (*/dev/sda2* = partição Raiz ou "/") e o restante (*/dev/sda3* = partição de arquivos do usuário ou "/home"). No total, 3 partições. Não utilizo *swap* porque prefiro utilizar <a href="https://wiki.archlinux.org/title/Zram" target="blank">zram</a>.
+
+> [!NOTE]
+> Tive um problema utilizando esse gerenciador de particionamento quando fiz uma instalação em um *nvme* e tive que usar o comando ***cfdisk /dev/nvme0n1*** pra ele entender qual era o disco que eu queria formatar e particionar.
 05. Verifique se o particionamento deu certo com:
 ```
 lsblk
@@ -55,9 +58,21 @@ sda      8:0    0 335.4G  0 disk
 ├─sda2   8:2    0  55.9G  0 part 
 └─sda3   8:3    0 279.2G  0 part 
 ```
+Ou assim caso você esteja usando um *SSD nvme*:
+```
+NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+nvme0n1     259:0    0 232.9G  0 disk
+├─nvme0n1p1 259:1    0   512M  0 part
+├─nvme0n1p2 259:2    0    80G  0 part
+└─nvme0n1p3 259:3    0 152.4G  0 part
+```
 06. Formate a partição boot/efi:
 ```
 mkfs.fat -F32 /dev/sda1
+```
+Ou:
+```
+mkfs.fat -F32 /dev/nvme0n1p1
 ```
 07. Aqui irei usar o sistema *BTRFS* na raiz:
 > [!NOTE]
@@ -68,11 +83,22 @@ mkfs.btrfs /dev/sda2
 ```
 mkfs.btrfs /dev/sda3
 ```
+Ou:
+```
+mkfs.btrfs /dev/nvme0n1p2
+```
+```
+mkfs.btrfs /dev/nvme0n1p3
+```
 > [!TIP]
-> Se essa parte der errado tente primeiro desmontar o que estiver montado com ***umount -a*** e tente novamente. Se ainda deu errado acrescente ***-f*** antes do */dev*, ficando: ***mkfs.btrfs -f /dev/sda2***.
+> Se essa parte der errado tente primeiro desmontar o que estiver montado com ***umount -a*** e tente novamente. Se ainda deu errado acrescente ***-f*** antes do */dev*, ficando: ***mkfs.btrfs -f /dev/sda2*** (ou ***mkfs.btrfs -f /dev/nvme0n1p2***).
 08. Agora devemos montar a nossa partição raiz em */mnt*:
 ```
 mount /dev/sda2 /mnt
+```
+Ou:
+```
+mount /dev/nvme0n1p2 /mnt
 ```
 09. Agora vamos montar a partição de boot em um diretório que ainda não existe. Sendo assim deve-se usar:
 ```
@@ -82,9 +108,12 @@ mkdir -p /mnt/boot/efi
 ```
 mount /dev/sda1 /mnt/boot/efi
 ```
+Ou:
+```
+mount /dev/nvme0n1p1 /mnt/boot/efi
+```
 > [!TIP]
-> Se estiver fazendo esse processo com a **/home** separada crie um diretório com ***mkdir -p /mnt/home*** e monte com ***mount /dev/sda3 /mnt/home***, nessa ordem, deixando a */home* por último.
-
+> Se estiver fazendo esse processo com a **/home** separada crie um diretório com ***mkdir -p /mnt/home*** e monte com ***mount /dev/sda3 /mnt/home*** (ou ***mount /dev/nvme0n1p3 /mnt/home***), nessa ordem, deixando a */home* por último.
 #### Com as partições montadas (use *lsblk* para verificar). Ficará assim:
 ```
 NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
@@ -93,7 +122,14 @@ sda      8:0    0 335.4G  0 disk
 ├─sda2   8:2    0  55.9G  0 part /mnt
 └─sda3   8:3    0 279.2G  0 part /mnt/home
 ```
-
+Ou:
+```
+NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+nvme0n1     259:0    0 232.9G  0 disk
+├─nvme0n1p1 259:1    0   512M  0 part /boot/efi
+├─nvme0n1p2 259:2    0    80G  0 part /
+└─nvme0n1p3 259:3    0 152.4G  0 part /home
+```
 11. Instale os pacotes base com o pacstrap:
 ```
 pacstrap -K /mnt base linux linux-firmware base-devel intel-ucode grub dosfstools btrfs-progs efibootmgr git nano networkmanager
