@@ -68,9 +68,21 @@ floating_modifier Mod1
 tiling_drag modifier titlebar
 
 # ----------------------------------------------------------
+
+######################
+### User floating  ###
+######################
+
+for_window [class="Galculator"] floating enable
+
+# ----------------------------------------------------------
+
 ######################
 ### User shortcuts ###
 ######################
+
+# start Calculator
+bindsym $mod+c exec galculator
 
 # start brave browser
 bindsym $mod+b exec brave
