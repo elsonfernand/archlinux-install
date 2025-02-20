@@ -362,7 +362,7 @@ exec_always numlockx on
 exec_always telegram-desktop -startintray
 
 # Volume
-exec --no-startup-id sh -c "sleep 1 && volumeicon"
+exec --no-startup-id sh -c "sleep 3 && volumeicon"
 
 # ----------------------------------------------------------
 
