@@ -43,7 +43,7 @@ pacman -S --noconfirm network-manager-applet xfce4-power-manager
 
 echo "Instalando utilitários adicionais..."
 # Instala utilitários adicionais e gerenciador de arquivos #
-pacman -S --noconfirm galculator lib32-libx11 arandr scrot dunst volumeicon alsa-utils alsa-plugins gpicview gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc menumaker tumbler ffmpegthumbnailer cdrtools p7zip unrar unzip zip poppler-glib libgsf libgepub libopenraw freetype2 xarchiver vlc archlinux-wallpaper fastfetch picom libxml2 zathura zathura-pdf-mupdf geany geany-plugins telegram-desktop playerctl brightnessctl
+pacman -S --noconfirm webp-pixbuf-loader galculator lib32-libx11 arandr scrot dunst volumeicon alsa-utils alsa-plugins gpicview gvfs gvfs-mtp gvfs-smb gvfs-gphoto2 gvfs-afc menumaker tumbler ffmpegthumbnailer cdrtools p7zip unrar unzip zip poppler-glib libgsf libgepub libopenraw freetype2 xarchiver vlc archlinux-wallpaper fastfetch picom libxml2 zathura zathura-pdf-mupdf geany geany-plugins telegram-desktop playerctl brightnessctl
 
 # Se o "unrar" não funcionar para compressão em rar você pode instalar o "rar" manualmente pelo AUR
 #pacman -S base-devel git
