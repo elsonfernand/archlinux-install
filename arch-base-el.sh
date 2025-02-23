@@ -40,15 +40,15 @@ sudo pacman -S --noconfirm pacman-contrib
 # Descomente a opcao abaixo se você usa placa de vídeo da AMD.
 # pacman -S --noconfirm xf86-video-amdgpu
 # Opção descomentada porque uso nvidia, se não for o seu caso, comente.
-pacman -S --noconfirm nvidia nvidia-utils nvidia-settings
+# pacman -S --noconfirm nvidia nvidia-utils nvidia-settings
 # Opção descomentada porque uso processador da Intel
-pacman -S --noconfirm intel-ucode intel-media-driver
+# pacman -S --noconfirm intel-ucode intel-media-driver
 # Descomente a opção abaixo se você usa processador AMD
-# pacman -S --noconfirm amd-ucode
+pacman -S --noconfirm amd-ucode
 
 # Instalando e gerando o GRUB
-grub-install /dev/sda
-grub-mkconfig -o /boot/grub/grub.cfg
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=arch_grub --removable
+grub mkconfig -o boot/grub/grub.cfg
 
 # █▀ █▀▀ █▀█ █░█ █ █▀▀ █▀█ █▀
 # ▄█ ██▄ █▀▄ ▀▄▀ █ █▄▄ █▄█ ▄█
