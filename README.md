@@ -139,7 +139,7 @@ pacstrap -K /mnt base linux linux-firmware base-devel intel-ucode grub dosfstool
 12. Vamos agora gerar o *FSTAB* que é o arquivo localizado em ***/etc/fstab*** responsável por armazenar a configuração de quais dispositivos devem ser montados e qual o ponto de montagem de cada um na carga do sistema operacional, mesmo dispositivos locais e remotos. 
     - Para gerar digite:
 ```
-genfstab  /mnt >> /mnt/etc/fstab
+genfstab -U /mnt >> /mnt/etc/fstab
 ```
 13. Se a essa altura nada deu errado até agora vamos entrar no sistema instalado para configurar o sistema base por dentro.
     - Para isso digite:
