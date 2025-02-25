@@ -260,8 +260,8 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 #bindsym $mod+r mode "resize"
 
 # All above changed to
-bindsym $mod+Control Right resize grow width 5 px or 5 ppt
-bindsym $mod+Control Left resize shrink width 5 px or 5 ppt
+bindsym $mod+Control Right resize shrink width 5 px or 5 ppt
+bindsym $mod+Control Left resize grow width 5 px or 5 ppt
 bindsym $mod+Control Up resize grow width 5 px or 5 ppt
 bindsym $mod+Control Down resize shrink width 5 px or 5 ppt
 
