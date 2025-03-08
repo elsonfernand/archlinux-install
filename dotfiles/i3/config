@@ -280,16 +280,16 @@ bindsym $mod+Control Down resize shrink width 5 px or 5 ppt
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-#		status_command i3status
-#		status_command i3status -c ~/.config/i3status/i3status.conf
-		status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
-		padding 4px
-		output primary
-		tray_output primary
-		tray_padding 6px
-		font pango:DejaVu Sans Mono 12
-}
+#bar {
+##		status_command i3status
+##		status_command i3status -c ~/.config/i3status/i3status.conf
+#		status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
+#		padding 4px
+#		output primary
+#		tray_output primary
+#		tray_padding 6px
+#		font pango:DejaVu Sans Mono 12
+#}
 
 # ----------------------------------------------------------
 
@@ -342,7 +342,7 @@ smart_gaps inverse_outer
 # smart_gaps on
 
 # Pixel border
-default_border pixel 4
+default_border pixel 2
 
 # ----------------------------------------------------------
 
@@ -377,6 +377,9 @@ exec_always nitrogen --restore
 
 # Compositor
 exec_always --no-startup-id picom --config ~/.config/picom/picom.conf -b
+
+# Polybar Launch Script 
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # NumLock activation
 exec_always numlockx on
