@@ -24,3 +24,10 @@ alias clr='sudo pacman -Rns $(pacman -Qtdq) --noconfirm'
 
 # Clear cache of old packages automatically
 alias clrcache='sudo pacman -Sc --noconfirm && yay -Sc --noconfirm'
+
+#Cansei de tentar configurar um "powermenu" depois que deixei de usar a i3bar. Tentei na Polybar, no Rofi e recorri a alias mesmo.
+alias sd='systemctl poweroff'   # "sd" de "shutdown"
+alias rs='systemctl reboot'     # "rs" de "restart"
+alias sp='systemctl suspend'    # "sp" de "suspend"
+alias hb='systemctl hibernate'  # "hb" de "hibernate"
+alias lg='i3-msg exit'          # "lg" de "logout"
