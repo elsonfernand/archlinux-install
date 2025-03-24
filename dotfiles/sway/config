@@ -13,7 +13,6 @@ gaps outer 7px
 
 default_border pixel 4px
 
-
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -312,7 +311,8 @@ set $cursor-theme DMZ-Black
 #############
 
 # NumLock activation
-exec --no-startup-id numlockx on
+#exec_always numlockx on
+input type:keyboard xkb_numlock enabled
 
 # Notification (Dunst)
 exec --no-startup-id dunst
@@ -322,11 +322,11 @@ exec --no-startup-id telegram-desktop -startintray
 
 
 # Programs to workspaces
-assign [app_id="Geany"] 2
-assign [app_id="kdenlive"] 3
-assign [app_id="Gimp-3.0"] 4
-assign [app_id="inkscape"] 5
-assign [app_id="TelegramDesktop"] 6
+assign [app_id="geany"] 2
+assign [app_id="org.kde.kdenlive"] 3
+assign [app_id="gimp-3.0"] 4
+assign [app_id="org.inkscape.Inkscape"] 5
+assign [app_id="org.telegram.desktop"] 6
 
 #############################
 ####### USER FLOATING #######
