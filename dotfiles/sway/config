@@ -292,11 +292,8 @@ bindsym $mod+f exec pcmanfm
 # start text editor
 bindsym $mod+e exec geany
 
-# Take a full screenshot
-#bindsym Print exec /home/el/.config/i3/screenshot_full_i3wm.sh
-
-# Take a screenshot area when Alt+Print are pressed
-#bindsym --release Shift+Print exec /home/el/.config/i3/screenshot_area_i3wm.sh
+# Lockscreen
+bindsym $mod+x exec swaylock --image $HOME/.config/i3/lockscreen2.png
 
 #############
 ### THEME ###
