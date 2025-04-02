@@ -18,6 +18,8 @@
         "hyprland/window"
        ],
     "modules-center": [
+    ],
+	"modules-right": [
         "custom/updater",
         //"temperature",
         "custom/cpu_temp",
@@ -26,16 +28,13 @@
         "custom/ejetar_midia",
         "disk",
         "disk#2",
-        "custom/xbox_battery"
-    ],
-	"modules-right": [
 	    "idle_inhibitor",
         "tray",
         "pulseaudio",
         "clock",
         "custom/notification"
     ],
-	// Sourced modules
+    // Sourced modules
     "pulseaudio": {
     "tooltip": true,
     "scroll-step": 5,
