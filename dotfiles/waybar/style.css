@@ -20,12 +20,17 @@ window#waybar.hidden {
 }
 
 #window {
+    margin-top: 6px;
+    margin-left: 8px;
     padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 2px;
+    padding-right: 4px;
+    margin-bottom: 6px;
+    border-radius: 5px;
     transition: none;
-    color: transparent;
+    font-size: 14px;
+    color: #ffffff;
     background: transparent;
+    padding: 5px;
 }
 
 #workspaces {
@@ -81,14 +86,6 @@ window#waybar.hidden {
     outline: 2px solid rgba(52, 137, 93, 1.0); /* Indicar foco*/
     outline-offset: -2px;
 }
-
-#window {
-    font-size: 14px;
-    color: #ffffff;
-    background: transparent;
-    padding: 5px;
-}
-
 
 /*#network {
     margin-top: 6px;
