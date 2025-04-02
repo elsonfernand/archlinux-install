@@ -1,0 +1,38 @@
+/* Style of wofi */
+
+* {
+	border-radius: 7px;
+	border: none;
+}
+
+window {
+	font-size: 16px;
+	font-family: monospace;
+	background-color: rgba(50, 50, 50, 0.7);
+	color: white;
+	border: 3px solid #34895d;
+}
+
+#entry {
+	padding: 0.25em;
+}
+
+#entry:selected {
+	background-color: #34895d;
+	background: linear-gradient (45deg, #72dba5, #34895d)
+}
+
+#text:selected {
+	color: #D7D7D7;
+}
+
+#input {
+	background-color: rgba(50, 50, 50, 0.5);
+	color: white;
+	padding: 0.25em;
+}
+
+image {
+	margin-left: .25em;
+	margin-right: .25em;
+}
