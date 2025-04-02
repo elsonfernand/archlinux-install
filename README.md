@@ -14,7 +14,9 @@
 - Pendrive bootável com ISO mais atual do Arch Linux. Você pode fazer o download <a href="https://archlinux.org/download/" target="blank">aqui</a>.
 - Você leu <a href="https://wiki.archlinux.org/title/Installation_guide" target="blank">a wiki do projeto</a>.
 
-⇢ Esse repositório está em constante desenvolvimento e aqui você encontrará scripts para a instalação base do Arch Linux e ambientes de desktop (por enquanto o **KDE Plasma 6**, **Openbox** e o **i3wm** esse último é o que uso no momento);
+⇢ Repositório criado mais pra mim mesmo quando precisar fazer alguma nova instalação;
+
+⇢ Aqui está em constante desenvolvimento e você encontrará scripts para a instalação base do Arch Linux, ambientes de desktop e gerenciadores de janela (por enquanto o **KDE Plasma 6 (mínimo)**, **Openbox**, **i3wm**, **SwayWM** e o **Hyprland** esse último é o que uso no momento);
 
 ⇢ Edite baseado na sua necessidade, dê permissão de escrita com ***chmod +x "nome-do-script".sh*** e então execute com ***./"nome-do-script".sh***;
 
