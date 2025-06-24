@@ -34,10 +34,11 @@
         "clock",
         "custom/notification"
     ],
-    // Sourced modules
+	// Sourced modules
     "pulseaudio": {
     "tooltip": true,
     "scroll-step": 5,
+    "max-volume": 200,
     "format": "{icon} {volume}%",
     "format-muted": "<span color='#34895D'> </span> Muted",
     "on-click": "amixer sset Master toggle",
