@@ -22,13 +22,14 @@
 	"modules-right": [
         "custom/updater",
         //"temperature",
-        "custom/cpu_temp",
-        "custom/gpu_temp",
-        "memory",
+        "custom/temperaturas",
+        //"custom/cpu_temp",
+        //"custom/gpu_temp",
+        //"memory",
         "custom/ejetar_midia",
         "disk",
         "disk#2",
-	    "idle_inhibitor",
+	    //"idle_inhibitor",
         "tray",
         "pulseaudio",
         "clock",
@@ -52,20 +53,20 @@
         ]
     }
     },
-    "custom/cpu_temp": {
-    "format": "<span color='#34895D'></span>{}",
-    "exec": "~/.config/hypr/scripts/cpu_temp.sh",
-    "tooltip": true,
-    "return-type": "json",
-    "interval": 2
-    },
-    "custom/gpu_temp": {
-    "format": "<span color='#34895D'></span>{}",
-    "exec": "~/.config/hypr/scripts/gpu_temp.sh",
-    "tooltip": true,
-    "return-type": "json",
-    "interval": 2
-    },
+    //"custom/cpu_temp": {
+    //"format": "<span color='#34895D'></span>{}",
+    //"exec": "~/.config/hypr/scripts/cpu_temp.sh",
+    //"tooltip": true,
+    //"return-type": "json",
+    //"interval": 2
+    //},
+   //"custom/gpu_temp": {
+    //"format": "<span color='#34895D'></span>{}",
+    //"exec": "~/.config/hypr/scripts/gpu_temp.sh",
+    //"tooltip": true,
+    //"return-type": "json",
+    //"interval": 2
+    //},
     "idle_inhibitor": {
     "format": "{icon}",
     "rotate": 0,
@@ -73,6 +74,13 @@
         "activated": "<span color='#34895D'>󰥔</span>",
         "deactivated": "<span color='#34895D'></span>"
     }
+    },
+    // Teperaturas
+    "custom/temperaturas": {
+    "format": "{}",
+    "exec": "~/.config/waybar/scripts/temperaturas.sh",
+    "interval": 1,
+    "markup": "pango"
     },
     // Taskbar
     "wlr/taskbar": {
@@ -156,7 +164,7 @@
             "on-scroll-down": "shift_down"
         }
     },
- // Sys tray
+ // Systray
         "tray": {
         "icon-size": 18,
         "show-passive-items": true,
@@ -169,15 +177,15 @@
     },
     
     "disk": {
-        "path": "/",
-        "interval": 1,
-        //"format": "<span color='#34895D'>󰋊</span> {percentage_free}% free on {path}",
-        "format": "<span color='#34895D'></span> {percentage_free}% free on {path}",
+    "path": "/",
+    "interval": 1,
+    //"format": "<span color='#34895D'>󰋊</span> {percentage_free}% free on {path}",
+    "format": "<span color='#34895D'> {path}</span> +{percentage_free}%"
     },
     "disk#2": {
 		"path": "/home",
-        "format": "<span color='#34895D'></span> {percentage_free}% free on {path}",
-        "interval": 1,
+        "format": "<span color='#34895D'> {path}</span> +{percentage_free}%",
+        "interval": 1
     },
 
     "memory": {
@@ -185,8 +193,8 @@
     //"format": "<span color='#34895D'></span> {used}GiB",
     "format": "<span color='#34895D'></span> {used:0.1f}G/{total:0.1f}G",
     "max-length": 10,
-    "on-click": "alacritty btop",
-    "on-click-right": "killall btop"
+    "on-click": "alacritty -e btop",
+    "on-click-right": "alacritty -e killall btop"
     },
     "custom/updater": {
     "format": "<span color='#34895D'></span> {}",
@@ -195,8 +203,8 @@
     "return-type": "json",
     "interval": 3600,
     "tooltip": "false",
-    "on-click": "alacritty --hold bash -c '$HOME/.config/hypr/scripts/upgrade.sh;'",
-    "on-click-right": "alacritty --hold bash -c '~/.config/hypr/scripts/check_and_update.sh; cat /tmp/waybar-updates-list;'",
+    "on-click": "alacritty -e --hold bash -c '$HOME/.config/hypr/scripts/upgrade.sh;'",
+    "on-click-right": "alacritty -e --hold bash -c '~/.config/hypr/scripts/check_and_update.sh; cat /tmp/waybar-updates-list;'",
     "signal": 8
      },
     // Notification
