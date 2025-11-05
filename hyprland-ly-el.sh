@@ -9,7 +9,7 @@ sudo pacman -Syu --noconfirm
 # Pacotes essenciais
 echo "Instalando pacotes essenciais..."
 sudo pacman -S --noconfirm hyprland xdg-desktop-portal-hyprland xorg-xwayland waybar wofi \
-    pcmanfm tumbler libopenraw webp-pixbuf-loader imagemagick gtk-engine-murrine \
+    thunar tumbler libopenraw webp-pixbuf-loader imagemagick gtk-engine-murrine \
     gtk-engines gvfs gvfs-mtp gvfs-gphoto2 gvfs-afc gvfs-nfs gvfs-smb \
     numlockx telegram-desktop network-manager-applet pulseaudio-alsa \
     grim slurp wl-clipboard libgsf swappy dunst polkit-kde-agent \
