@@ -8,8 +8,33 @@
 alias ls='ls -lah --color=auto'
 alias grep='grep --color=auto'
 #PS1='[\u@\h \W]\$ '
-PS1='[\u@\h \W $(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor)]\$ '
+#PS1='[\u@\h \W $(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor)]\$ '
 
+# ----- Colors -----
+RESET="\[\e[0m\]"
+BOLD="\[\e[1m\]"
+
+FG_USER="\[\e[38;5;45m\]"      # azul claro
+FG_HOST="\[\e[38;5;81m\]"      # azul ciano
+FG_DIR="\[\e[38;5;110m\]"      # azul acinzentado suave
+FG_GOV_PERF="\[\e[31m\]"       # vermelho (performance)
+FG_GOV_SAVE="\[\e[34m\]"       # azul (powersave)
+FG_GOV_OTHER="\[\e[33m\]"      # amarelo
+
+# ----- Função de governor -----
+function _gov() {
+    local g=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor 2>/dev/null)
+
+    case "$g" in
+        performance) echo -e "${FG_GOV_PERF}⚡ performance${RESET}" ;;
+        powersave)   echo -e "${FG_GOV_SAVE}💤 powersave${RESET}" ;;
+        *)           echo -e "${FG_GOV_OTHER}$g${RESET}" ;;
+    esac
+}
+
+# ----- Prompt estilo powerline sem background -----
+PS1="${BOLD}${FG_USER}\u${RESET}@${BOLD}${FG_HOST}\h${RESET} \
+${FG_DIR}\w${RESET} ▶ $(_gov)\n\$ "
 
 ###################################
 ############## System #############
