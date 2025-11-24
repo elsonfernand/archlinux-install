@@ -21,6 +21,7 @@
     ],
 	"modules-right": [
         "custom/updater",
+        "custom/bluetooth_battery",
         //"temperature",
         "custom/temperaturas",
         //"custom/cpu_temp",
@@ -80,6 +81,8 @@
     "format": "{}",
     "exec": "~/.config/waybar/scripts/temperaturas.sh",
     "interval": 1,
+    "on-click": "alacritty -e btop",
+    "on-click-right": "alacritty -e killall btop",
     "markup": "pango"
     },
     // Taskbar
@@ -180,11 +183,13 @@
     "path": "/",
     "interval": 1,
     //"format": "<span color='#34895D'>󰋊</span> {percentage_free}% free on {path}",
-    "format": "<span color='#34895D'> {path}</span> +{percentage_free}%"
+    //"format": "<span color='#34895D'> {path}</span> +{percentage_free}%"
+    "format": "<span color='#34895D'></span> +{percentage_free}%"
     },
     "disk#2": {
 		"path": "/home",
-        "format": "<span color='#34895D'> {path}</span> +{percentage_free}%",
+        //"format": "<span color='#34895D'> {path}</span> +{percentage_free}%",
+        "format": "<span color='#34895D'></span> +{percentage_free}%",
         "interval": 1
     },
 
@@ -227,7 +232,15 @@
            "exec": "swaync-client -swb",
            "on-click": "swaync-client -t -sw",
            "escape": true
-       }
+       },
+
+    "custom/bluetooth_battery": {
+    "format": "{}",
+    "exec": "~/.config/waybar/scripts/bt_battery.sh",
+    "return-type": "json",
+    "interval": 30,
+    "tooltip": true
+},
     //"custom/media": {
         //"interval": 30,
         //"format": "{icon} {}",
@@ -251,5 +264,6 @@
     //"tooltip": false,
     //"on-click": "wlogout -b 6"
 //}
+
 
 }
