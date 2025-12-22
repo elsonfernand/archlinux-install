@@ -35,12 +35,14 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
-# Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+# Aumentar volume
+bindsym XF86AudioRaiseVolume exec --no-startup-id sh -c 'amixer set Master 5%+ unmute && notify-send -u low -h int:value:$(amixer get Master | grep -o "[0-9]*%" | head -n1 | tr -d "%") -h string:synchronous:volume "Volume"'
+
+# Diminuir volume
+bindsym XF86AudioLowerVolume exec --no-startup-id sh -c 'amixer set Master 5%- unmute && notify-send -u low -h int:value:$(amixer get Master | grep -o "[0-9]*%" | head -n1 | tr -d "%") -h string:synchronous:volume "Volume"'
+
+# Mutar/desmutar volume
+bindsym XF86AudioMute exec --no-startup-id sh -c 'amixer set Master toggle && notify-send -u low -h string:synchronous:volume "Volume" "$(amixer get Master | grep "\[on\]" > /dev/null && echo Unmuted || echo Muted)"'
 
 # ----------------------------------------------------------
 
@@ -82,21 +84,43 @@ for_window [class="System-config-printer.py"] floating enable
 ### User shortcuts ###
 ######################
 
+set $calculator galculator
+set $browser brave
+set $manager thunar
+set $texteditor code-oss
+set $terminal alacritty
+set $videoeditor kdenlive
+set $imageeditor gimp
+set $vectoreditor Inkscape
+
+
 # start Calculator
-bindsym $mod+c exec galculator
+bindsym $mod+c exec $calculator
 
 # start brave browser
-bindsym $mod+b exec brave
+bindsym $mod+b exec $browser
 
 # start file manager
-bindsym $mod+f exec pcmanfm
+bindsym $mod+f exec $manager
 
 # start text editor
-bindsym $mod+e exec geany
+bindsym $mod+e exec $texteditor ; workspace number 2
+
+#start video editor
+bindsym $mod+k exec $videoeditor ; workspace number 3
+
+#start image editor
+bindsym $mod+g workspace number 4; exec $imageeditor
+
+#start vector editor
+bindsym $mod+i exec --no-startup-id ~/.config/i3/scripts/inkscape_ws5.sh
+
+#start Telegram
+bindsym $mod+t exec Telegram ; workspace number 6
 
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec $terminal
 
 # Take a full screenshot
 bindsym Print exec /home/el/.config/i3/screenshot_full_i3wm.sh
@@ -118,6 +142,15 @@ bindsym $mod+d exec rofi -modi drun -show drun -line padding 4 -hide-scrollbar -
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
+
+# ----------------------------------------------------------
+
+# Programs to workspaces
+for_window [class="code-oss"] move to workspace $ws2
+for_window [class="kdenlive"] move to workspace $ws3
+for_window [class="Gimp"] move to workspace $ws4
+assign [title=".*Inkscape.*"] workspace $ws5
+for_window [class="Telegram"] move to workspace $ws6
 
 # ----------------------------------------------------------
 
@@ -154,7 +187,7 @@ bindsym $mod+Shift+Right move right
 # bindsym $mod+v split v
 
 # Split horizontal and vertical orientation
-bindsym $mod+semicolon split toggle 
+bindsym $mod+semicolon split toggle
 
 # ----------------------------------------------------------
 
@@ -189,12 +222,12 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1: "
-set $ws2 "2: "
-set $ws3 "3: "
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
 set $ws4 "4"
-set $ws5 "5: "
-set $ws6 "6: "
+set $ws5 "5"
+set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
@@ -224,13 +257,8 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
-# ----------------------------------------------------------
-
-# Programs to workspaces
-for_window [class="kdenlive"] move to workspace $ws3
-for_window [class="Geany"] move to workspace $ws2
-for_window [class="Inkscape"] move to workspace $ws5
-for_window [class="TelegramDesktop"] move to workspace $ws6
+bindsym --whole-window $mod+button4 workspace prev
+bindsym --whole-window $mod+button5 workspace next
 
 # ----------------------------------------------------------
 
@@ -294,9 +322,9 @@ bindsym $mod+Control Down resize shrink width 5 px or 5 ppt
 # ----------------------------------------------------------
 
 # Window colors
-set $bgcolor1	#4c7899
-set $bgcolor2	#285577
-set $bgcolor3	#2e9ef4
+set $bgcolor1	#34895d
+set $bgcolor2	#34895d
+set $bgcolor3	#7CEDB2
 set $bgcolor4	#333333
 set $bgcolor5	#222222
 set $bgcolor6	#000000
@@ -326,11 +354,11 @@ client.background				$textcolor
 
 # Gaps
 # Configure 5px of space between windows and to the screen edges.
-gaps inner 16px
+gaps inner 5px
 
 # Configure an additional 5px of extra space to the screen edges,
 # for a total gap of 10px to the screen edges, and 5px between windows.
-gaps outer 0px
+gaps outer 5px
 
 # Enabling “Smart Gaps” means no gaps will be shown when there is
 # precisely one window or split container on the workspace.
@@ -346,23 +374,23 @@ default_border pixel 2
 
 # ----------------------------------------------------------
 
-set $Locker i3lock && sleep 1
+#set $Locker i3lock && sleep 1
 
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
-mode "$mode_system" {
-    bindsym l exec --no-startup-id $Locker, mode "default"
-    bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
-    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
-    bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
+#set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+#mode "$mode_system" {
+#    bindsym l exec --no-startup-id $Locker, mode "default"
+#    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+#    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
+#    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
+#    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+#    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
 
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
+#    # back to normal: Enter or Escape
+#    bindsym Return mode "default"
+#    bindsym Escape mode "default"
+#}
 
-bindsym $mod+Pause mode "$mode_system"
+#bindsym $mod+Pause mode "$mode_system"
 
 # ----------------------------------------------------------
 
@@ -373,24 +401,26 @@ exec_always setxkbmap -model abnt2 -layout br
 exec_always ~/.config/i3/layout-single.sh
 
 # Wallpaper
-exec_always nitrogen --restore
+exec_always --no-startup-id feh --bg-fill ~/Pictures/Wallpapers/cereja-musical-bordas-2.png
 
 # Compositor
 exec_always --no-startup-id picom --config ~/.config/picom/picom.conf -b
 
-# Polybar Launch Script 
+# Polybar Launch Script
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # NumLock activation
 exec_always numlockx on
 
 # Telegram on systray
-exec telegram-desktop -startintray
+# exec telegram-desktop -startintray
+exec Telegram -startintray
 
 # Volume
-exec --no-startup-id sh -c "sleep 3 && volumeicon"
+# exec --no-startup-id sh -c "sleep 3 && volumeicon"
 
-# ----------------------------------------------------------
+# Notification (Dunst)
+exec --no-startup-id dunst --config ~/.config/dunst/dunstrc
 
-# Programs to workspaces
-#for_window [class="thunderbird"] move to workspace $ws1
+# Bluetooth 
+exec_always --no-startup-id pgrep -x blueman-applet || blueman-applet
