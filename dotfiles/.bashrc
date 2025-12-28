@@ -2,92 +2,131 @@
 # ~/.bashrc
 #
 
-# If not running interactively, don't do anything
+# Se não for shell interativo, não faz nada
 [[ $- != *i* ]] && return
+
+###################################
+############# ALIASES #############
+###################################
 
 alias ls='ls -lah --color=auto'
 alias grep='grep --color=auto'
-#PS1='[\u@\h \W]\$ '
-#PS1='[\u@\h \W $(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor)]\$ '
 
-# ----- Colors -----
+alias hypr='[ -z "$WAYLAND_DISPLAY" ] && Hyprland || echo "Já está em uma sessão Wayland"'
+alias i3='[ -z "$DISPLAY" ] && startx || echo "X já está rodando"'
+
+###################################
+############### CORES #############
+###################################
+
 RESET="\[\e[0m\]"
 BOLD="\[\e[1m\]"
 
 FG_USER="\[\e[38;5;45m\]"      # azul claro
 FG_HOST="\[\e[38;5;81m\]"      # azul ciano
 FG_DIR="\[\e[38;5;110m\]"      # azul acinzentado suave
-FG_GOV_PERF="\[\e[31m\]"       # vermelho (performance)
-FG_GOV_SAVE="\[\e[34m\]"       # azul (powersave)
+FG_GOV_PERF="\[\e[31m\]"       # vermelho
+FG_GOV_SAVE="\[\e[34m\]"       # azul
 FG_GOV_OTHER="\[\e[33m\]"      # amarelo
 
-# ----- Função de governor -----
-function _gov() {
-    local g=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor 2>/dev/null)
+###################################
+########## CPU GOVERNOR ###########
+###################################
 
+# Cache simples para evitar leitura repetida do /sys
+_gov() {
+    local now=$(date +%s)
+
+    if [[ -n "$_GOV_CACHE_TIME" && $((now - _GOV_CACHE_TIME)) -lt 1 ]]; then
+        echo -e "$_GOV_CACHE_VALUE"
+        return
+    fi
+
+    local g=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor 2>/dev/null)
     case "$g" in
-        performance) echo -e "${FG_GOV_PERF}⚡ performance${RESET}" ;;
-        powersave)   echo -e "${FG_GOV_SAVE}💤 powersave${RESET}" ;;
-        *)           echo -e "${FG_GOV_OTHER}$g${RESET}" ;;
+        performance) _GOV_CACHE_VALUE="${FG_GOV_PERF}⚡ performance${RESET}" ;;
+        powersave)   _GOV_CACHE_VALUE="${FG_GOV_SAVE}💤 powersave${RESET}" ;;
+        *)           _GOV_CACHE_VALUE="${FG_GOV_OTHER}$g${RESET}" ;;
     esac
+
+    _GOV_CACHE_TIME=$now
+    echo -e "$_GOV_CACHE_VALUE"
 }
 
-# ----- Prompt estilo powerline sem background -----
+# Alias para mudar governor
+alias perf='sudo cpupower frequency-set -g performance && echo "🚀 CPU em modo performance"'
+alias save='sudo cpupower frequency-set -g powersave && echo "💤 CPU em modo powersave"'
+alias gov='cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor'
+
+###################################
+############### PROMPT ############
+###################################
+
+# (mantido exatamente como você usa!)
 PS1="${BOLD}${FG_USER}\u${RESET}@${BOLD}${FG_HOST}\h${RESET} \
 ${FG_DIR}\w${RESET} ▶ $(_gov)\n\$ "
 
 ###################################
-############## System #############
+############## SYSTEM #############
 ###################################
 
-# Update system and AUR packages automatically
-alias upall='sudo pacman -Syu --noconfirm && yay -Sua --noconfirm'
+# Update todos os pacotes (sem --noconfirm por segurança)
+alias upall='sudo pacman -Syu && yay -Syu --devel --timeupdate'
 
-# Update only packages from the official repository automatically
-alias upsys='sudo pacman -Syu --noconfirm'
+# Update oficial
+alias upsys='sudo pacman -Syu'
 
-# Update only AUR packages automatically
-alias upaur='yay -Sua --noconfirm'
+# Update só AUR
+alias upaur='yay -Sua'
 
-# Clear orphaned packages automatically
-alias clr='sudo pacman -Rns $(pacman -Qtdq) --noconfirm'
+# Remove órfãos com segurança
+alias clr='orphans=$(pacman -Qtdq); [ -n "$orphans" ] && sudo pacman -Rns $orphans || echo "Nenhum órfão encontrado."'
 
-# Clear cache of old packages automatically
-alias clrcache='sudo pacman -Sc --noconfirm && yay -Sc --noconfirm'
+# Limpa cache de pacotes
+alias clrcache='sudo pacman -Sc && yay -Sc'
 
 ###################################
 ### Desligar, reiniciar, logout ###
 ###################################
 
-alias sd='systemctl poweroff'   # "sd" de "shutdown"
-alias rs='systemctl reboot'     # "rs" de "restart"
-alias sp='systemctl suspend'    # "sp" de "suspend"
-alias hb='systemctl hibernate'  # "hb" de "hibernate"
+alias sd='systemctl poweroff'
+alias rs='systemctl reboot'
+alias sp='systemctl suspend'
+alias hb='systemctl hibernate'
+
 #Logout i3wm
-alias lg='i3-msg exit'          # "lg" de "logout"
+alias lg='i3-msg exit'
+
 #Logout Hyprland
 alias lh='hyprctl dispatch exit'
 
-# Alias para controlar a saída de audio
+###################################
+########### PROGRAMAS #############
+###################################
+
 alias .am='alsamixer'
 
-#Editor
+# Editor padrão
 export EDITOR=nano
-
-#Recomendações da página do Wayland
-export QT_QPA_PLATFORM=xcb
-export QT_QPA_PLATFORM=wayland
-export OZONE_PLATFORM=wayland
+export VISUAL=nano
 
 ###################################
-########## CPU governor ###########
+########### WAYLAND/X11 ###########
 ###################################
 
-alias perf='sudo cpupower frequency-set -g performance && echo "🚀 CPU em modo performance"'
-alias save='sudo cpupower frequency-set -g powersave && echo "💤 CPU em modo powersave"'
-alias gov='cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor'
+# Ajustes conforme sessão
+if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+    export QT_QPA_PLATFORM=wayland
+    export OZONE_PLATFORM=wayland
+else
+    export QT_QPA_PLATFORM=xcb
+fi
 
-#Informações do sistema
-if [ -n "$PS1" ]; then
+###################################
+###### INFO DO SISTEMA (LOGIN) ####
+###################################
+
+# Executa o fastfetch apenas em shells interativos
+if [[ $- == *i* ]]; then
     fastfetch
 fi
