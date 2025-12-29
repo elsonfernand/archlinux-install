@@ -83,7 +83,41 @@ alias upaur='yay -Sua'
 alias clr='orphans=$(pacman -Qtdq); [ -n "$orphans" ] && sudo pacman -Rns $orphans || echo "Nenhum órfão encontrado."'
 
 # Limpa cache de pacotes
-alias clrcache='sudo pacman -Sc && yay -Sc'
+alias clrcache='
+sudo find /var/cache/pacman/pkg/ -type f -name "download-*" -delete 2>/dev/null
+sudo paccache -rk2
+yay -Sc --aur --noconfirm
+'
+
+alias maintain='bash -c "
+echo \"==> Atualizando sistema (pacman + AUR)\"
+sudo pacman -Syu
+yay -Syu --devel --timeupdate
+
+echo
+echo \"==> Removendo pacotes órfãos\"
+orphans=\$(pacman -Qtdq 2>/dev/null || true)
+if [ -n \"\$orphans\" ]; then
+  sudo pacman -Rns \$orphans
+else
+  echo \"Nenhum órfão encontrado.\"
+fi
+
+echo
+echo \"==> Limpando downloads quebrados do pacman\"
+sudo find /var/cache/pacman/pkg/ -type f -name '\''download-*'\'' -delete 2>/dev/null
+
+echo
+echo \"==> Limpando cache do pacman (mantendo 2 versões)\"
+sudo paccache -rk2
+
+echo
+echo \"==> Limpando cache da AUR\"
+yay -Sc --aur --noconfirm
+
+echo
+echo \"==> Manutenção concluída com sucesso ✔️\"
+"'
 
 ###################################
 ### Desligar, reiniciar, logout ###
