@@ -10,81 +10,65 @@
     "reload_style_on_change": true,
 
     //Modules layout
-
 	"modules-left": [
         "custom/launcher",
         "hyprland/workspaces",
         "wlr/taskbar",
         "hyprland/window"
        ],
+
     "modules-center": [
     ],
+
 	"modules-right": [
         "custom/updater",
-        "custom/bluetooth_battery",
-        //"temperature",
         "custom/temperaturas",
-        //"custom/cpu_temp",
-        //"custom/gpu_temp",
-        //"memory",
-        "custom/ejetar_midia",
         "disk",
         "disk#2",
-	    //"idle_inhibitor",
         "tray",
         "pulseaudio",
         "clock",
         "custom/notification"
     ],
+
 	// Sourced modules
     "pulseaudio": {
     "tooltip": true,
     "scroll-step": 5,
     "max-volume": 200,
     "format": "{icon} {volume}%",
-    "format-muted": "<span color='#34895D'> </span> Muted",
+    "format-muted": "<span color='#fff'>X </span> Muted",
     "on-click": "amixer sset Master toggle",
     "on-click-right": "pavucontrol",
     "tooltip-format": "{desc}",
     "format-icons": {
         "default": [
-            "<span color='#34895D'></span>",
-            "<span color='#34895D'></span>",
-            "<span color='#34895D'></span>"
+            "<span color='#fff'></span>",
+            "<span color='#fff'></span>",
+            "<span color='#fff'></span>"
         ]
     }
     },
-    //"custom/cpu_temp": {
-    //"format": "<span color='#34895D'></span>{}",
-    //"exec": "~/.config/hypr/scripts/cpu_temp.sh",
-    //"tooltip": true,
-    //"return-type": "json",
-    //"interval": 2
-    //},
-   //"custom/gpu_temp": {
-    //"format": "<span color='#34895D'></span>{}",
-    //"exec": "~/.config/hypr/scripts/gpu_temp.sh",
-    //"tooltip": true,
-    //"return-type": "json",
-    //"interval": 2
-    //},
+
     "idle_inhibitor": {
     "format": "{icon}",
     "rotate": 0,
     "format-icons": {
-        "activated": "<span color='#34895D'>󰥔</span>",
-        "deactivated": "<span color='#34895D'></span>"
+        "activated": "<span color='#fff'>󰥔</span>",
+        "deactivated": "<span color='#fff'></span>"
     }
     },
+
     // Teperaturas
     "custom/temperaturas": {
     "format": "{}",
     "exec": "~/.config/waybar/scripts/temperaturas.sh",
     "interval": 1,
-    "on-click": "alacritty -e btop",
-    "on-click-right": "alacritty -e killall btop",
+    "on-click": "kitty -e btop",
+    "on-click-right": "kitty -e killall btop",
     "markup": "pango"
     },
+
     // Taskbar
     "wlr/taskbar": {
     "format": "{icon}",
@@ -94,20 +78,15 @@
     "on-click-middle": "close",
     "ignore-list": []
     },
+
     // Workspaces
     "hyprland/workspaces": {
     "disable-scroll": true,
     "on-click": "activate",
     "all-outputs": true,
     "active-only": false
-    //"persistent-workspaces": {
-        //"1": [],
-        //"2": [],
-        //"3": [],
-        //"4": [],
-        //"5": []
-    //}
     },
+
     "network": {
         "justify": "center",
         "format-ethernet": "󰈀",
@@ -117,6 +96,7 @@
         "format-disconnected": "󰤭",
         "tooltip-format-disconnected": "Disconnected"
     },
+
 	"backlight": {
 		"tooltip": false,
 		"format": " {}%",
@@ -124,24 +104,6 @@
         "on-scroll-up": "light -A 5",
 		"on-scroll-down": "light -U 5"
 	},
-    //"battery": {
-        //"states": {
-            //"good": 95,
-            //"warning": 30,
-            //"critical": 10
-        //},
-        //"format": "{icon}  <span color='#F1F1F1'>{capacity}%</span>",
-        //"format-charging": "<span color='#9ece6a'></span> <span color='#F1F1F1'>{capacity}%</span>",
-        //"format-plugged": " <span color='#F1F1F1'>{capacity}</span>%",
-        //"format-alt": "<span color='#F1F1F1'>{time}</span> {icon}",
-        //"format-icons": [
-            //"<span color='#f7768e'></span>", 
-            //"<span color='#e0af68'></span>", 
-            //"<span color='#e0af68'></span>", 
-            //"<span color='#9ece6a'></span>", 
-            //"<span color='#9ece6a'></span>"
-        //]
-    //},
       
     "clock": {
         "format": "{:%H:%M · %d/%m}",
@@ -154,9 +116,9 @@
             "on-scroll": 1,
             "on-click-right": "mode",
             "format": {
-                "months": "<span color='#ffead3'><b>{}</b></span>",
-                "weekdays": "<span color='#34895D'><b>{}</b></span>",
-                "today": "<span color='#34895D'><b>{}</b></span>"
+                "months": "<span color='#fff'><b>{}</b></span>",
+                "weekdays": "<span color='#777'><b>{}</b></span>",
+                "today": "<span color='#da1510'><b>{}</b></span>"
             }
         },
         "actions": {
@@ -167,7 +129,8 @@
             "on-scroll-down": "shift_down"
         }
     },
- // Systray
+
+    // Systray
         "tray": {
         "icon-size": 18,
         "show-passive-items": true,
@@ -175,43 +138,29 @@
         "reverse-direction": true
     },
     "cpu": {
-    "format": "<span color='#34895D'></span> {usage}%",
+    "format": "<span color='#8b8b8b'></span> {usage}%",
     "interval": 1
     },
     
     "disk": {
     "path": "/",
     "interval": 1,
-    //"format": "<span color='#34895D'>󰋊</span> {percentage_free}% free on {path}",
-    //"format": "<span color='#34895D'> {path}</span> +{percentage_free}%"
-    "format": "<span color='#34895D'></span> +{percentage_free}%"
+    "format": "<span color='#8b8b8b'></span> +{percentage_free}%"
     },
     "disk#2": {
 		"path": "/home",
-        //"format": "<span color='#34895D'> {path}</span> +{percentage_free}%",
-        "format": "<span color='#34895D'></span> +{percentage_free}%",
+        "format": "<span color='#8b8b8b'></span> +{percentage_free}%",
         "interval": 1
     },
 
     "memory": {
     "interval": 15,
-    //"format": "<span color='#34895D'></span> {used}GiB",
-    "format": "<span color='#34895D'></span> {used:0.1f}G/{total:0.1f}G",
+    "format": "<span color='#fff'></span> {used:0.1f}G/{total:0.1f}G",
     "max-length": 10,
-    "on-click": "alacritty -e btop",
-    "on-click-right": "alacritty -e killall btop"
+    "on-click": "kitty -e btop",
+    "on-click-right": "kitty -e killall btop"
     },
-    "custom/updater": {
-    "format": "<span color='#34895D'></span> {}",
-    "exec": "$HOME/.config/hypr/scripts/check_and_update.sh",
-    "exec-if": "exit 0",
-    "return-type": "json",
-    "interval": 3600,
-    "tooltip": "false",
-    "on-click": "alacritty -e --hold bash -c '$HOME/.config/hypr/scripts/upgrade.sh;'",
-    "on-click-right": "alacritty -e --hold bash -c '~/.config/hypr/scripts/check_and_update.sh; cat /tmp/waybar-updates-list;'",
-    "signal": 8
-     },
+    
     // Notification
     "custom/notification": {
     "tooltip": false,
@@ -241,29 +190,4 @@
     "interval": 30,
     "tooltip": true
 },
-    //"custom/media": {
-        //"interval": 30,
-        //"format": "{icon} {}",
-        //"return-type": "json",
-        //"max-length": 20,
-        //"format-icons": {
-            //"spotify": " ",
-            //"default": " "
-        //},
-        //"escape": true,
-        //"exec": "$HOME/.config/system_scripts/mediaplayer.py 2> /dev/null",
-        //"on-click": "playerctl play-pause"
-    //},
-//"custom/launcher": {
-    //"format": "<span foreground=\"#34895D\"></span>",
-    //"on-click": "wofi --show drun",
-    //"on-click-right": "killall wofi"
-//},
-//"custom/power": {
-    //"format": "<span color='#f75f5f'></span>",  // Ícone vermelho com span color
-    //"tooltip": false,
-    //"on-click": "wlogout -b 6"
-//}
-
-
 }
