@@ -37,15 +37,15 @@
     "scroll-step": 5,
     "max-volume": 200,
     "format": "{icon} {volume}%",
-    "format-muted": "<span color='#fff'>X </span> Muted",
+    "format-muted": "<span color='#8b8b8b'>X </span> Muted",
     "on-click": "amixer sset Master toggle",
     "on-click-right": "pavucontrol",
     "tooltip-format": "{desc}",
     "format-icons": {
         "default": [
-            "<span color='#fff'></span>",
-            "<span color='#fff'></span>",
-            "<span color='#fff'></span>"
+            "<span color='#8b8b8b'></span>",
+            "<span color='#8b8b8b'></span>",
+            "<span color='#8b8b8b'></span>"
         ]
     }
     },
