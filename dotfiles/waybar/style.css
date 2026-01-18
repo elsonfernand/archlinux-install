@@ -2,18 +2,18 @@
     border: none;
     border-radius:0px;
     font-family: "FontAwesome", "Terminus (TTF)";
-    font-size: 14px;
+    font-size: 16px;
     min-height: 0px;
 }
 
 @import "themes/mocha.css";
 
 window#waybar {
-    background-color: rgba(16, 16, 16, 0.25);
+    background-color: rgba(16, 16, 16, 0.52);
     border-radius: 0px;
-    margin-top: 2px;
+    margin-top: 6px;
 }
- 
+
 window#waybar.hidden {
     opacity: 0.2;
 }
@@ -24,13 +24,20 @@ window#waybar.hidden {
     padding-left: 10px;
     padding-right: 4px;
     margin-bottom: 6px;
-    border-radius: 16px;
     padding: 5px;
     transition: all 0.2s ease-in-out;
     font-size: 16px;
     color: white;
     background: transparent;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.35), 0 0 1em rgba(0, 0, 0, 0.25), 0 0 0.2em rgba(0, 0, 0, 0.15);
+}
+
+/* Global */
+#window, #workspaces, #pulseaudio, #clock, #memory, #disk, #cpu, #tray, #taskbar,
+#custom-notification, #idle_inhibitor, #custom-gpu, #custom-gpu_temp, #custom-temperaturas,
+#workspaces button, #taskbar button:hover {
+    border-radius: 7px;
+    background: rgba(255, 255, 255, 0.05);
 }
 
 /*-----------------------*/
@@ -41,9 +48,8 @@ window#waybar.hidden {
     margin-bottom: 6px;
     padding-left: 10px;
     padding-right: 1px;
-    border-radius: 16px;
     color: #F1F1F1;
-    background: rgba(25, 25, 25, 0.7);
+    /*background: rgba(25, 25, 25, 0.7);*/
 }
 
 #pulseaudio, #clock, #memory, #disk, #cpu, #tray, #taskbar, #custom-notification, #idle_inhibitor, #custom-gpu, #custom-gpu_temp, #custom-temperaturas {
@@ -53,17 +59,15 @@ window#waybar.hidden {
     margin-right: 0px;
     padding-left: 10px;
     padding-right: 10px;
-    border-radius: 16px;
     transition: none;
     color: #F1F1F1;
-    background: rgba(25, 25, 25, 0.7);
+    /*background: rgba(25, 25, 25, 0.7);*/
 }
 /*-----------------------*/
 
 #workspaces button {
     transition: none;
     color: rgb(151, 151, 151);
-    border-radius: 16px;
     background: transparent;
     margin-right: 10px;
 }
@@ -122,7 +126,7 @@ window#waybar.hidden {
     border-radius: 10px;
     transition: none;
     color: #161320;
-    background: rgba(28, 32, 44, 0.5);
+    /*background: rgba(28, 32, 44, 0.5);*/
 }
 
 #taskbar button:hover {
@@ -131,3 +135,4 @@ window#waybar.hidden {
     border: none;
     transition: all 0.2s ease-in-out;
 }
+
