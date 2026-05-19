@@ -12,7 +12,7 @@
     //Modules layout
 	"modules-left": [
         "custom/launcher",
-        "hyprland/workspaces",
+        "ext/workspaces",
         "wlr/taskbar",
         "hyprland/window"
        ],
@@ -80,7 +80,7 @@
     },
 
     // Workspaces
-    "hyprland/workspaces": {
+    "ext/workspaces": {
     "disable-scroll": true,
     "on-click": "activate",
     "all-outputs": true,
