@@ -1,8 +1,3 @@
--- Converted Hyprland Lua config
--- Source: previous hyprland.conf / Hyprlang config
--- Target path: ~/.config/hypr/hyprland.lua
--- Hyprland >= 0.55 uses Lua for configuration.
-
 ------------------
 ---- MONITORS ----
 ------------------
@@ -18,16 +13,27 @@ hl.monitor({
 ---- MY PROGRAMS ----
 ---------------------
 
-local terminal     = "kitty"
-local fileManager   = "thunar"
-local menu          = "wofi --show drun"
-local browser       = "brave"
-local textEditor    = "code-oss"
-local videoEditor   = "kdenlive"
-local audioEditor   = "ardour8"
-local vectorEditor  = "inkscape"
-local imageEditor   = "gimp"
-local mainMod       = "SUPER"
+-- System
+local terminal       = "kitty"
+local fileManager    = "thunar"
+local menu           = "wofi --show drun"
+
+-- Browsers
+local primaryBrowser   = "brave"
+local secondaryBrowser = "google-chrome-stable"
+local thirdBrowser     = "/usr/sbin/zen-browser"
+
+-- Creative
+local imageEditor    = "gimp"
+local vectorEditor   = "inkscape"
+local videoEditor    = "kdenlive"
+local audioEditor    = "ardour8"
+
+-- Development
+local textEditor     = "code-oss"
+
+-- General
+local mainMod        = "SUPER"
 local screenshotsDir = (os.getenv("HOME") or "~") .. "/Pictures/Screenshots"
 
 -------------------
@@ -41,9 +47,9 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("sleep 1 && waybar")
   hl.exec_cmd("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
   hl.exec_cmd("Telegram -startintray")
-  hl.exec_cmd("numlockx on")
   hl.exec_cmd("blueman-applet")
   hl.exec_cmd("mako")
+  hl.exec_cmd("/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh")
 end)
 
 -------------------------------
@@ -59,7 +65,7 @@ hl.env("XDG_SESSION_TYPE", "wayland")
 hl.env("XDG_SESSION_DESKTOP", "Hyprland")
 
 -- Backend variables
-hl.env("GDK_BACKEND", "wayland,x11")
+hl.env("GDK_BACKEND", "wayland,x11,*")
 hl.env("SDL_VIDEODRIVER", "wayland")
 
 -----------------------
@@ -68,12 +74,12 @@ hl.env("SDL_VIDEODRIVER", "wayland")
 
 hl.config({
   general = {
-    gaps_in = 3,
-    gaps_out = 3,
+    gaps_in = 3.5,
+    gaps_out = 7,
     border_size = 2,
     col = {
       active_border = { colors = { "rgba(c8c8c8ff)", "rgba(5c5c5cff)" }, angle = 45 },
-      inactive_border = "rgba(808080aa)",
+      inactive_border = "rgba(000000aa)",
     },
     resize_on_border = false,
     allow_tearing = false,
@@ -84,7 +90,7 @@ hl.config({
     rounding = 7,
     rounding_power = 2,
     active_opacity = 1.0,
-    inactive_opacity = 0.8,
+    inactive_opacity = 1.0,
 
     shadow = {
       enabled = true,
@@ -174,7 +180,7 @@ hl.config({
 
 hl.device({
   name = "epic-mouse-v1",
-  sensitivity = -0.5,
+  sensitivity = -1,
 })
 
 ---------------------
@@ -187,16 +193,16 @@ end
 
 -- Software
 bind_exec(mainMod .. " + A", audioEditor)
-bind_exec(mainMod .. " + B", browser)
+bind_exec(mainMod .. " + B", primaryBrowser)
+bind_exec(mainMod .. " + SHIFT + B", secondaryBrowser)
+bind_exec(mainMod .. " + CTRL + SHIFT + B", thirdBrowser)
 bind_exec(mainMod .. " + C", "galculator")
 bind_exec(mainMod .. " + D", menu)
 bind_exec(mainMod .. " + E", textEditor)
 bind_exec(mainMod .. " + F", fileManager)
 bind_exec(mainMod .. " + G", imageEditor)
-bind_exec(mainMod .. " + H", "helium-browser")
 bind_exec(mainMod .. " + I", vectorEditor)
 bind_exec(mainMod .. " + K", videoEditor)
-bind_exec(mainMod .. " + S", "shotcut")
 bind_exec(mainMod .. " + X", "hyprlock")
 
 -- Printscreen
@@ -223,6 +229,12 @@ hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + up",    hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + down",  hl.dsp.focus({ direction = "down" }))
+
+-- Swap active window position with neighboring window
+hl.bind(mainMod .. " + CTRL + left",  hl.dsp.window.swap({ direction = "left" }))
+hl.bind(mainMod .. " + CTRL + right", hl.dsp.window.swap({ direction = "right" }))
+hl.bind(mainMod .. " + CTRL + up",    hl.dsp.window.swap({ direction = "up" }))
+hl.bind(mainMod .. " + CTRL + down",  hl.dsp.window.swap({ direction = "down" }))
 
 -- Switch workspaces and move active window to workspace
 for i = 1, 10 do
@@ -323,16 +335,17 @@ hl.window_rule({
 ---- PROGRAMS IN WORKSPACES ----
 --------------------------------
 
-hl.window_rule({ name = "Brave Browser",  match = { class = "brave-browser" },        workspace = "1" })
-hl.window_rule({ name = "Code OSS",       match = { class = "code-oss" },             workspace = "2" })
-hl.window_rule({ name = "Kdenlive",       match = { class = "org.kde.kdenlive" },     workspace = "3" })
-hl.window_rule({ name = "Shotcut",        match = { class = "org.shotcut.Shotcut" },  workspace = "3" })
-hl.window_rule({ name = "GIMP",           match = { class = "gimp" },                 workspace = "4" })
-hl.window_rule({ name = "Inkscape",       match = { class = "org.inkscape.Inkscape" }, workspace = "5" })
-hl.window_rule({ name = "Telegram",       match = { class = "org.telegram.desktop" }, workspace = "6" })
-hl.window_rule({ name = "Darktable",      match = { class = "darktable" },            workspace = "7" })
-hl.window_rule({ name = "Ardour",         match = { class = "Ardour-8.12.0" },        workspace = "8", tile = true })
-hl.window_rule({ name = "Helium Browser", match = { class = "^helium$" },             workspace = "9" })
+hl.window_rule({ name = "Brave Browser",      match = { class = "brave-browser" },                           workspace = "1" })
+hl.window_rule({ name = "Code OSS",           match = { class = "code-oss" },                                workspace = "2" })
+hl.window_rule({ name = "Kdenlive",           match = { class = "org.kde.kdenlive" },                        workspace = "3" })
+hl.window_rule({ name = "Shotcut",            match = { class = "org.shotcut.Shotcut" },                     workspace = "3" })
+hl.window_rule({ name = "GIMP",               match = { class = "gimp" },                                    workspace = "4" })
+hl.window_rule({ name = "Inkscape",           match = { class = "org.inkscape.Inkscape" },                   workspace = "5" })
+hl.window_rule({ name = "Telegram",           match = { class = "org.telegram.desktop" },                    workspace = "6" })
+hl.window_rule({ name = "Darktable",          match = { class = "^org\\.darktable\\.darktable$" },           workspace = "7" })
+hl.window_rule({ name = "Ardour",             match = { class = "Ardour-8.12.0" },                           workspace = "8", tile = true })
+hl.window_rule({ name = "Google Chrome",      match = { class = "^google-chrome$" },                         workspace = "9" })
+hl.window_rule({ name = "Zen Browser", match = { class = "^zen$" }, workspace = "10" })
 
 hl.window_rule({
   name = "move-hyprland-run",
