@@ -216,6 +216,10 @@ bind_exec(mainMod .. " + Escape", "pkill waybar || waybar")
 bind_exec(mainMod .. " + Return", terminal)
 bind_exec(mainMod .. " + SHIFT + D", "kitty --hold hyprctl clients")
 
+-- Switch workspaces
+hl.bind(mainMod .. " + ALT + left",  hl.dsp.focus({ workspace = "e-1" }))
+hl.bind(mainMod .. " + ALT + right", hl.dsp.focus({ workspace = "e+1" }))
+
 -- Behavior
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
