@@ -9,11 +9,14 @@
 ############# ALIASES #############
 ###################################
 
-alias ls='ls -lah --color=auto'
+alias ls='eza -lah --icons=auto'
 alias grep='grep --color=auto'
 
-alias hypr='[ -z "$WAYLAND_DISPLAY" ] && Hyprland || echo "Já está em uma sessão Wayland"'
+alias hyp='[ -z "$WAYLAND_DISPLAY" ] && start-hyprland || echo "Já está em uma sessão Wayland"'
+
 alias i3='[ -z "$DISPLAY" ] && startx || echo "X já está rodando"'
+
+alias sr='source ~/.bashrc && echo ".bashrc recarregado ✔"'
 
 ###################################
 ############### CORES #############
@@ -54,7 +57,7 @@ _gov() {
 }
 
 # Alias para mudar governor
-alias perf='sudo cpupower frequency-set -g performance && echo "🚀 CPU em modo performance"'
+alias perf='sudo tuned-adm profile latency-performance && sudo cpupower frequency-set -g performance && echo "🚀 Sistema em modo Áudio/RT"'
 alias save='sudo cpupower frequency-set -g powersave && echo "💤 CPU em modo powersave"'
 alias gov='cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor'
 
@@ -62,7 +65,6 @@ alias gov='cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor'
 ############### PROMPT ############
 ###################################
 
-# (mantido exatamente como você usa!)
 PS1="${BOLD}${FG_USER}\u${RESET}@${BOLD}${FG_HOST}\h${RESET} \
 ${FG_DIR}\w${RESET} ▶ $(_gov)\n\$ "
 
@@ -71,7 +73,7 @@ ${FG_DIR}\w${RESET} ▶ $(_gov)\n\$ "
 ###################################
 
 # Update todos os pacotes (sem --noconfirm por segurança)
-alias upall='sudo pacman -Syu && yay -Syu --devel --timeupdate'
+alias upall='sudo pacman -Syu && yay -Sua --devel'
 
 # Update oficial
 alias upsys='sudo pacman -Syu'
@@ -89,35 +91,45 @@ sudo paccache -rk2
 yay -Sc --aur --noconfirm
 '
 
-alias maintain='bash -c "
-echo \"==> Atualizando sistema (pacman + AUR)\"
-sudo pacman -Syu
-yay -Syu --devel --timeupdate
+unalias maintain 2>/dev/null
 
-echo
-echo \"==> Removendo pacotes órfãos\"
-orphans=\$(pacman -Qtdq 2>/dev/null || true)
-if [ -n \"\$orphans\" ]; then
-  sudo pacman -Rns \$orphans
-else
-  echo \"Nenhum órfão encontrado.\"
-fi
+maintain() {
+  set -e
 
-echo
-echo \"==> Limpando downloads quebrados do pacman\"
-sudo find /var/cache/pacman/pkg/ -type f -name '\''download-*'\'' -delete 2>/dev/null
+  echo "==> Atualizando sistema oficial com pacman"
+  sudo pacman -Syu
 
-echo
-echo \"==> Limpando cache do pacman (mantendo 2 versões)\"
-sudo paccache -rk2
+  echo
+  echo "==> Atualizando pacotes da AUR com yay"
+  yay -Sua --devel
 
-echo
-echo \"==> Limpando cache da AUR\"
-yay -Sc --aur --noconfirm
+  echo
+  echo "==> Removendo pacotes órfãos"
+  local orphans
+  orphans=$(pacman -Qtdq 2>/dev/null || true)
 
-echo
-echo \"==> Manutenção concluída com sucesso ✔️\"
-"'
+  if [ -n "$orphans" ]; then
+    sudo pacman -Rns $orphans
+  else
+    echo "Nenhum órfão encontrado."
+  fi
+
+  echo
+  echo "==> Limpando downloads quebrados do pacman"
+  sudo find /var/cache/pacman/pkg/ -type f -name "download-*" -delete 2>/dev/null
+
+  echo
+  echo "==> Limpando cache do pacman, mantendo 2 versões"
+  sudo paccache -rk2
+
+  echo
+  echo "==> Limpando cache da AUR"
+  yay -Sc --aur --noconfirm
+
+  echo
+  echo "==> Manutenção concluída com sucesso ✔️"
+}
+
 
 ###################################
 ### Desligar, reiniciar, logout ###
@@ -132,7 +144,11 @@ alias hb='systemctl hibernate'
 alias lg='i3-msg exit'
 
 #Logout Hyprland
-alias lh='hyprctl dispatch exit'
+#alias lh='hyprctl dispatch exit'
+alias lh='hyprctl dispatch "hl.dsp.exit()"'
+
+#Logout universal
+alias lo='loginctl terminate-session "$XDG_SESSION_ID"'
 
 ###################################
 ########### PROGRAMAS #############
