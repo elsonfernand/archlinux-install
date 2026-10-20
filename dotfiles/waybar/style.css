@@ -1,5 +1,3 @@
-/* ~/.config/waybar/style.css  —  tema baseado em Catppuccin Mocha */
-
 * {
   font-family: "JetBrainsMono Nerd Font", "Symbols Nerd Font", sans-serif;
   font-size: 13px;
@@ -29,7 +27,7 @@ window#waybar {
   margin: 2px 3px;
 }
 
-/* ───── Workspaces (módulos custom/wsN) ───── */
+/* ───── Workspaces ───── */
 #ws {
   padding: 0 4px;
 }
@@ -102,7 +100,7 @@ window#waybar {
   padding: 0 14px;
 }
 
-/* Workspace sem janelas: esconde a pílula vazia */
+/* Workspace sem janelas */
 window#waybar.empty #window {
   background: transparent;
   border: none;
@@ -110,7 +108,7 @@ window#waybar.empty #window {
   margin: 0;
 }
 
-/* ───── Clock ───── */
+/* ───── Relógio ───── */
 #clock {
   color: #cdd6f4;
   padding: 0 14px;
