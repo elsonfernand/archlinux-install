@@ -1,0 +1,254 @@
+// ~/.config/waybar/config.jsonc
+{
+  "layer": "top",
+  "position": "top",
+  "height": 36,
+  "margin-top": 6,
+  "margin-left": 8,
+  "margin-right": 8,
+  "spacing": 4,
+  "reload_style_on_change": true,
+
+  "modules-left": ["group/ws", "hyprland/window"],
+  "modules-center": ["group/sistema", "group/disco"],
+  "modules-right": ["pulseaudio", "tray", "clock"],
+
+  // ───────────── Workspaces ─────────────
+  // Waybar 0.15.0 não consegue trocar de workspace no Hyprland com config Lua,
+  // então cada workspace é um módulo próprio com clique via goto.sh.
+  // Aparecem só o workspace ativo e os que têm janelas.
+  "group/ws": {
+    "orientation": "horizontal",
+    "modules": ["custom/ws1", "custom/ws2", "custom/ws3", "custom/ws4", "custom/ws5", "custom/ws6", "custom/ws7", "custom/ws8", "custom/ws9", "custom/ws10"]
+  },
+
+  "custom/ws1": {
+    "exec": "~/.config/waybar/scripts/ws.sh 1",
+    "return-type": "json",
+    "interval": 1,
+    "signal": 8,
+    "format": "{}",
+    "tooltip": false,
+    "on-click": "~/.config/waybar/scripts/goto.sh 1",
+    "on-scroll-up": "~/.config/waybar/scripts/goto.sh e+1",
+    "on-scroll-down": "~/.config/waybar/scripts/goto.sh e-1"
+  },
+  "custom/ws2": {
+    "exec": "~/.config/waybar/scripts/ws.sh 2",
+    "return-type": "json",
+    "interval": 1,
+    "signal": 8,
+    "format": "{}",
+    "tooltip": false,
+    "on-click": "~/.config/waybar/scripts/goto.sh 2",
+    "on-scroll-up": "~/.config/waybar/scripts/goto.sh e+1",
+    "on-scroll-down": "~/.config/waybar/scripts/goto.sh e-1"
+  },
+  "custom/ws3": {
+    "exec": "~/.config/waybar/scripts/ws.sh 3",
+    "return-type": "json",
+    "interval": 1,
+    "signal": 8,
+    "format": "{}",
+    "tooltip": false,
+    "on-click": "~/.config/waybar/scripts/goto.sh 3",
+    "on-scroll-up": "~/.config/waybar/scripts/goto.sh e+1",
+    "on-scroll-down": "~/.config/waybar/scripts/goto.sh e-1"
+  },
+  "custom/ws4": {
+    "exec": "~/.config/waybar/scripts/ws.sh 4",
+    "return-type": "json",
+    "interval": 1,
+    "signal": 8,
+    "format": "{}",
+    "tooltip": false,
+    "on-click": "~/.config/waybar/scripts/goto.sh 4",
+    "on-scroll-up": "~/.config/waybar/scripts/goto.sh e+1",
+    "on-scroll-down": "~/.config/waybar/scripts/goto.sh e-1"
+  },
+  "custom/ws5": {
+    "exec": "~/.config/waybar/scripts/ws.sh 5",
+    "return-type": "json",
+    "interval": 1,
+    "signal": 8,
+    "format": "{}",
+    "tooltip": false,
+    "on-click": "~/.config/waybar/scripts/goto.sh 5",
+    "on-scroll-up": "~/.config/waybar/scripts/goto.sh e+1",
+    "on-scroll-down": "~/.config/waybar/scripts/goto.sh e-1"
+  },
+  "custom/ws6": {
+    "exec": "~/.config/waybar/scripts/ws.sh 6",
+    "return-type": "json",
+    "interval": 1,
+    "signal": 8,
+    "format": "{}",
+    "tooltip": false,
+    "on-click": "~/.config/waybar/scripts/goto.sh 6",
+    "on-scroll-up": "~/.config/waybar/scripts/goto.sh e+1",
+    "on-scroll-down": "~/.config/waybar/scripts/goto.sh e-1"
+  },
+  "custom/ws7": {
+    "exec": "~/.config/waybar/scripts/ws.sh 7",
+    "return-type": "json",
+    "interval": 1,
+    "signal": 8,
+    "format": "{}",
+    "tooltip": false,
+    "on-click": "~/.config/waybar/scripts/goto.sh 7",
+    "on-scroll-up": "~/.config/waybar/scripts/goto.sh e+1",
+    "on-scroll-down": "~/.config/waybar/scripts/goto.sh e-1"
+  },
+  "custom/ws8": {
+    "exec": "~/.config/waybar/scripts/ws.sh 8",
+    "return-type": "json",
+    "interval": 1,
+    "signal": 8,
+    "format": "{}",
+    "tooltip": false,
+    "on-click": "~/.config/waybar/scripts/goto.sh 8",
+    "on-scroll-up": "~/.config/waybar/scripts/goto.sh e+1",
+    "on-scroll-down": "~/.config/waybar/scripts/goto.sh e-1"
+  },
+  "custom/ws9": {
+    "exec": "~/.config/waybar/scripts/ws.sh 9",
+    "return-type": "json",
+    "interval": 1,
+    "signal": 8,
+    "format": "{}",
+    "tooltip": false,
+    "on-click": "~/.config/waybar/scripts/goto.sh 9",
+    "on-scroll-up": "~/.config/waybar/scripts/goto.sh e+1",
+    "on-scroll-down": "~/.config/waybar/scripts/goto.sh e-1"
+  },
+  "custom/ws10": {
+    "exec": "~/.config/waybar/scripts/ws.sh 10",
+    "return-type": "json",
+    "interval": 1,
+    "signal": 8,
+    "format": "{}",
+    "tooltip": false,
+    "on-click": "~/.config/waybar/scripts/goto.sh 10",
+    "on-scroll-up": "~/.config/waybar/scripts/goto.sh e+1",
+    "on-scroll-down": "~/.config/waybar/scripts/goto.sh e-1"
+  },
+
+  // ───────────── Janela ativa ─────────────
+  "hyprland/window": {
+    "format": "{title}",
+    "max-length": 45,
+    "separate-outputs": true,
+    "rewrite": {
+      "(.*) - Google Chrome": "󰊯  $1",
+      "(.*) — Mozilla Firefox": "󰈹  $1",
+      "(.*) - Mozilla Firefox": "󰈹  $1"
+    }
+  },
+
+  // ───────────── Hora / Calendário ─────────────
+  "clock": {
+    "format": "󰥔  {:%d/%m/%Y   %H:%M}",
+    "format-alt": "󰃭  {:%A, %d de %B de %Y   %H:%M:%S}",
+    "interval": 1,
+    "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 3,
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#f5c2e7'><b>{}</b></span>",
+        "days": "<span color='#cdd6f4'>{}</span>",
+        "weeks": "<span color='#94e2d5'><b>S{}</b></span>",
+        "weekdays": "<span color='#f9e2af'><b>{}</b></span>",
+        "today": "<span color='#f38ba8'><b><u>{}</u></b></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
+  },
+
+  // ───────────── Grupo: uso de hardware ─────────────
+  "group/sistema": {
+    "orientation": "horizontal",
+    "modules": ["cpu", "memory", "custom/gpu", "custom/ssd"]
+  },
+
+  "cpu": {
+    "interval": 2,
+    "format": "󰻠  {usage:>3}%",
+    "states": { "warning": 70, "critical": 90 },
+    "tooltip": true,
+    "on-click": "pgrep -x btop >/dev/null || kitty -e btop",
+    "on-click-right": "pkill -x btop"
+  },
+
+  "memory": {
+    "interval": 3,
+    "format": "󰍛  {percentage:>3}%",
+    "tooltip-format": "RAM: {used:0.1f} GiB / {total:0.1f} GiB\nSwap: {swapUsed:0.1f} GiB / {swapTotal:0.1f} GiB",
+    "states": { "warning": 70, "critical": 90 },
+    "on-click": "pgrep -x btop >/dev/null || kitty -e btop",
+    "on-click-right": "pkill -x btop"
+  },
+
+  // Uso da GPU (NVIDIA ou AMD) via script
+  "custom/gpu": {
+    "exec": "~/.config/waybar/scripts/gpu.sh",
+    "return-type": "json",
+    "interval": 2,
+    "format": "{}"
+  },
+
+  // Atividade de I/O do SSD (disco que contém a partição root)
+  "custom/ssd": {
+    "exec": "~/.config/waybar/scripts/ssd.sh",
+    "return-type": "json",
+    "interval": 2,
+    "format": "{}"
+  },
+
+  // ───────────── Grupo: espaço livre ─────────────
+  "group/disco": {
+    "orientation": "horizontal",
+    "modules": ["disk#root", "disk#home"]
+  },
+
+  "disk#root": {
+    "interval": 30,
+    "path": "/",
+    "format": "󰋊  / {free}",
+    "tooltip-format": "Partição root (/)\nUsado: {used} de {total} ({percentage_used}%)\nLivre: {free}",
+    "states": { "warning": 80, "critical": 90 }
+  },
+
+  "disk#home": {
+    "interval": 30,
+    "path": "/home",
+    "format": "󰋜  ~ {free}",
+    "tooltip-format": "Partição Home (/home)\nUsado: {used} de {total} ({percentage_used}%)\nLivre: {free}",
+    "states": { "warning": 80, "critical": 90 }
+  },
+
+  // ───────────── Volume ─────────────
+  "pulseaudio": {
+    "format": "{icon}  {volume:>3}%",
+    "format-muted": "󰝟  mudo",
+    "format-icons": {
+      "headphone": "󰋋",
+      "default": ["󰕿", "󰖀", "󰕾"]
+    },
+    "scroll-step": 5,
+    "tooltip-format": "{desc}\nVolume: {volume}%",
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-click-right": "pavucontrol"
+  },
+
+  // ───────────── Systray ─────────────
+  "tray": {
+    "icon-size": 18,
+    "spacing": 10
+  }
+}

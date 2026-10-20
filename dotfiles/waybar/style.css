@@ -1,0 +1,139 @@
+/* ~/.config/waybar/style.css  —  tema baseado em Catppuccin Mocha */
+
+* {
+  font-family: "JetBrainsMono Nerd Font", "Symbols Nerd Font", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+}
+
+window#waybar {
+  background: transparent;
+  color: #cdd6f4;
+}
+
+/* ───── "Pílulas" ───── */
+#ws,
+#window,
+#clock,
+#sistema,
+#disco,
+#pulseaudio,
+#tray {
+  background: rgba(30, 30, 46, 0.88);
+  border: 1px solid rgba(137, 180, 250, 0.25);
+  border-radius: 14px;
+  padding: 0 10px;
+  margin: 2px 3px;
+}
+
+/* ───── Workspaces (módulos custom/wsN) ───── */
+#ws {
+  padding: 0 4px;
+}
+
+.ws {
+  color: #bac2de;
+  padding: 0 9px;
+  margin: 3px 2px;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.ws:hover {
+  background: rgba(205, 214, 244, 0.15);
+  color: #cdd6f4;
+}
+
+.ws.active {
+  background: #89b4fa;
+  color: #11111b;
+}
+
+/* ───── Módulos dentro dos grupos ───── */
+#cpu,
+#memory,
+#custom-gpu,
+#custom-ssd,
+#disk {
+  background: transparent;
+  margin: 0;
+  padding: 0 8px;
+}
+
+#cpu            { color: #89b4fa; }
+#memory         { color: #a6e3a1; }
+#custom-gpu     { color: #cba6f7; }
+#custom-ssd     { color: #fab387; }
+#disk.root      { color: #f9e2af; }
+#disk.home      { color: #94e2d5; }
+
+/* ───── Estados de alerta ───── */
+#cpu.warning,
+#memory.warning,
+#custom-gpu.warning,
+#custom-ssd.warning,
+#disk.warning {
+  color: #f9e2af;
+}
+
+#cpu.critical,
+#memory.critical,
+#custom-gpu.critical,
+#custom-ssd.critical,
+#disk.critical {
+  color: #f38ba8;
+}
+
+/* ───── Volume ───── */
+#pulseaudio {
+  color: #f5c2e7;
+}
+
+#pulseaudio.muted {
+  color: #6c7086;
+}
+
+/* ───── Janela ativa ───── */
+#window {
+  color: #a6adc8;
+  padding: 0 14px;
+}
+
+/* Workspace sem janelas: esconde a pílula vazia */
+window#waybar.empty #window {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ───── Clock ───── */
+#clock {
+  color: #cdd6f4;
+  padding: 0 14px;
+}
+
+/* ───── Tray ───── */
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  background-color: #f38ba8;
+}
+
+/* ───── Tooltips ───── */
+tooltip {
+  background: #1e1e2e;
+  border: 1px solid #89b4fa;
+  border-radius: 10px;
+}
+
+tooltip label {
+  color: #cdd6f4;
+  padding: 2px;
+}
