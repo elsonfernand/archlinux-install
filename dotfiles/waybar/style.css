@@ -22,7 +22,7 @@ window#waybar {
 #tray {
   background: rgba(30, 30, 46, 0.88);
   border: 1px solid rgba(137, 180, 250, 0.25);
-  border-radius: 14px;
+  border-radius: 12px;
   padding: 0 10px;
   margin: 2px 3px;
 }
@@ -94,6 +94,55 @@ window#waybar {
   color: #6c7086;
 }
 
+/* ───── Programas abertos (wlr/taskbar) ─────*/
+#taskbar {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+#taskbar button {
+  background: rgba(30, 30, 46, 0.88);
+  box-shadow: none;
+  border: none;
+  border-top: 1px solid rgba(137, 180, 250, 0.25);
+  border-bottom: 1px solid rgba(137, 180, 250, 0.25);
+  border-radius: 0;
+  padding: 0 7px;
+  margin: 2px 0;
+  transition: background 0.2s ease;
+}
+
+#taskbar button:first-child {
+  border-left: 1px solid rgba(137, 180, 250, 0.25);
+  border-radius: 14px 0 0 14px;
+  padding-left: 12px;
+  margin-left: 3px;
+}
+
+#taskbar button:last-child {
+  border-right: 1px solid rgba(137, 180, 250, 0.25);
+  border-radius: 0 14px 14px 0;
+  padding-right: 12px;
+  margin-right: 3px;
+}
+
+#taskbar button:only-child {
+  border: 1px solid rgba(137, 180, 250, 0.25);
+  border-radius: 14px;
+  padding: 0 12px;
+}
+
+#taskbar button:hover {
+  background: rgba(58, 60, 80, 0.95);
+}
+
+/* Janela em foco */
+#taskbar button.active {
+  background: rgba(62, 75, 107, 0.95);
+}
+
 /* ───── Janela ativa ───── */
 #window {
   color: #a6adc8;
@@ -108,7 +157,7 @@ window#waybar.empty #window {
   margin: 0;
 }
 
-/* ───── Relógio ───── */
+/* ───── Clock ───── */
 #clock {
   color: #cdd6f4;
   padding: 0 14px;
