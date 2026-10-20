@@ -14,9 +14,6 @@
   "modules-right": ["pulseaudio", "tray", "clock"],
 
   // ───────────── Workspaces ─────────────
-  // Waybar 0.15.0 não consegue trocar de workspace no Hyprland com config Lua,
-  // então cada workspace é um módulo próprio com clique via goto.sh.
-  // Aparecem só o workspace ativo e os que têm janelas.
   "group/ws": {
     "orientation": "horizontal",
     "modules": ["custom/ws1", "custom/ws2", "custom/ws3", "custom/ws4", "custom/ws5", "custom/ws6", "custom/ws7", "custom/ws8", "custom/ws9", "custom/ws10"]
@@ -194,7 +191,7 @@
     "on-click-right": "pkill -x btop"
   },
 
-  // Uso da GPU (NVIDIA ou AMD) via script
+  // Uso da GPU (NVIDIA ou AMD)
   "custom/gpu": {
     "exec": "~/.config/waybar/scripts/gpu.sh",
     "return-type": "json",
