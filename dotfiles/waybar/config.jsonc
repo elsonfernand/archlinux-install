@@ -9,7 +9,7 @@
   "spacing": 4,
   "reload_style_on_change": true,
 
-  "modules-left": ["group/ws", "hyprland/window"],
+  "modules-left": ["group/ws", "wlr/taskbar", "hyprland/window", "custom/wswatch"],
   "modules-center": ["group/sistema", "group/disco"],
   "modules-right": ["pulseaudio", "tray", "clock"],
 
@@ -22,7 +22,7 @@
   "custom/ws1": {
     "exec": "~/.config/waybar/scripts/ws.sh 1",
     "return-type": "json",
-    "interval": 1,
+    "interval": 5,
     "signal": 8,
     "format": "{}",
     "tooltip": false,
@@ -33,7 +33,7 @@
   "custom/ws2": {
     "exec": "~/.config/waybar/scripts/ws.sh 2",
     "return-type": "json",
-    "interval": 1,
+    "interval": 5,
     "signal": 8,
     "format": "{}",
     "tooltip": false,
@@ -44,7 +44,7 @@
   "custom/ws3": {
     "exec": "~/.config/waybar/scripts/ws.sh 3",
     "return-type": "json",
-    "interval": 1,
+    "interval": 5,
     "signal": 8,
     "format": "{}",
     "tooltip": false,
@@ -55,7 +55,7 @@
   "custom/ws4": {
     "exec": "~/.config/waybar/scripts/ws.sh 4",
     "return-type": "json",
-    "interval": 1,
+    "interval": 5,
     "signal": 8,
     "format": "{}",
     "tooltip": false,
@@ -66,7 +66,7 @@
   "custom/ws5": {
     "exec": "~/.config/waybar/scripts/ws.sh 5",
     "return-type": "json",
-    "interval": 1,
+    "interval": 5,
     "signal": 8,
     "format": "{}",
     "tooltip": false,
@@ -77,7 +77,7 @@
   "custom/ws6": {
     "exec": "~/.config/waybar/scripts/ws.sh 6",
     "return-type": "json",
-    "interval": 1,
+    "interval": 5,
     "signal": 8,
     "format": "{}",
     "tooltip": false,
@@ -88,7 +88,7 @@
   "custom/ws7": {
     "exec": "~/.config/waybar/scripts/ws.sh 7",
     "return-type": "json",
-    "interval": 1,
+    "interval": 5,
     "signal": 8,
     "format": "{}",
     "tooltip": false,
@@ -99,7 +99,7 @@
   "custom/ws8": {
     "exec": "~/.config/waybar/scripts/ws.sh 8",
     "return-type": "json",
-    "interval": 1,
+    "interval": 5,
     "signal": 8,
     "format": "{}",
     "tooltip": false,
@@ -110,7 +110,7 @@
   "custom/ws9": {
     "exec": "~/.config/waybar/scripts/ws.sh 9",
     "return-type": "json",
-    "interval": 1,
+    "interval": 5,
     "signal": 8,
     "format": "{}",
     "tooltip": false,
@@ -121,7 +121,7 @@
   "custom/ws10": {
     "exec": "~/.config/waybar/scripts/ws.sh 10",
     "return-type": "json",
-    "interval": 1,
+    "interval": 5,
     "signal": 8,
     "format": "{}",
     "tooltip": false,
@@ -130,10 +130,25 @@
     "on-scroll-down": "~/.config/waybar/scripts/goto.sh e-1"
   },
 
+  // Watcher invisível: escuta os eventos do Hyprland e atualiza os workspaces na hora.
+  "custom/wswatch": {
+    "exec": "~/.config/waybar/scripts/ws-watch.py",
+    "format": "",
+    "tooltip": false
+  },
+
+  // ───────────── Programas abertos ─────────────
+  "wlr/taskbar": {
+    "format": "{icon}",
+    "icon-size": 18,
+    "tooltip-format": "{title}",
+    "on-click": "activate"
+  },
+
   // ───────────── Janela ativa ─────────────
   "hyprland/window": {
     "format": "{title}",
-    "max-length": 45,
+    "max-length": 30,
     "separate-outputs": true,
     "rewrite": {
       "(.*) - Google Chrome": "󰊯  $1",
@@ -175,7 +190,7 @@
 
   "cpu": {
     "interval": 2,
-    "format": "󰻠  {usage:>3}%",
+    "format": "󰻠  {usage:>2}%",
     "states": { "warning": 70, "critical": 90 },
     "tooltip": true,
     "on-click": "pgrep -x btop >/dev/null || kitty -e btop",
@@ -184,14 +199,14 @@
 
   "memory": {
     "interval": 3,
-    "format": "󰍛  {percentage:>3}%",
+    "format": "󰍛  {percentage:>2}%",
     "tooltip-format": "RAM: {used:0.1f} GiB / {total:0.1f} GiB\nSwap: {swapUsed:0.1f} GiB / {swapTotal:0.1f} GiB",
     "states": { "warning": 70, "critical": 90 },
     "on-click": "pgrep -x btop >/dev/null || kitty -e btop",
     "on-click-right": "pkill -x btop"
   },
 
-  // Uso da GPU (NVIDIA ou AMD)
+  // Uso da GPU (NVIDIA ou AMD) via script
   "custom/gpu": {
     "exec": "~/.config/waybar/scripts/gpu.sh",
     "return-type": "json",
