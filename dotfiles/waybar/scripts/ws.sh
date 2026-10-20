@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # ~/.config/waybar/scripts/ws.sh N
-# Mostra o workspace N somente se for o ativo ou se tiver janelas.
 # Requer apenas hyprctl (sem jq).
 
 n="$1"
