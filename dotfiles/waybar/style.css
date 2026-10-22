@@ -1,3 +1,5 @@
+/* ~/.config/waybar/style.css  —  tema baseado em Catppuccin Mocha */
+
 * {
   font-family: "JetBrainsMono Nerd Font", "Symbols Nerd Font", sans-serif;
   font-size: 13px;
@@ -22,12 +24,12 @@ window#waybar {
 #tray {
   background: rgba(30, 30, 46, 0.88);
   border: 1px solid rgba(137, 180, 250, 0.25);
-  border-radius: 12px;
+  border-radius: 14px;
   padding: 0 10px;
   margin: 2px 3px;
 }
 
-/* ───── Workspaces ───── */
+/* ───── Workspaces (módulos custom/wsN) ───── */
 #ws {
   padding: 0 4px;
 }
@@ -94,7 +96,7 @@ window#waybar {
   color: #6c7086;
 }
 
-/* ───── Programas abertos (wlr/taskbar) ─────*/
+/* ───── Programas abertos (wlr/taskbar) ───── */
 #taskbar {
   background: transparent;
   border: none;
@@ -149,7 +151,7 @@ window#waybar {
   padding: 0 14px;
 }
 
-/* Workspace sem janelas */
+/* Workspace sem janelas: esconde a pílula vazia */
 window#waybar.empty #window {
   background: transparent;
   border: none;
