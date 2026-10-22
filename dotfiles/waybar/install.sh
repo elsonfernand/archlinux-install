@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# install.sh — instala as dependências e coloca a Waybar em ~/.config/waybar
+# Esse script instala as dependências e coloca a Waybar em ~/.config/waybar
 #
 # Uso: deixe este arquivo dentro da pasta "waybar" (junto de config.jsonc,
 #      style.css e da pasta scripts/) e rode:
@@ -44,7 +44,7 @@ else
     wanted+=("$p")
   done
 
-  # 'pacman -T' lista só o que NÃO está satisfeito (considera pacotes "provides")
+  # 'pacman -T' lista só os pacotes que NÃO estão (considera pacotes "provides")
   mapfile -t missing < <(pacman -T "${wanted[@]}" || true)
 
   already=()
@@ -62,7 +62,7 @@ else
     info "Todos os pacotes necessários já estão instalados."
   fi
 
-  # Opcional: tema de ícones para a taskbar
+  # Opcional: tema de ícones para a taskbar (esse é o que eu mais utilizo, escolha o seu)
   if ! pacman -Qq papirus-icon-theme >/dev/null 2>&1; then
     if ask "Opcional: instalar papirus-icon-theme (ícones dos programas na taskbar)?"; then
       sudo pacman -S --needed papirus-icon-theme
@@ -71,7 +71,8 @@ else
   fi
 fi
 
-# Aviso sobre o módulo de GPU (NVIDIA precisa do nvidia-smi)
+# Aviso sobre o módulo de GPU (NVIDIA precisa do nvidia-smi se 
+# estiver usando NVIDIA, se estiver usando AMD não faz nada)
 if grep -qsi '^0x10de' /sys/class/drm/card*/device/vendor 2>/dev/null \
    && ! command -v nvidia-smi >/dev/null 2>&1; then
   warn "GPU NVIDIA detectada, mas 'nvidia-smi' não foi encontrado. O módulo de GPU precisa do"
