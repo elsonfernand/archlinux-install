@@ -138,6 +138,7 @@
   },
 
   // ───────────── Programas abertos ─────────────
+  // Um ícone por janela (de todos os workspaces). Clique = ir até a janela.
   "wlr/taskbar": {
     "format": "{icon}",
     "icon-size": 18,
@@ -160,7 +161,7 @@
   // ───────────── Hora / Calendário ─────────────
   "clock": {
     "format": "󰥔  {:%d/%m/%Y   %H:%M}",
-    "format-alt": "󰃭  {:%A, %d de %B de %Y   %H:%M:%S}",
+    "format-alt": "󰃭  {:%A - %B %d, %Y   %H:%M:%S}",
     "interval": 1,
     "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
     "calendar": {
