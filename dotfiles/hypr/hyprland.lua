@@ -335,6 +335,14 @@ hl.window_rule({
   size = { "monitor_w * 0.3", "monitor_h * 0.15" },
 })
 
+hl.window_rule({
+  name = "Maintain",
+  match = { class = "maintain" },
+  float = true,
+  center = true,
+  size = { "monitor_w * 0.6", "monitor_h * 0.6" },
+})
+
 --------------------------------
 ---- PROGRAMS IN WORKSPACES ----
 --------------------------------
