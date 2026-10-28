@@ -11,15 +11,15 @@
 
   "modules-left": ["group/ws", "wlr/taskbar", "hyprland/window", "custom/wswatch"],
   "modules-center": ["group/sistema", "group/disco"],
-  "modules-right": ["pulseaudio", "tray", "clock"],
+  "modules-right": ["custom/updates", "pulseaudio", "tray", "clock"],
 
-  // ───────────── Workspaces ─────────────
-  "group/ws": {
+// ───────────── Workspaces ─────────────
+   "group/ws": {
     "orientation": "horizontal",
     "modules": ["custom/ws1", "custom/ws2", "custom/ws3", "custom/ws4", "custom/ws5", "custom/ws6", "custom/ws7", "custom/ws8", "custom/ws9", "custom/ws10"]
   },
 
-  "custom/ws1": {
+ "custom/ws1": {
     "exec": "~/.config/waybar/scripts/ws.sh 1",
     "return-type": "json",
     "interval": 5,
@@ -130,7 +130,7 @@
     "on-scroll-down": "~/.config/waybar/scripts/goto.sh e-1"
   },
 
-  // Watcher invisível: escuta os eventos do Hyprland e atualiza os workspaces na hora.
+  // Watcher invisível
   "custom/wswatch": {
     "exec": "~/.config/waybar/scripts/ws-watch.py",
     "format": "",
@@ -138,7 +138,6 @@
   },
 
   // ───────────── Programas abertos ─────────────
-  // Um ícone por janela (de todos os workspaces). Clique = ir até a janela.
   "wlr/taskbar": {
     "format": "{icon}",
     "icon-size": 18,
@@ -243,6 +242,17 @@
     "format": "󰋜  ~ {free}",
     "tooltip-format": "Partição Home (/home)\nUsado: {used} de {total} ({percentage_used}%)\nLivre: {free}",
     "states": { "warning": 80, "critical": 90 }
+  },
+
+  // ───────────── Atualizações pendentes ─────────────
+  "custom/updates": {
+    "exec": "~/.config/waybar/scripts/updates.py",
+    "return-type": "json",
+    "interval": 1800,
+    "signal": 9,
+    "format": "{}",
+    "on-click": "kitty --hold --class maintain bash -ic 'trap \"pkill -RTMIN+9 -x waybar\" EXIT; maintain'",
+    "on-click-right": "pkill -RTMIN+9 -x waybar"
   },
 
   // ───────────── Volume ─────────────
