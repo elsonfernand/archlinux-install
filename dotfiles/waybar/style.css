@@ -87,6 +87,15 @@ window#waybar {
   color: #f38ba8;
 }
 
+/* ───── Atualizações pendentes ───── */
+#custom-updates {
+  color: #f9e2af;
+}
+
+#custom-updates.error {
+  color: #6c7086;
+}
+
 /* ───── Volume ───── */
 #pulseaudio {
   color: #f5c2e7;
