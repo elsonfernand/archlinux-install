@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Esse script instala as dependências e coloca a Waybar em ~/.config/waybar
+# install.sh — instala as dependências e coloca a Waybar em ~/.config/waybar
 #
 # Uso: deixe este arquivo dentro da pasta "waybar" (junto de config.jsonc,
 #      style.css e da pasta scripts/) e rode:
@@ -25,12 +25,12 @@ ask()  { local a; read -rp "$1 [s/N] " a || a=""; [[ "$a" =~ ^[sSyY]$ ]]; }
 
 # ── 1) confere se os arquivos estão ao lado do script ────────────────────
 for f in config.jsonc style.css \
-         scripts/gpu.sh scripts/ssd.sh scripts/ws.sh scripts/goto.sh scripts/ws-watch.py; do
+         scripts/gpu.sh scripts/ssd.sh scripts/ws.sh scripts/goto.sh scripts/ws-watch.py scripts/updates.py; do
   [[ -f "$SRC/$f" ]] || die "Não encontrei '$f' em $SRC. Rode o script dentro da pasta waybar."
 done
 
 # ── 2) pacotes ───────────────────────────────────────────────────────────
-REQUIRED=(waybar ttf-jetbrains-mono-nerd python wireplumber pipewire-pulse pavucontrol btop kitty)
+REQUIRED=(waybar ttf-jetbrains-mono-nerd python wireplumber pipewire-pulse pavucontrol btop kitty pacman-contrib)
 
 if ! command -v pacman >/dev/null 2>&1; then
   warn "pacman não encontrado (o sistema não é Arch?). Pulando a instalação de pacotes."
@@ -44,7 +44,7 @@ else
     wanted+=("$p")
   done
 
-  # 'pacman -T' lista só os pacotes que NÃO estão (considera pacotes "provides")
+  # 'pacman -T' lista só o que NÃO está satisfeito (considera pacotes "provides")
   mapfile -t missing < <(pacman -T "${wanted[@]}" || true)
 
   already=()
@@ -62,7 +62,7 @@ else
     info "Todos os pacotes necessários já estão instalados."
   fi
 
-  # Opcional: tema de ícones para a taskbar (esse é o que eu mais utilizo, escolha o seu)
+  # Opcional: tema de ícones para a taskbar
   if ! pacman -Qq papirus-icon-theme >/dev/null 2>&1; then
     if ask "Opcional: instalar papirus-icon-theme (ícones dos programas na taskbar)?"; then
       sudo pacman -S --needed papirus-icon-theme
@@ -71,8 +71,12 @@ else
   fi
 fi
 
-# Aviso sobre o módulo de GPU (NVIDIA precisa do nvidia-smi se 
-# estiver usando NVIDIA, se estiver usando AMD não faz nada)
+# Aviso sobre o módulo de atualizações (a AUR precisa de um helper)
+if ! command -v yay >/dev/null 2>&1 && ! command -v paru >/dev/null 2>&1; then
+  warn "Nenhum helper da AUR (yay/paru) encontrado: o módulo de atualizações mostrará só os pacotes oficiais."
+fi
+
+# Aviso sobre o módulo de GPU (NVIDIA precisa do nvidia-smi)
 if grep -qsi '^0x10de' /sys/class/drm/card*/device/vendor 2>/dev/null \
    && ! command -v nvidia-smi >/dev/null 2>&1; then
   warn "GPU NVIDIA detectada, mas 'nvidia-smi' não foi encontrado. O módulo de GPU precisa do"
